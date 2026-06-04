@@ -45,13 +45,16 @@ export async function getNews(opts?: {
   };
   if (!isConfigured()) return empty;
 
-  const filter = [
-    'status = "published"',
-    `published_at <= "${new Date().toISOString()}"`,
-    opts?.category ? `category = "${opts.category}"` : "",
-  ]
-    .filter(Boolean)
-    .join(" && ");
+  // パラメータ化して filter インジェクションを防ぐ（pb.filter がエスケープする）
+  const now = new Date().toISOString();
+  let filter = pb.filter('status = "published" && published_at <= {:now}', {
+    now,
+  });
+  if (opts?.category) {
+    filter += " && " + pb.filter("category = {:category}", {
+      category: opts.category,
+    });
+  }
 
   try {
     const res = await pb.collection("news").getList<News>(1, opts?.limit ?? 20, {
@@ -72,9 +75,10 @@ export async function getNews(opts?: {
 export async function getNewsBySlug(slug: string): Promise<News | null> {
   if (!isConfigured()) return null;
   try {
+    // slug は URL 由来のユーザー入力。pb.filter でパラメータ化してインジェクションを防ぐ。
     return await pb
       .collection("news")
-      .getFirstListItem<News>(`slug = "${slug}"`, {});
+      .getFirstListItem<News>(pb.filter("slug = {:slug}", { slug }), {});
   } catch {
     return null;
   }
