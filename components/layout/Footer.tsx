@@ -66,7 +66,11 @@ export function Footer() {
       <div className="wrap">
         <div className="ft__bar">
           <span>{f.copyright}</span>
-          <span>{f.place}</span>
+          <span style={{ display: "flex", gap: 18, flexWrap: "wrap", alignItems: "center" }}>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/tokushoho">特定商取引法に基づく表記</a>
+            <span>{f.place}</span>
+          </span>
         </div>
       </div>
     </footer>
