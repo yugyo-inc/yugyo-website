@@ -6,66 +6,37 @@ export const metadata: Metadata = {
 };
 
 const ROWS: { label: string; value: React.ReactNode }[] = [
-  { label: "販売事業者名", value: "株式会社 遊行（yugyo inc.）" },
-  { label: "運営統括責任者", value: "大瀬良 亮" },
+  { label: "販売業者", value: "株式会社 遊行（yugyo inc.）" },
+  { label: "代表責任者名", value: "大瀬良 亮" },
   {
     label: "所在地",
-    value: (
-      <>
-        福岡県福岡市
-        <br />
-        <span className="legal__note">
-          ※【要記入】番地・建物名までの正式住所（または「請求があれば遅滞なく開示します」）
-        </span>
-      </>
-    ),
+    value: "〒810-0001 福岡県福岡市中央区天神1-11-1 ONE FUKUOKA BLDG. 7階",
   },
-  {
-    label: "電話番号",
-    value: (
-      <>
-        <span className="legal__note">
-          【要記入】電話番号（または「請求があれば遅滞なく開示します」）
-        </span>
-      </>
-    ),
-  },
+  { label: "電話番号", value: "ご請求があれば遅滞なく開示いたします" },
   { label: "メールアドレス", value: "info@yugyo.work" },
+  { label: "ホームページURL", value: "https://yugyo.work/" },
+  { label: "販売価格", value: "各商品・サービスページをご参照ください。" },
   {
-    label: "販売価格",
-    value: "各サービス・イベントの申込ページに表示する金額（消費税込み）",
+    label: "商品代金以外の必要料金（追加手数料等）",
+    value: "手数料（振込手数料、コンビニ決済手数料など）、消費税",
   },
   {
-    label: "商品代金以外の必要料金",
-    value: (
-      <>
-        消費税、銀行振込の場合の振込手数料 等
-        <br />
-        <span className="legal__note">※【要確認】実態に合わせて記載</span>
-      </>
-    ),
+    label: "受け付け可能な決済手段",
+    value: "クレジットカードまたは国内の銀行振込",
   },
   {
-    label: "支払方法",
-    value: (
-      <span className="legal__note">【要記入】クレジットカード／銀行振込 等</span>
-    ),
+    label: "決済期間",
+    value:
+      "クレジットカード決済の場合はただちに処理されます。国内の銀行振込の場合は、ご注文から3日以内にお振り込みいただく必要があります。",
   },
   {
-    label: "支払時期",
-    value: <span className="legal__note">【要記入】申込時 等</span>,
+    label: "引渡時期",
+    value:
+      "代金のお支払い確定後、7日以内に発送いたします。後払い決済の場合は、ご注文確定後7日以内に発送いたします。",
   },
   {
-    label: "役務の提供時期",
-    value: "入金確認後、各サービス・イベントに定める日時に提供します。",
-  },
-  {
-    label: "返品・キャンセルについて",
-    value: (
-      <span className="legal__note">
-        【要記入】サービス・イベントの性質に応じたキャンセル／返金規定
-      </span>
-    ),
+    label: "交換および返品（返金ポリシー）",
+    value: "サービスの性質上、返品・返金はお受けしておりません。",
   },
 ];
 
@@ -85,12 +56,6 @@ export default function TokushohoPage() {
           ))}
         </tbody>
       </table>
-
-      <div className="legal__body">
-        <p className="legal__note">
-          ※ 本表記は雛形です。【要記入】項目を確定し、公開前に法務確認をお願いします。消費者向けの有料サービス・チケット販売を行う場合に表示義務があります。
-        </p>
-      </div>
     </div>
   );
 }

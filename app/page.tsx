@@ -88,10 +88,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Band 2 — Colive stat */}
+      {/* Band 2 — Colive Fukuoka */}
       <section className="band">
-        <div className="band__img" style={{ backgroundImage: "url('/photos/p2.jpg')" }} />
-        <div className="band__veil" />
+        <div className="band__img" style={{ backgroundImage: "url('/photos/colive.jpg')" }} />
+        <div className="band__veil" style={{ background: "rgba(14,27,44,0.55)" }} />
         <div className="band__inner">
           <p className="eyebrow band__eyebrow">{band2.eyebrow}</p>
           <div className="band__big">{band2.big}</div>
