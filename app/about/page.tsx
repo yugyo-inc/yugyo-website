@@ -28,6 +28,37 @@ export default function AboutPage() {
           {FOUNDER.bio.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
+          <h2
+            style={{
+              fontSize: 11,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+              color: "var(--ink-2)",
+              margin: "34px 0 12px",
+            }}
+          >
+            Experience
+          </h2>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {FOUNDER.experience.map((e, i) => (
+              <li
+                key={i}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "118px 1fr",
+                  gap: 16,
+                  padding: "10px 0",
+                  borderTop: "1px solid var(--line)",
+                  fontSize: 14,
+                  lineHeight: 1.5,
+                  color: "var(--ink-2)",
+                }}
+              >
+                <span style={{ fontWeight: 700, color: "var(--ink)" }}>{e.period}</span>
+                <span>{e.role}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

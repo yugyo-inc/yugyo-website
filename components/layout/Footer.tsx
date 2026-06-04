@@ -13,9 +13,6 @@ export function Footer() {
   return (
     <footer className="ft" id="contact">
       <div className="wrap ft__top">
-        <p className="eyebrow" style={{ color: "rgba(247,244,238,0.55)", marginBottom: 30 }}>
-          {f.eyebrow}
-        </p>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="ft__vision-img" src="/brand/bewhere_white.png" alt={f.vision} />
 

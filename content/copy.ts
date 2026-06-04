@@ -23,7 +23,7 @@ export const COPY = {
   about: {
     kicker: "00 — yugyo inc.",
     heading: "Blurring the<br>boundaries.",
-    body: "We are a value-creation firm that delivers unique social impact by connecting Japanese and global talent. We aim to transcend national borders, propose new ways of working, and create a better life for all.",
+    body: "yugyo inc. is a consulting and marketing agency — your local team in Japan. We help global companies and partners enter, grow, and belong here, across digital nomadism, regional revitalization, and education. From strategy to on-the-ground execution, we move with your goals.",
     // 注記: シートで #VALUE! エラーのため原文を維持（必要なら Ryo 再入力）
     note: "<b>yugyo (遊行)</b> — to journey as a form of practice. The company is named for the act of walking. We move first; the work follows.",
   },

@@ -19,13 +19,21 @@ export const COMPANY_PROFILE: ProfileRow[] = [
   },
 ];
 
-// 代表者プロフィール（About ページ掲載）。経歴詳細は Ryo 承認のうえ追記・調整。
+// 代表者プロフィール（About ページ掲載）。Canva 公式会社案内 (DAHC_dG2H1c) 準拠 / 設立2023で統一。
 export const FOUNDER = {
   name_en: "Ryo Osera",
   name_jp: "大瀬良 亮",
   role: "Founder & CEO",
   bio: [
-    "Ryo Osera is the founder and CEO of yugyo inc. From a base in Fukuoka, he leads the company's work across digital nomadism, regional revitalization, and global education.",
-    "He founded and hosts Colive Fukuoka — one of Japan's largest gatherings of digital nomads — and holds a cross-appointment at Kanazawa University. He is a long-standing advocate for new ways of working, traveling, and living across borders.",
+    "Born in 1983 in Nagasaki, Japan. After graduating from the University of Tsukuba, Ryo began his career at Dentsu Inc., specializing in public relations and marketing strategy.",
+    "He later served as Social Media Director for the Office of the Prime Minister of Japan and as an Urban Development Advisor to Tsukuba City. In 2019 he co-founded HafH, a subscription-based travel service, before founding yugyo inc. in 2023. He is currently an Associate Professor at the Frontier Institute of Tourism Sciences, Kanazawa University.",
+  ],
+  experience: [
+    { period: "2023–", role: "Associate Professor, Frontier Institute of Tourism Sciences, Kanazawa University" },
+    { period: "2023–", role: "Founder & CEO, yugyo inc." },
+    { period: "2019–2022", role: "Co-Founder & CEO, HafH (KabuK Style Inc.)" },
+    { period: "2018–2020", role: "Urban Development Advisor, Tsukuba City" },
+    { period: "2015–2017", role: "Social Media Director, Office of the Prime Minister of Japan" },
+    { period: "2007–2019", role: "Dentsu Inc. — PR & marketing strategy" },
   ],
 };
