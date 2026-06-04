@@ -21,11 +21,20 @@ export const metadata: Metadata = {
     siteName: "yugyo inc.",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "yugyo inc. — Be where you are meant to be.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "yugyo inc. — Be where you are meant to be.",
     description: "Where the world's movement meets the regions of Japan.",
+    images: ["/og.jpg"],
   },
 };
 
