@@ -25,10 +25,16 @@
 
 ## 3. News/Members バックエンドのご相談ポイント
 
+> 🟢 **CMS 第一候補は microCMS に決定（2026-06-05, Ryo 判断）**。
+> 理由: サーバー運用不要（SaaS）／日本語管理画面で非技術メンバー（Sono・Haruka）が自走／無料枠あり／Next.js 相性◎。
+> 次点は Notion-as-CMS。PocketBase は自前ホスティングが必要なため優先度を下げています。
+> どの CMS でも、下記の関数の戻り値型に合わせれば**フロントは無改修**です。
+
 `lib/pb.ts` / `lib/types.ts` / `pocketbase/SCHEMA.md` に、想定していたデータ構造があります。
-PocketBase 以外（Headless CMS / 自前 API / 静的 MDX 等）で実装される場合も、
+microCMS / Notion / 自前 API いずれで実装される場合も、
 `getNews()` / `getNewsBySlug()` / `getMembers()` の戻り値の型（`lib/types.ts` の `News` / `Member`）に
 合わせていただければ、フロント側（`components/news/*`・`components/about/MemberCard.tsx`）は無改修で動きます。
+（microCMS の場合は `lib/pb.ts` を `lib/cms.ts` 等に置き換え、microCMS SDK で同じ3関数を実装する形を想定。）
 
 - News フィールド: `title_jp` / `slug` / `category` / `excerpt` / `body_jp`(HTML) / `external_url` / `published_at` / `status` …
 - Members フィールド: `name_jp` / `role_jp` / `bio_jp` / `photo` / `order` / `is_public` …
