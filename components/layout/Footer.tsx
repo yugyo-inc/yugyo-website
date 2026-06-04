@@ -1,64 +1,72 @@
-import Link from "next/link";
-import { NAV_LINKS, SOCIAL_LINKS, SITE, VISION } from "@/lib/constants";
+import { COPY } from "@/content/copy";
+import { NewsletterForm } from "@/components/newsletter/NewsletterForm";
+
+const MENU = [
+  { label: COPY.nav.work, href: "/#work" },
+  { label: COPY.nav.about, href: "/#about" },
+  { label: COPY.nav.news, href: "/#news" },
+  { label: COPY.nav.contact, href: "/contact.html" },
+];
 
 export function Footer() {
+  const f = COPY.footer;
   return (
-    <footer className="bg-ink-navy text-mist-white">
-      <div className="mx-auto w-full max-w-container px-6 md:px-10 py-16">
-        <div className="grid gap-10 md:grid-cols-2">
+    <footer className="ft" id="contact">
+      <div className="wrap ft__top">
+        <p className="eyebrow" style={{ color: "rgba(247,244,238,0.55)", marginBottom: 30 }}>
+          {f.eyebrow}
+        </p>
+        <p className="ft__vision">{f.vision}</p>
+
+        <div className="ft__grid">
           <div>
-            <Link
-              href="/"
-              className="font-sans font-display lowercase tracking-tight text-2xl text-mist-white"
-            >
-              yugyo inc.
-            </Link>
-            <p className="mt-4 font-jp font-jpbody text-sm text-mist-white/80 max-w-prose">
-              {VISION.jp}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ft__logo" src="/brand/wordmark_white.png" alt="yugyo inc." />
+            <p style={{ color: "rgba(247,244,238,0.7)", fontSize: 14, maxWidth: "34ch" }}>
+              {f.tagline}
             </p>
+            <div style={{ marginTop: 30 }}>
+              <h4>{COPY.newsletter.eyebrow}</h4>
+              <p style={{ color: "rgba(247,244,238,0.7)", fontSize: 13, maxWidth: "32ch", marginBottom: 6 }}>
+                {COPY.newsletter.sub}
+              </p>
+              <NewsletterForm variant="footer" />
+            </div>
           </div>
 
-          <div className="flex flex-col gap-6 md:items-end">
-            <ul className="flex flex-wrap gap-6">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="label text-mist-white/70 hover:text-mist-white transition-colors"
-                  >
-                    {link.label}
-                  </Link>
+          <div>
+            <h4>Menu</h4>
+            <ul>
+              {MENU.map((m) => (
+                <li key={m.href}>
+                  <a href={m.href}>{m.label}</a>
                 </li>
               ))}
             </ul>
-            <ul className="flex flex-wrap gap-6">
-              {SOCIAL_LINKS.map((s) => (
+          </div>
+
+          <div>
+            <h4>Connect</h4>
+            <ul>
+              <li>
+                <a href={`mailto:${f.email}`}>{f.email}</a>
+              </li>
+              {f.social.map((s) => (
                 <li key={s.label}>
-                  <a
-                    href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="label text-mist-white/70 hover:text-mist-white transition-colors"
-                  >
+                  <a href={s.url} target="_blank" rel="noopener noreferrer">
                     {s.label}
                   </a>
                 </li>
               ))}
             </ul>
-            <a
-              href={`mailto:${SITE.contact_email}`}
-              className="font-sans text-sm text-mist-white/70 hover:text-mist-white transition-colors"
-            >
-              {SITE.contact_email}
-            </a>
           </div>
         </div>
+      </div>
 
-        <div className="mt-12 border-t border-mist-white/15 pt-6">
-          <p className="font-sans text-xs text-mist-white/60">
-            © {SITE.founding_year ? new Date().getFullYear() : ""} yugyo inc.
-            ／ {SITE.name_jp}
-          </p>
+      <div className="wrap">
+        <div className="ft__bar">
+          <span>{f.copyright}</span>
+          <span>{f.place}</span>
         </div>
       </div>
     </footer>

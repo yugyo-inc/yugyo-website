@@ -4,48 +4,49 @@
 //  - 値（" " の中）を書き換えるだけでOK。キー名や構造は変えない。
 //  - <br> は改行、<b>…</b> は太字（そのまま残す）。
 //  - 英語ベース。日本語を出したい箇所だけ日本語を入れる。
-// v2 デザイン（English / Helvetica / editorial）の全文言。
-// ※ 承認後 Next.js 本体がこの deck を読み込む → 編集して push するだけで本番反映。
+// 編集はスプレッドシート: 1oFdgYlgX-l5U78hLk2o7CJqHNv7U8iKHeQOT-WDIuFs（修正後列）→ Claude が同期。
+// 直近同期: 2026-06-05（Ryo シート編集を反映）
 // ============================================================================
 
 export const COPY = {
   // ---- Header / Nav ----
-  nav: { work: "Work", about: "About", news: "News", contact: "Contact" },
+  nav: { work: "Project", about: "About", news: "News", contact: "Contact" },
 
   // ---- Hero（ファーストビュー）----
   hero: {
     eyebrow: "yugyo inc. — Fukuoka, Japan · Est. 2023",
     title: "Be where you are meant to be.",
-    tags: ["Digital Nomadism", "Cross-border Mobility", "Regional Co-creation"],
+    tags: ["Digital Nomadism", "Regional Revitalization", "Global Education"],
   },
 
   // ---- About / Manifesto ----
   about: {
     kicker: "00 — yugyo inc.",
-    heading: "We walk<br>before we claim.",
-    body: "yugyo works where the world's movement meets the regions of Japan. We build the programs, the gatherings, and the partnerships that let people who cross borders find a place to belong — starting in Fukuoka, and walking outward.",
+    heading: "Blurring the<br>boundaries.",
+    body: "We are a value creation firm that generates unique social impact by connecting Japanese and global talent. We aim to transcend national borders, propose new ways of working, and create a better life for all.",
+    // 注記: シートで #VALUE! エラーのため原文を維持（必要なら Ryo 再入力）
     note: "<b>yugyo (遊行)</b> — to journey as a form of practice. The company is named for the act of walking. We move first; the work follows.",
   },
 
-  // ---- 写真バンド 1（遊行 / 巡礼者）----
+  // ---- 写真バンド1（遊行 / 巡礼者）----
   band1: {
     eyebrow: "遊行 — Walking the Wild",
     big: "Movement<br>as method.",
     sub: "The figure is always smaller than the place. So is the company.",
   },
 
-  // ---- Work（事業 4件）----
+  // ---- Project（事業 4件）----
   work: {
-    kicker: "01 — Work",
+    kicker: "01 — Project",
     items: [
-      { n: "01", title: "Ikigai Co-Creator Program", desc: "Where global talent and Japanese regions build together.", el: "Water · Cross-border", color: "water" },
-      { n: "02", title: "Colive Fukuoka", desc: "Asia's gathering of digital nomads. 57 countries, one city.", el: "Fire · Community", color: "fire" },
-      { n: "03", title: "Public Sector", desc: "Regional co-creation with Nagasaki, Kanazawa, Toyama, Takahama.", el: "Earth · Public", color: "earth" },
-      { n: "04", title: "Consulting", desc: "Cross-border strategy, workation, and regional partnership.", el: "Sky · Counsel", color: "sky" },
+      { n: "01", title: "Digital Nomadism", desc: "Where global talent and Japanese regions build together.", el: "Water · Cross-border", color: "water" },
+      { n: "02", title: "Local Revitalization", desc: "Making a new impact in Fukuoka, Nagasaki, and Kanazawa.", el: "Fire · Community", color: "fire" },
+      { n: "03", title: "Consulting", desc: "Cross-border strategy, workation, and regional partnership.", el: "Earth · Public", color: "earth" },
+      { n: "04", title: "Education", desc: "This raises questions about new ways of working and new ways of traveling.", el: "Sky · Counsel", color: "sky" },
     ],
   },
 
-  // ---- 写真バンド 2（高峰 / Colive 数字）----
+  // ---- 写真バンド2（高峰 / Colive 数字）----
   band2: {
     eyebrow: "Colive Fukuoka — 2025",
     big: "57 countries.",
@@ -69,6 +70,17 @@ export const COPY = {
     kicker: "03 — News",
     cta: "All news →",
     empty: "No published news yet. — Sono / Haruka publish here.",
+  },
+
+  // ---- Newsletter（登録）----
+  newsletter: {
+    eyebrow: "Newsletter",
+    heading: "Letters from the road.",
+    sub: "Notes on nomadism, regions, and the work — a few times a month.",
+    placeholder: "you@example.com",
+    button: "Subscribe",
+    success: "Thank you — please check your inbox to confirm.",
+    error: "Something went wrong. Please try again.",
   },
 
   // ---- Footer ----
