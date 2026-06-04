@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageHero } from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "特定商取引法に基づく表記",
@@ -8,10 +9,7 @@ export const metadata: Metadata = {
 const ROWS: { label: string; value: React.ReactNode }[] = [
   { label: "販売業者", value: "株式会社 遊行（yugyo inc.）" },
   { label: "代表責任者名", value: "大瀬良 亮" },
-  {
-    label: "所在地",
-    value: "〒810-0001 福岡県福岡市中央区天神1-11-1 ONE FUKUOKA BLDG. 7階",
-  },
+  { label: "所在地", value: "〒810-0001 福岡県福岡市中央区天神1-11-1 ONE FUKUOKA BLDG. 7階" },
   { label: "電話番号", value: "ご請求があれば遅滞なく開示いたします" },
   { label: "メールアドレス", value: "info@yugyo.work" },
   { label: "ホームページURL", value: "https://yugyo.work/" },
@@ -20,10 +18,7 @@ const ROWS: { label: string; value: React.ReactNode }[] = [
     label: "商品代金以外の必要料金（追加手数料等）",
     value: "手数料（振込手数料、コンビニ決済手数料など）、消費税",
   },
-  {
-    label: "受け付け可能な決済手段",
-    value: "クレジットカードまたは国内の銀行振込",
-  },
+  { label: "受け付け可能な決済手段", value: "クレジットカードまたは国内の銀行振込" },
   {
     label: "決済期間",
     value:
@@ -42,20 +37,25 @@ const ROWS: { label: string; value: React.ReactNode }[] = [
 
 export default function TokushohoPage() {
   return (
-    <div className="wrap legal">
-      <h1 className="legal__title">特定商取引法に基づく表記</h1>
-      <p className="legal__lead">株式会社 遊行（yugyo inc.）／ 最終更新: 2026-06-05</p>
-
-      <table className="legal__table">
-        <tbody>
-          {ROWS.map((r) => (
-            <tr key={r.label}>
-              <th scope="row">{r.label}</th>
-              <td>{r.value}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <>
+      <PageHero
+        title="特定商取引法に基づく表記"
+        subtitle="yugyo inc. ｜ 株式会社 遊行"
+        photo="/photos/p8.jpg"
+        small
+      />
+      <div className="wrap pagebody">
+        <table className="legal__table" style={{ marginTop: 0 }}>
+          <tbody>
+            {ROWS.map((r) => (
+              <tr key={r.label}>
+                <th scope="row">{r.label}</th>
+                <td>{r.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }

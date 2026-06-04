@@ -43,8 +43,11 @@ const nextConfig = {
     ];
   },
   async redirects() {
-    // 旧プレビュー /v2.html は本番トップへ恒久リダイレクト
-    return [{ source: "/v2.html", destination: "/", permanent: true }];
+    // 旧プレビュー/静的ページは新ルートへ恒久リダイレクト
+    return [
+      { source: "/v2.html", destination: "/", permanent: true },
+      { source: "/contact.html", destination: "/contact", permanent: true },
+    ];
   },
 };
 

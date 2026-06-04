@@ -1,98 +1,113 @@
 import type { Metadata } from "next";
+import { PageHero } from "@/components/layout/PageHero";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "How yugyo inc. collects, uses, and protects your personal information.",
+  description: "Privacy Policy of yugyo inc. (株式会社 遊行).",
 };
 
 export default function PrivacyPage() {
   return (
-    <div className="wrap legal">
-      <h1 className="legal__title">Privacy Policy</h1>
-      <p className="legal__lead">yugyo inc.（株式会社 遊行）／ Last updated: 2026-06-05</p>
+    <>
+      <PageHero title="Privacy Policy" subtitle="yugyo inc. ｜ 株式会社 遊行" photo="/photos/p9.jpg" />
 
-      <div className="legal__body">
-        <p>
-          yugyo inc. (&ldquo;yugyo&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) respects your privacy.
-          This policy explains what personal information we collect through this website
-          (yugyo.work), how we use it, and the choices you have.
-        </p>
+      <div className="wrap pagebody">
+        <div className="legal__body" style={{ marginTop: 0 }}>
+          <p>
+            yugyo inc. operates the yugyo.work website, which provides the SERVICE. This page is
+            used to inform website visitors regarding our policies with the collection, use, and
+            disclosure of Personal Information if anyone decided to use our Service, the yugyo.work
+            website.
+          </p>
+          <p>
+            If you choose to use our Service, then you agree to the collection and use of
+            information in relation with this policy. The Personal Information that we collect is
+            used for providing and improving the Service. We will not use or share your information
+            with anyone except as described in this Privacy Policy.
+          </p>
 
-        <h2>1. Information we collect</h2>
-        <ul>
-          <li>
-            <strong>Contact form</strong> — your name, email address, organisation (optional),
-            and the content of your message.
-          </li>
-          <li>
-            <strong>Newsletter</strong> — your email address, when you subscribe.
-          </li>
-          <li>
-            <strong>Technical data</strong> — standard server and access logs (e.g. IP address,
-            browser type) generated automatically when you visit the site.
-          </li>
-        </ul>
+          <h2>Information Collection and Use</h2>
+          <p>
+            For a better experience while using our Service, we may require you to provide us with
+            certain personally identifiable information, including but not limited to your name and
+            email address. The information that we collect will be used to contact or identify you.
+          </p>
 
-        <h2>2. How we use your information</h2>
-        <ul>
-          <li>To respond to your inquiries and communicate with you.</li>
-          <li>To send our newsletter, if you have subscribed (you can unsubscribe at any time).</li>
-          <li>To operate, secure, and improve the website.</li>
-        </ul>
+          <h2>Log Data</h2>
+          <p>
+            Whenever you visit our Service, we may collect information that your browser sends to us
+            that is called Log Data. This Log Data may include information such as your computer&apos;s
+            Internet Protocol (IP) address, browser version, pages of our Service that you visit,
+            the time and date of your visit, the time spent on those pages, and other statistics.
+          </p>
 
-        <h2>3. Service providers</h2>
-        <p>
-          We use trusted third-party services to operate this site. Your data may be processed by:
-        </p>
-        <ul>
-          <li><strong>Vercel</strong> — website hosting and delivery.</li>
-          <li><strong>Resend</strong> — delivery of contact-form and transactional email.</li>
-          <li>
-            <strong>Newsletter delivery provider</strong> — used to manage newsletter subscriptions
-            and distribution.
-          </li>
-        </ul>
-        <p>
-          These providers process data only on our behalf and in accordance with their own privacy
-          and security commitments.
-        </p>
+          <h2>Cookies</h2>
+          <p>
+            Cookies are files with a small amount of data that are commonly used as anonymous unique
+            identifiers. These are sent to your browser from the website that you visit and are
+            stored on your computer&apos;s hard drive. Our website does not use these &ldquo;cookies&rdquo;
+            explicitly. However, the site may use third-party code and libraries that use
+            &ldquo;cookies&rdquo; to collect information and improve their services. You have the
+            option to either accept or refuse these cookies and know when a cookie is being sent to
+            your computer. If you choose to refuse our cookies, you may not be able to use some
+            portions of our Service.
+          </p>
 
-        <h2>4. Cookies</h2>
-        <p>
-          This website does not use advertising or cross-site tracking cookies. Only cookies
-          essential to the operation of the site may be used.
-        </p>
+          <h2>Service Providers</h2>
+          <p>We may employ third-party companies and individuals due to the following reasons:</p>
+          <ul>
+            <li>To facilitate our Service;</li>
+            <li>To provide the Service on our behalf;</li>
+            <li>To perform Service-related services; or</li>
+            <li>To assist us in analyzing how our Service is used.</li>
+          </ul>
+          <p>
+            We want to inform our Service users that these third parties have access to your
+            Personal Information. The reason is to perform the tasks assigned to them on our behalf.
+            However, they are obligated not to disclose or use the information for any other purpose.
+          </p>
 
-        <h2>5. Data retention</h2>
-        <p>
-          We retain personal information only as long as necessary for the purposes described above,
-          or as required by law.
-        </p>
+          <h2>Security</h2>
+          <p>
+            We value your trust in providing us your Personal Information, thus we are striving to
+            use commercially acceptable means of protecting it. But remember that no method of
+            transmission over the internet, or method of electronic storage is 100% secure and
+            reliable, and we cannot guarantee its absolute security.
+          </p>
 
-        <h2>6. Your rights</h2>
-        <p>
-          You may request access to, correction of, or deletion of your personal information, and
-          you may unsubscribe from our newsletter at any time. To make a request, contact us at{" "}
-          <a href="mailto:info@yugyo.work">info@yugyo.work</a>.
-        </p>
+          <h2>Links to Other Sites</h2>
+          <p>
+            Our Service may contain links to other sites. If you click on a third-party link, you
+            will be directed to that site. Note that these external sites are not operated by us.
+            Therefore, we strongly advise you to review the Privacy Policy of these websites. We
+            have no control over, and assume no responsibility for the content, privacy policies, or
+            practices of any third-party sites or services.
+          </p>
 
-        <h2>7. Contact</h2>
-        <p>
-          yugyo inc.（株式会社 遊行）<br />
-          Email: <a href="mailto:info@yugyo.work">info@yugyo.work</a><br />
-          Fukuoka, Japan
-        </p>
+          <h2>Children&apos;s Privacy</h2>
+          <p>
+            Our Services do not address anyone under the age of 13. We do not knowingly collect
+            personally identifiable information from children under 13. In the case we discover that
+            a child under 13 has provided us with personal information, we immediately delete this
+            from our servers. If you are a parent or guardian and you are aware that your child has
+            provided us with personal information, please contact us so that we will be able to take
+            the necessary actions.
+          </p>
 
-        <h2>8. Changes to this policy</h2>
-        <p>
-          We may update this policy from time to time. The latest version will always be available
-          on this page.
-        </p>
+          <h2>Changes to This Privacy Policy</h2>
+          <p>
+            We may update our Privacy Policy from time to time. Thus, we advise you to review this
+            page periodically for any changes. These changes are effective immediately after they
+            are posted on this page.
+          </p>
 
-        <p className="legal__note">
-          ※ 本ポリシーは雛形です。公開前に法務確認・個人情報保護法（APPI）対応をご確認ください。
-        </p>
+          <h2>Contact Us</h2>
+          <p>
+            If you have any questions or suggestions about our Privacy Policy, do not hesitate to
+            contact us at <a href="mailto:info@yugyo.work">info@yugyo.work</a>.
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

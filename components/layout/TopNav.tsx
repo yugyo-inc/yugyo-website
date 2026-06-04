@@ -1,31 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { COPY } from "@/content/copy";
 
 const LINKS = [
   { label: COPY.nav.work, href: "/#work" },
   { label: COPY.nav.about, href: "/about" },
   { label: COPY.nav.news, href: "/#news" },
-  { label: COPY.nav.contact, href: "/contact.html" },
+  { label: COPY.nav.contact, href: "/contact" },
 ];
 
 export function TopNav() {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-  const [scrolled, setScrolled] = useState(false);
+  const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
-  // ホーム（暗いヒーローあり）はスクロールで切替。それ以外の明るいページは常に solid。
-  const solid = !isHome || scrolled;
-
+  // 全ページ上部に暗い写真ヘッダーがあるため、スクロールで白→紙地に切替。
   useEffect(() => {
-    if (!isHome) return;
-    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.7);
+    const onScroll = () => setSolid(window.scrollY > window.innerHeight * 0.42);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isHome]);
+  }, []);
 
   return (
     <>

@@ -5,7 +5,7 @@ const MENU = [
   { label: COPY.nav.work, href: "/#work" },
   { label: COPY.nav.about, href: "/about" },
   { label: COPY.nav.news, href: "/#news" },
-  { label: COPY.nav.contact, href: "/contact.html" },
+  { label: COPY.nav.contact, href: "/contact" },
 ];
 
 export function Footer() {
