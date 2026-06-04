@@ -141,3 +141,13 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# --- yugyo-website (CLAUDE_CODE_BUILD_BRIEF §Phase1) ---
+.env*
+!.env.example
+content-drafts/
+.next/
+node_modules/
+*.log
+.DS_Store
+.vercel

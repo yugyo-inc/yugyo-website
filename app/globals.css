@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply bg-paper-cream text-ink-navy font-serif font-jpbody;
+    font-feature-settings: "lnum";
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-jp font-jpdisplay leading-display tracking-tight;
+  }
+  h1.en,
+  h2.en,
+  h3.en,
+  .display-en {
+    @apply font-sans font-display tracking-tight;
+  }
+  .label {
+    @apply font-sans font-medium uppercase tracking-label text-xs;
+  }
+}
