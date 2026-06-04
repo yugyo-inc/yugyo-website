@@ -30,7 +30,7 @@ PocketBase が未設定でも全ページがビルド・表示されます（New
 
 | 変数 | 用途 | 例 |
 |---|---|---|
-| `NEXT_PUBLIC_PB_URL` | PocketBase instance URL | `https://yugyo-pb.cr.frontwheel.co` |
+| `NEXT_PUBLIC_PB_URL` | PocketBase instance URL（PocketHost.io 等） | `https://<your-instance>.pockethost.io` |
 | `NEXT_PUBLIC_SITE_URL` | 本番サイト URL（OG / sitemap 用） | `https://yugyo.work` |
 
 Vercel では Settings → Environment Variables に上記を設定してください。

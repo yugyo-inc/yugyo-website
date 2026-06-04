@@ -54,7 +54,7 @@
 
 ## 環境変数
 
-- `NEXT_PUBLIC_PB_URL` — PocketBase instance（例: `https://yugyo-pb.cr.frontwheel.co`）。未設定なら news は空表示。
+- `NEXT_PUBLIC_PB_URL` — PocketBase instance（PocketHost.io 等。例: `https://yugyo.pockethost.io`）。未設定なら news は空表示。
 - `NEXT_PUBLIC_SITE_URL` — 本番 `https://yugyo.work`（DNS cutover 前は Vercel preview URL）。
 
 ## Open Questions / TODO

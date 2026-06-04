@@ -2,10 +2,11 @@
 
 PocketBase 0.22+ を前提とした collections 定義です。admin UI で手動作成するか、
 `pb_schema.json` を **Settings → Import collections** から取り込んでください。
+（PocketBase 0.23+ では import の JSON 形式が異なり弾かれる場合があります。その際は下表を見て手動作成してください。）
 
 ## セットアップ手順（Ryo）
 
-1. Frontwheel.co（または任意のホスティング）に PocketBase instance を立てる。
+1. PocketHost.io（または PocketSpace / Fly.io / 任意の VPS）に PocketBase instance を立てる。
 2. 初回アクセスで admin アカウントを作成。
 3. **Settings → Import collections** で `pb_schema.json` を貼り付け or アップロードして適用。
    - うまく取り込めない PB バージョンの場合は、下記の表を見て admin UI から手動で 2 コレクションを作成。

@@ -7,13 +7,17 @@ import type { News, Member } from "./types";
 const PB_URL =
   process.env.NEXT_PUBLIC_PB_URL || "http://localhost:8090";
 
-// プレースホルダー URL のままなら接続を試みない（無駄な待ちとログを避ける）
-const PLACEHOLDER_HOSTS = ["yugyo-pb.cr.frontwheel.co", "localhost"];
+// 未設定 / localhost / 明らかなプレースホルダーのときは接続を試みない
+// （無駄な待ちとログを避ける。実インスタンス名は何でも許可する）。
 function isConfigured(): boolean {
-  if (!process.env.NEXT_PUBLIC_PB_URL) return false;
+  const raw = process.env.NEXT_PUBLIC_PB_URL;
+  if (!raw) return false;
   try {
     const host = new URL(PB_URL).hostname;
-    return !PLACEHOLDER_HOSTS.includes(host);
+    if (host === "localhost" || host === "127.0.0.1") return false;
+    // .env.example のプレースホルダー（YOUR-INSTANCE...）はまだ未設定とみなす
+    if (/your-instance/i.test(host)) return false;
+    return true;
   } catch {
     return false;
   }
