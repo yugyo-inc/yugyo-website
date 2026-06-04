@@ -16,7 +16,8 @@ export function Footer() {
         <p className="eyebrow" style={{ color: "rgba(247,244,238,0.55)", marginBottom: 30 }}>
           {f.eyebrow}
         </p>
-        <p className="ft__vision">{f.vision}</p>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="ft__vision-img" src="/brand/bewhere_white.png" alt={f.vision} />
 
         <div className="ft__grid">
           <div>
