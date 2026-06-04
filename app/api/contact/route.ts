@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
 
-// Node ランタイム必須（nodemailer は net/tls を使うため edge 不可）
+// Resend REST API（SDK 不要・fetch のみ）で自前送信。第三者フォームリレーは挟まない。
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -10,6 +9,8 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function clean(v: unknown, max: number): string {
   return typeof v === "string" ? v.trim().slice(0, max) : "";
 }
+const esc = (s: string) =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
 export async function POST(req: Request) {
   let body: Record<string, unknown>;
@@ -19,7 +20,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "bad_request" }, { status: 400 });
   }
 
-  // ハニーポット（bot が埋めたら成功を装って無視）
+  // ハニーポット
   if (clean(body.botcheck, 100)) {
     return NextResponse.json({ ok: true });
   }
@@ -36,43 +37,28 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "invalid_email" }, { status: 422 });
   }
 
-  const host = process.env.SMTP_HOST || "smtp.gmail.com";
-  const port = Number(process.env.SMTP_PORT || 465);
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO || "info@yugyo.work";
-  const from = process.env.CONTACT_FROM || `"yugyo.work" <${user}>`;
+  // 認証済みドメインの送信元。未設定時は Resend のテスト送信元にフォールバック。
+  const from = process.env.CONTACT_FROM || "yugyo.work <onboarding@resend.dev>";
 
-  if (!user || !pass) {
-    // 環境変数未設定（Workspace App Password 待ち）
-    return NextResponse.json(
-      { ok: false, error: "not_configured" },
-      { status: 503 }
-    );
+  if (!apiKey) {
+    return NextResponse.json({ ok: false, error: "not_configured" }, { status: 503 });
   }
 
-  const transporter = nodemailer.createTransport({
-    host,
-    port,
-    secure: port === 465, // 465=SSL, 587=STARTTLS
-    auth: { user, pass },
-  });
-
   const text = [
-    `お問い合わせがありました（yugyo.work）`,
-    ``,
+    "お問い合わせがありました（yugyo.work）",
+    "",
     `お名前: ${name}`,
     `メール: ${email}`,
     company ? `会社/組織: ${company}` : null,
-    ``,
-    `本文:`,
+    "",
+    "本文:",
     message,
   ]
     .filter((l) => l !== null)
     .join("\n");
 
-  const esc = (s: string) =>
-    s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   const html = `
     <div style="font-family:Helvetica,Arial,sans-serif;color:#0E1B2C;line-height:1.6">
       <p style="font-weight:700">お問い合わせがありました（yugyo.work）</p>
@@ -85,17 +71,29 @@ export async function POST(req: Request) {
     </div>`;
 
   try {
-    await transporter.sendMail({
-      from,
-      to,
-      replyTo: `"${name}" <${email}>`,
-      subject: `【お問い合わせ】${name} さんより — yugyo.work`,
-      text,
-      html,
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        reply_to: email,
+        subject: `【お問い合わせ】${name} さんより — yugyo.work`,
+        text,
+        html,
+      }),
     });
+    if (!res.ok) {
+      const detail = await res.text().catch(() => "");
+      console.error("resend send failed:", res.status, detail.slice(0, 300));
+      return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
+    }
     return NextResponse.json({ ok: true });
   } catch (e) {
-    console.error("contact send failed:", e);
+    console.error("resend request error:", e);
     return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
   }
 }
