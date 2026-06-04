@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>yugyo inc. — Be where you are meant to be.</title>
+<meta name="description" content="株式会社 遊行（yugyo inc.）は、福岡を拠点に、デジタルノマド・越境・地域共創を手がける会社です。" />
+<!-- Open Graph -->
+<meta property="og:title" content="yugyo inc. — Be where you are meant to be." />
+<meta property="og:description" content="Be where you are meant to be. — yugyo inc." />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!--
+  yugyo.work トップページ（側）デザイン — 単体HTML納品版
+  ブランド: Walking the Wild v4.0 (yugyo Brandbook v4 / yugyo_brand.css v2.0.0)
+  本ファイルは Next.js 実装版トップ (app/page.tsx) の design を、依存なしで
+  ブラウザ単体で確認できるよう 1 ファイルに固めたものです。色は CSS 変数のみ使用。
+  ※ Hero 写真は Unsplash プレースホルダー（本番は Tier 1 撮影に差し替え予定）。
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+  /* ===== yugyo brand tokens (yugyo_brand.css v2.0.0 / Walking the Wild) ===== */
+  :root {
+    /* Core 5 */
+    --yugyo-ink-navy:     #0E1B2C;
+    --yugyo-paper-cream:  #E8DFCC;
+    --yugyo-mist-white:   #F7F4EE;
+    --yugyo-ink-soft:     #2A3A4E;
+    --yugyo-paper-deep:   #DCD2BC;
+    /* Accent 5 (五行) */
+    --yugyo-water-deep-indigo: #2D4A6B; /* 水 */
+    --yugyo-sky-mountain-blue: #5A7A99; /* 空 */
+    --yugyo-fire-ember:        #B85C44; /* 火 */
+    --yugyo-earth-clay-ochre:  #C89B5C; /* 地 */
+    --yugyo-wind-forest-green: #2E4D3C; /* 風 */
+    /* Typography */
+    --font-en:  'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --font-jp:  'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+    --font-jpsans: 'Noto Sans JP', 'Hiragino Sans', sans-serif;
+    --tracking-display: -0.025em;
+    --tracking-label: 0.18em;
+    --maxw: 1280px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--yugyo-paper-cream);
+    color: var(--yugyo-ink-navy);
+    font-family: var(--font-jp);
+    font-weight: 500;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: 'lnum';
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .container { max-width: var(--maxw); margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+  @media (min-width: 768px) { .container { padding-left: 40px; padding-right: 40px; } }
+
+  .section { padding-top: 48px; padding-bottom: 48px; }
+  @media (min-width: 768px) { .section { padding-top: 96px; padding-bottom: 96px; } }
+  .section--alt { background: color-mix(in srgb, var(--yugyo-paper-deep) 22%, var(--yugyo-paper-cream)); }
+
+  h1, h2, h3 { font-family: var(--font-jp); font-weight: 700; line-height: 1.2; letter-spacing: var(--tracking-display); margin: 0; }
+  .en { font-family: var(--font-en); font-weight: 800; letter-spacing: var(--tracking-display); }
+  .label {
+    font-family: var(--font-en); font-weight: 500; text-transform: uppercase;
+    letter-spacing: var(--tracking-label); font-size: 12px; color: var(--yugyo-ink-soft);
+  }
+
+  /* ===== TopNav ===== */
+  .nav {
+    position: sticky; top: 0; z-index: 40;
+    background: color-mix(in srgb, var(--yugyo-paper-cream) 95%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--yugyo-paper-deep);
+  }
+  .nav__inner {
+    max-width: var(--maxw); margin: 0 auto; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding-left: 24px; padding-right: 24px;
+  }
+  @media (min-width: 768px) { .nav__inner { padding-left: 40px; padding-right: 40px; } }
+  .wordmark { font-family: var(--font-en); font-weight: 800; text-transform: lowercase; letter-spacing: var(--tracking-display); font-size: 20px; color: var(--yugyo-ink-navy); }
+  .nav__links { display: none; gap: 32px; align-items: center; list-style: none; margin: 0; padding: 0; }
+  .nav__links a { color: var(--yugyo-ink-soft); transition: color .15s; }
+  .nav__links a:hover { color: var(--yugyo-ink-navy); }
+  @media (min-width: 768px) { .nav__links { display: flex; } }
+  .nav__toggle { display: inline-flex; background: none; border: 0; color: var(--yugyo-ink-navy); cursor: pointer; padding: 8px; }
+  @media (min-width: 768px) { .nav__toggle { display: none; } }
+  .nav__mobile { display: none; border-top: 1px solid var(--yugyo-paper-deep); background: var(--yugyo-paper-cream); }
+  .nav__mobile.open { display: block; }
+  .nav__mobile ul { list-style: none; margin: 0; padding: 8px 24px 16px; }
+  .nav__mobile a { display: block; padding: 12px 0; color: var(--yugyo-ink-soft); }
+
+  /* ===== Hero ===== */
+  .hero { position: relative; min-height: 80vh; overflow: hidden; display: flex; align-items: flex-end; }
+  .hero__img {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=2400&q=70');
+    background-size: cover; background-position: center;
+  }
+  .hero__overlay { position: absolute; inset: 0; background: rgba(14,27,44,0.45); }
+  .hero__content { position: relative; z-index: 2; width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px 64px; }
+  @media (min-width: 768px) { .hero__content { padding: 0 40px 96px; } }
+  .hero__title { color: var(--yugyo-mist-white); font-size: 44px; max-width: 56rem; }
+  @media (min-width: 768px) { .hero__title { font-size: 80px; } }
+  @media (min-width: 1024px) { .hero__title { font-size: 104px; } }
+  .hero__sub { color: rgba(247,244,238,0.92); font-family: var(--font-jp); font-weight: 700; font-size: 22px; margin-top: 24px; }
+  @media (min-width: 768px) { .hero__sub { font-size: 30px; } }
+
+  /* ===== Generic helpers ===== */
+  .lead-jp { font-family: var(--font-jp); }
+  .text-soft { color: var(--yugyo-ink-soft); }
+  .maxw-prose { max-width: 65ch; }
+  .grid { display: grid; gap: 32px; }
+  @media (min-width: 768px) { .grid--3 { grid-template-columns: repeat(3, 1fr); } .grid--2 { grid-template-columns: repeat(2, 1fr); } }
+  .h2 { font-size: 30px; }
+  @media (min-width: 768px) { .h2 { font-size: 40px; } }
+
+  /* ===== Cards (accent left border — color as a "point", not a fill) ===== */
+  .card { background: var(--yugyo-mist-white); border-left: 2px solid var(--yugyo-paper-deep); padding: 32px 24px; }
+  .card--link { display: block; transition: background .15s; }
+  .card--link:hover { background: color-mix(in srgb, var(--yugyo-paper-deep) 30%, var(--yugyo-mist-white)); }
+  .accent-water { border-left-color: var(--yugyo-water-deep-indigo); }
+  .accent-sky   { border-left-color: var(--yugyo-sky-mountain-blue); }
+  .accent-fire  { border-left-color: var(--yugyo-fire-ember); }
+  .accent-earth { border-left-color: var(--yugyo-earth-clay-ochre); }
+  .accent-forest{ border-left-color: var(--yugyo-wind-forest-green); }
+  .tx-water { color: var(--yugyo-water-deep-indigo); }
+  .tx-sky   { color: var(--yugyo-sky-mountain-blue); }
+  .tx-fire  { color: var(--yugyo-fire-ember); }
+  .tx-earth { color: var(--yugyo-earth-clay-ochre); }
+  .card h3 { font-size: 22px; margin-top: 8px; }
+  .card p { margin: 16px 0 0; font-family: var(--font-jp); font-size: 15px; color: var(--yugyo-ink-soft); }
+
+  /* ===== News empty ===== */
+  .news-empty { border-top: 1px solid var(--yugyo-paper-deep); padding: 48px 0; color: var(--yugyo-ink-soft); font-family: var(--font-jp); }
+  .row-between { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; }
+
+  /* ===== CTA ===== */
+  .cta { background: var(--yugyo-ink-navy); color: var(--yugyo-mist-white); }
+  .cta__inner { max-width: var(--maxw); margin: 0 auto; padding: 64px 24px; }
+  @media (min-width: 768px) { .cta__inner { padding: 96px 40px; } }
+  .cta h2 { color: var(--yugyo-mist-white); }
+  .cta p { color: rgba(247,244,238,0.85); font-family: var(--font-jp); max-width: 65ch; margin: 24px 0 0; }
+  .btn-outline {
+    display: inline-block; border: 1px solid var(--yugyo-mist-white); color: var(--yugyo-mist-white);
+    padding: 12px 24px; border-radius: 6px; font-family: var(--font-en); font-weight: 500;
+    text-transform: uppercase; letter-spacing: var(--tracking-label); font-size: 12px; transition: all .15s;
+  }
+  .btn-outline:hover { background: var(--yugyo-mist-white); color: var(--yugyo-ink-navy); }
+
+  /* ===== Footer ===== */
+  .footer { background: var(--yugyo-ink-navy); color: var(--yugyo-mist-white); }
+  .footer__inner { max-width: var(--maxw); margin: 0 auto; padding: 64px 24px; }
+  @media (min-width: 768px) { .footer__inner { padding: 64px 40px; } }
+  .footer__grid { display: grid; gap: 40px; }
+  @media (min-width: 768px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
+  .footer a { color: rgba(247,244,238,0.7); transition: color .15s; }
+  .footer a:hover { color: var(--yugyo-mist-white); }
+  .footer__links { display: flex; flex-wrap: wrap; gap: 24px; list-style: none; margin: 0; padding: 0; }
+  .footer__copy { margin-top: 48px; border-top: 1px solid rgba(247,244,238,0.15); padding-top: 24px; font-family: var(--font-en); font-size: 12px; color: rgba(247,244,238,0.6); }
+  .stack-right { display: flex; flex-direction: column; gap: 24px; }
+  @media (min-width: 768px) { .stack-right { align-items: flex-end; } }
+</style>
+</head>
+
+<body>
+  <!-- ===== TopNav ===== -->
+  <header class="nav">
+    <div class="nav__inner">
+      <a href="#" class="wordmark">yugyo inc.</a>
+      <ul class="nav__links">
+        <li><a class="label" href="#about">About</a></li>
+        <li><a class="label" href="#services">Services</a></li>
+        <li><a class="label" href="#news">News</a></li>
+        <li><a class="label" href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" aria-label="メニュー" aria-expanded="false" onclick="var m=document.getElementById('mnav');var o=m.classList.toggle('open');this.setAttribute('aria-expanded',o)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="nav__mobile" id="mnav">
+      <ul>
+        <li><a class="label" href="#about">About</a></li>
+        <li><a class="label" href="#services">Services</a></li>
+        <li><a class="label" href="#news">News</a></li>
+        <li><a class="label" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+      <div class="hero__img" role="img" aria-label="霧のかかった山並みの風景"></div>
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <h1 class="en hero__title">Be where you are meant to be.</h1>
+        <p class="hero__sub">いちばん「自分らしく」いられる場所へ。</p>
+      </div>
+    </section>
+
+    <!-- ===== Mission ===== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="maxw-prose">
+          <p class="label">Mission</p>
+          <p style="margin-top:24px;font-family:var(--font-jp);font-weight:700;font-size:26px;line-height:1.2;color:var(--yugyo-ink-navy);">
+            人が、いちばん自分らしくいられる場所へ歩いていける世界をつくる。海を越えて働き、巡り、暮らす人たちと、日本の地域を結び直す。
+          </p>
+          <p style="margin-top:32px;font-family:var(--font-jp);font-size:17px;color:var(--yugyo-ink-soft);">
+            主張する前に、まず歩く。yugyo は、デジタルノマドの越境と日本の地域共創を、実装の積み重ねで前に進めます。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3 cities ===== -->
+    <section class="section section--alt">
+      <div class="container">
+        <h2 class="h2" style="margin-bottom:48px;">3 つの場</h2>
+        <div class="grid grid--3">
+          <article class="card accent-fire">
+            <p class="label">Fukuoka</p>
+            <h3>福岡</h3>
+            <p>yugyo の本拠地。日本最大級のデジタルノマド受け入れ拠点 Colive Fukuoka を主催。</p>
+          </article>
+          <article class="card accent-water">
+            <p class="label">Nagasaki</p>
+            <h3>長崎</h3>
+            <p>Digital Nomad Nagasaki を継続展開。観光・地域共創。</p>
+          </article>
+          <article class="card accent-sky">
+            <p class="label">Kanazawa</p>
+            <h3>金沢</h3>
+            <p>金沢大学クロスアポイントメント協定。観光地域デザイン論。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Services ===== -->
+    <section class="section" id="services">
+      <div class="container">
+        <h2 class="h2" style="margin-bottom:48px;">事業</h2>
+        <div class="grid grid--2">
+          <a class="card card--link accent-water" href="#">
+            <p class="label tx-water">Ikigai Co-Creator Program</p>
+            <h3>Ikigai Co-Creator Program</h3>
+            <p>海外人材と日本の地域企業をつなぐ共創プログラム。</p>
+          </a>
+          <a class="card card--link accent-fire" href="#">
+            <p class="label tx-fire">Colive Fukuoka</p>
+            <h3>Colive Fukuoka</h3>
+            <p>アジア最大規模のデジタルノマドカンファレンス。57カ国から500人以上が集う。</p>
+          </a>
+          <a class="card card--link accent-earth" href="#">
+            <p class="label tx-earth">Public Sector Consulting</p>
+            <h3>行政受託</h3>
+            <p>長崎・金沢・高浜・富山等の地域共創プロジェクトを受託。</p>
+          </a>
+          <a class="card card--link accent-sky" href="#">
+            <p class="label tx-sky">Consulting</p>
+            <h3>Consulting</h3>
+            <p>企業の越境戦略・ワーケーション・地域連携を支援。</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== News (動的: PocketBase 接続後にカードが入る。未接続時は空表示) ===== -->
+    <section class="section section--alt" id="news">
+      <div class="container">
+        <div class="row-between">
+          <h2 class="h2">News</h2>
+          <a class="label" href="#">View all</a>
+        </div>
+        <p class="news-empty">公開中のお知らせはまだありません。</p>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="cta" id="contact">
+      <div class="cta__inner">
+        <h2 class="h2">ともに歩く</h2>
+        <p>越境・地域共創・ワーケーション。yugyo と取り組みたいことがあれば、お気軽にご連絡ください。</p>
+        <div style="margin-top:40px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;">
+          <a class="btn-outline" href="#contact">Contact</a>
+          <a href="mailto:info@yugyo.work" class="label" style="color:rgba(247,244,238,0.8);">info@yugyo.work</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__grid">
+        <div>
+          <span class="wordmark" style="color:var(--yugyo-mist-white);font-size:24px;">yugyo inc.</span>
+          <p style="margin-top:16px;font-family:var(--font-jp);font-size:14px;color:rgba(247,244,238,0.8);max-width:65ch;">
+            いちばん「自分らしく」いられる場所へ。
+          </p>
+        </div>
+        <div class="stack-right">
+          <ul class="footer__links">
+            <li><a class="label" href="#about">About</a></li>
+            <li><a class="label" href="#services">Services</a></li>
+            <li><a class="label" href="#news">News</a></li>
+            <li><a class="label" href="#contact">Contact</a></li>
+          </ul>
+          <ul class="footer__links">
+            <li><a class="label" href="https://www.threads.net/@yugyo.inc" target="_blank" rel="noopener">Threads</a></li>
+            <li><a class="label" href="https://x.com/yugyo_inc" target="_blank" rel="noopener">X</a></li>
+            <li><a class="label" href="https://www.linkedin.com/company/yugyo-inc" target="_blank" rel="noopener">LinkedIn</a></li>
+          </ul>
+          <a href="mailto:info@yugyo.work" style="font-family:var(--font-en);font-size:14px;color:rgba(247,244,238,0.7);">info@yugyo.work</a>
+        </div>
+      </div>
+      <p class="footer__copy">© 2026 yugyo inc. ／ 株式会社 遊行</p>
+    </div>
+  </footer>
+</body>
+</html>
