@@ -23,7 +23,7 @@ export const COPY = {
   about: {
     kicker: "00 — yugyo inc.",
     heading: "Blurring the<br>boundaries.",
-    body: "We are a value creation firm that generates unique social impact by connecting Japanese and global talent. We aim to transcend national borders, propose new ways of working, and create a better life for all.",
+    body: "We are a value-creation firm that delivers unique social impact by connecting Japanese and global talent. We aim to transcend national borders, propose new ways of working, and create a better life for all.",
     // 注記: シートで #VALUE! エラーのため原文を維持（必要なら Ryo 再入力）
     note: "<b>yugyo (遊行)</b> — to journey as a form of practice. The company is named for the act of walking. We move first; the work follows.",
   },
@@ -48,9 +48,9 @@ export const COPY = {
 
   // ---- 写真バンド2（高峰 / Colive 数字）----
   band2: {
-    eyebrow: "Colive Fukuoka — 2025",
-    big: "57 countries.",
-    sub: "500+ people. ¥140M of economic impact. One city in the west of Japan.",
+    eyebrow: "Colive Fukuoka",
+    big: "Invest in your growth.",
+    sub: "Over 500 people from more than 50 countries have come together for a whole new experience in Japan, combining work and travel.",
     linkLabel: "colivefukuoka.com →",
     linkUrl: "https://colivefukuoka.com",
   },
