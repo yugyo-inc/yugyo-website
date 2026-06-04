@@ -13,7 +13,7 @@
   yugyo.work TOP — v2 design (English / Helvetica / editorial / photography-led)
   方向転換: ベージュ面 + accent-border カードの "AI っぽさ" を排し、
   ブランド実写真 (Drive) を full-bleed で主役にした expedition / field-journal 路線。
-  画像は /photos/pX.jpg, ロゴは /brand/wordmark_*.png を参照。
+  画像は ../public/photos/pX.jpg, ロゴは ../public/brand/wordmark_*.png を参照。
   フォントは Helvetica で統一（Helvetica Neue → Arial フォールバック）。
 -->
 
@@ -89,7 +89,7 @@
 
   /* ============ Hero ============ */
   .hero { position: relative; height: 100vh; min-height: 640px; width: 100%; overflow: hidden; }
-  .hero__img { position:absolute; inset:0; background: url('/photos/p1.jpg') center/cover no-repeat; }
+  .hero__img { position:absolute; inset:0; background: url('../public/photos/p1.jpg') center/cover no-repeat; }
   .hero__veil { position:absolute; inset:0; background: rgba(14,27,44,0.42); }
   .hero__inner {
     position: relative; z-index: 2; height: 100%;
@@ -195,7 +195,7 @@
 <body>
   <!-- Header -->
   <header class="hd" id="hd">
-    <a href="#top" aria-label="yugyo inc."><img class="hd__logo" id="hdlogo" src="/brand/wordmark_white.png" alt="yugyo inc." /></a>
+    <a href="#top" aria-label="yugyo inc."><img class="hd__logo" id="hdlogo" src="../public/brand/wordmark_white.png" alt="yugyo inc." /></a>
     <nav class="hd__nav">
       <a href="#work">Work</a>
       <a href="#about">About</a>
@@ -244,7 +244,7 @@
 
     <!-- Photo band: the pilgrim (p11) -->
     <section class="band" data-band>
-      <div class="band__img" style="background-image:url('/photos/p11.jpg')"></div>
+      <div class="band__img" style="background-image:url('../public/photos/p11.jpg')"></div>
       <div class="band__veil"></div>
       <div class="band__inner">
         <p class="eyebrow band__eyebrow">遊行 — Walking the Wild</p>
@@ -284,7 +284,7 @@
 
     <!-- Photo band: Manaslu (p2) — Colive Fukuoka stat -->
     <section class="band" data-band>
-      <div class="band__img" style="background-image:url('/photos/p2.jpg')"></div>
+      <div class="band__img" style="background-image:url('../public/photos/p2.jpg')"></div>
       <div class="band__veil"></div>
       <div class="band__inner">
         <p class="eyebrow band__eyebrow">Colive Fukuoka — 2025</p>
@@ -336,7 +336,7 @@
       <div class="ft__vision">Be where you are meant to be.</div>
       <div class="ft__grid">
         <div>
-          <img class="ft__logo" src="/brand/wordmark_white.png" alt="yugyo inc." />
+          <img class="ft__logo" src="../public/brand/wordmark_white.png" alt="yugyo inc." />
           <p style="color:rgba(247,244,238,0.7);font-size:14px;max-width:34ch;">Where the world's movement meets the regions of Japan.</p>
         </div>
         <div>
@@ -367,9 +367,9 @@
     var hd = document.getElementById('hd'), logo = document.getElementById('hdlogo');
     function onScroll(){
       if (window.scrollY > window.innerHeight * 0.7){
-        if(!hd.classList.contains('solid')){ hd.classList.add('solid'); logo.src='/brand/wordmark_black.png'; }
+        if(!hd.classList.contains('solid')){ hd.classList.add('solid'); logo.src='../public/brand/wordmark_black.png'; }
       } else {
-        if(hd.classList.contains('solid')){ hd.classList.remove('solid'); logo.src='/brand/wordmark_white.png'; }
+        if(hd.classList.contains('solid')){ hd.classList.remove('solid'); logo.src='../public/brand/wordmark_white.png'; }
       }
     }
     window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
@@ -380,6 +380,5 @@
     }, {threshold: 0.16});
     document.querySelectorAll('.reveal, [data-band]').forEach(function(el){ io.observe(el); });
   </script>
-<div style="position:fixed;right:12px;bottom:12px;z-index:99;background:#0E1B2C;color:#fff;font:600 10px/1 Helvetica,Arial,sans-serif;letter-spacing:.12em;padding:7px 10px;border-radius:3px;opacity:.85">PREVIEW · v2</div>
 </body>
 </html>
