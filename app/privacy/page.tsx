@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <PageHero title="Privacy Policy" subtitle="yugyo inc. ｜ 株式会社 遊行" photo="/photos/p9.jpg" />
+      <PageHero title="Privacy Policy" subtitle="yugyo inc. ｜ 株式会社 遊行" photo="/photos/p8.jpg" />
 
       <div className="wrap pagebody">
         <div className="legal__body" style={{ marginTop: 0 }}>

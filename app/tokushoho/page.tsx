@@ -41,7 +41,7 @@ export default function TokushohoPage() {
       <PageHero
         title="特定商取引法に基づく表記"
         subtitle="yugyo inc. ｜ 株式会社 遊行"
-        photo="/photos/p8.jpg"
+        photo="/photos/p6.jpg"
         small
       />
       <div className="wrap pagebody">

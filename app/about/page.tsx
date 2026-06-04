@@ -10,14 +10,32 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <PageHero title="About" subtitle="株式会社 遊行 ｜ yugyo inc." photo="/photos/p11.jpg" />
+      <PageHero title="About" subtitle="株式会社 遊行 ｜ yugyo inc." photo="/photos/p5.jpg" />
 
       <div className="wrap pagebody">
-        {/* Founder */}
+        {/* Company */}
         <section>
           <div className="kicker">
             <span className="ln" />
-            <span className="num">01 — Founder</span>
+            <span className="num">01 — 会社概要</span>
+          </div>
+          <table className="legal__table" style={{ marginTop: 0 }}>
+            <tbody>
+              {COMPANY_PROFILE.map((row) => (
+                <tr key={row.label_jp}>
+                  <th scope="row">{row.label_jp}</th>
+                  <td>{row.value_jp}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+
+        {/* Founder */}
+        <section style={{ marginTop: 72 }}>
+          <div className="kicker">
+            <span className="ln" />
+            <span className="num">02 — Founder</span>
           </div>
           <div className="legal__body" style={{ marginTop: 0 }}>
             <p style={{ fontWeight: 700, color: "var(--ink)", fontSize: 22, margin: "0 0 4px" }}>
@@ -61,24 +79,6 @@ export default function AboutPage() {
               ))}
             </ul>
           </div>
-        </section>
-
-        {/* Company */}
-        <section style={{ marginTop: 72 }}>
-          <div className="kicker">
-            <span className="ln" />
-            <span className="num">02 — 会社概要</span>
-          </div>
-          <table className="legal__table" style={{ marginTop: 0 }}>
-            <tbody>
-              {COMPANY_PROFILE.map((row) => (
-                <tr key={row.label_jp}>
-                  <th scope="row">{row.label_jp}</th>
-                  <td>{row.value_jp}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </section>
       </div>
     </>
