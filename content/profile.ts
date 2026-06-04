@@ -18,3 +18,14 @@ export const COMPANY_PROFILE: ProfileRow[] = [
       "デジタルノマド・越境人材と日本の地域をつなぐ事業の企画・運営、行政・企業向けコンサルティング、Colive Fukuoka の主催。",
   },
 ];
+
+// 代表者プロフィール（About ページ掲載）。経歴詳細は Ryo 承認のうえ追記・調整。
+export const FOUNDER = {
+  name_en: "Ryo Osera",
+  name_jp: "大瀬良 亮",
+  role: "Founder & CEO",
+  bio: [
+    "Ryo Osera is the founder and CEO of yugyo inc. From a base in Fukuoka, he leads the company's work across digital nomadism, regional revitalization, and global education.",
+    "He founded and hosts Colive Fukuoka — one of Japan's largest gatherings of digital nomads — and holds a cross-appointment at Kanazawa University. He is a long-standing advocate for new ways of working, traveling, and living across borders.",
+  ],
+};

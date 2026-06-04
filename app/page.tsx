@@ -94,7 +94,9 @@ export default function Home() {
         <div className="band__veil" style={{ background: "rgba(14,27,44,0.55)" }} />
         <div className="band__inner">
           <p className="eyebrow band__eyebrow">{band2.eyebrow}</p>
-          <div className="band__big">{band2.big}</div>
+          <div className="band__big" style={{ fontSize: "clamp(28px, 4.2vw, 56px)" }}>
+            {band2.big}
+          </div>
           <p className="band__sub">
             {band2.sub}{" "}
             <a href={band2.linkUrl} target="_blank" rel="noopener noreferrer">

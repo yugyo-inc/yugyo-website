@@ -90,9 +90,9 @@ export const COPY = {
     tagline: "Where the world's movement meets the regions of Japan.",
     email: "info@yugyo.work",
     social: [
-      { label: "Threads ↗", url: "https://www.threads.net/@yugyo.inc" },
-      { label: "X ↗", url: "https://x.com/yugyo_inc" },
-      { label: "LinkedIn ↗", url: "https://www.linkedin.com/company/yugyo-inc" },
+      { label: "Instagram ↗", url: "https://www.instagram.com/yugyo_nomad/" },
+      { label: "X ↗", url: "https://x.com/yugyo_jp" },
+      { label: "LinkedIn ↗", url: "https://www.linkedin.com/company/95682142" },
     ],
     copyright: "© 2026 yugyo inc. ／ 株式会社 遊行",
     place: "Fukuoka, Japan",

@@ -5,7 +5,7 @@ import { COPY } from "@/content/copy";
 
 const LINKS = [
   { label: COPY.nav.work, href: "/#work" },
-  { label: COPY.nav.about, href: "/#about" },
+  { label: COPY.nav.about, href: "/about" },
   { label: COPY.nav.news, href: "/#news" },
   { label: COPY.nav.contact, href: "/contact.html" },
 ];
