@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { COPY } from "@/content/copy";
 
 const LINKS = [
@@ -11,15 +12,20 @@ const LINKS = [
 ];
 
 export function TopNav() {
-  const [solid, setSolid] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  // ホーム（暗いヒーローあり）はスクロールで切替。それ以外の明るいページは常に solid。
+  const solid = !isHome || scrolled;
 
   useEffect(() => {
-    const onScroll = () => setSolid(window.scrollY > window.innerHeight * 0.7);
+    if (!isHome) return;
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.7);
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
 
   return (
     <>
