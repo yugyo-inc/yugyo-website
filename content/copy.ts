@@ -65,11 +65,49 @@ export const COPY = {
     ],
   },
 
-  // ---- News ----
+  // ---- News（Mission & How-to／園田カラー）----
+  // doy concept: Weaving Relations between the world and locals
   news: {
-    kicker: "03 — News",
+    kicker: "News",
+    seq: "序", // jo-ha-kyū marker (between 序 and 破)
+    theme: "Weaving Relations between<br>the world and locals.",
+    lead: "PR, communications, and marketing — the work of connecting global movement with the people and places of Japan.",
     cta: "All news →",
-    empty: "No published news yet. — Sono / Haruka publish here.",
+    empty: "No published news yet.",
+  },
+
+  // ---- What we do（Values & Style／どいカラー・破）----
+  // doy concept: From context, we create meaning. keyword = interpretation
+  whatwedo: {
+    kicker: "What we do",
+    seq: "破",
+    theme: "From context,<br>we create meaning.",
+    lead: "Interpretation. We read the deep grain of Japanese culture and carry meaning across — Japan sending, the world receiving.",
+    keyword: "Interpretation",
+  },
+
+  // ---- Projects & Clients（急）----
+  projects: {
+    kicker: "Projects & Clients",
+    seq: "急",
+    clientsHeading: "Our Clients & Partners",
+  },
+
+  // ---- About & CTA（クロージング）----
+  cta: {
+    eyebrow: "Marketing agency for new opportunities",
+    heading: "Let's shape the future together.",
+    sub: "Start weaving new relations with us.",
+    button: "Contact us",
+  },
+
+  // ---- Cookie 同意バナー ----
+  cookie: {
+    message:
+      "We use cookies to understand how the site is used and to improve it. You can accept or decline analytics cookies.",
+    accept: "Accept",
+    decline: "Decline",
+    policy: "Privacy Policy",
   },
 
   // ---- Newsletter（登録）----

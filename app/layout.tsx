@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { TopNav } from "@/components/layout/TopNav";
 import { Footer } from "@/components/layout/Footer";
+import { CookieConsent } from "@/components/cookie/CookieConsent";
 import { SITE } from "@/lib/constants";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || SITE.url;
@@ -49,6 +50,7 @@ export default function RootLayout({
         <TopNav />
         <main>{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
