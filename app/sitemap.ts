@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getNews } from "@/lib/pb";
+import { getNews } from "@/lib/cms";
 import { SITE } from "@/lib/constants";
 
 export const revalidate = 60;

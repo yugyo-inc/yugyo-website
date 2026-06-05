@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getNews } from "@/lib/pb";
+import { getNews } from "@/lib/cms";
 import { NewsList } from "@/components/news/NewsList";
 
 export async function LatestNews() {

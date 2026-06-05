@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getNewsBySlug } from "@/lib/pb";
+import { getNewsBySlug } from "@/lib/cms";
 import { NewsBody } from "@/components/news/NewsBody";
 
 export const revalidate = 60;

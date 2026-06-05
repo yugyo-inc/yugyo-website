@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getNews } from "@/lib/pb";
+import { getNews } from "@/lib/cms";
 import { NewsList } from "@/components/news/NewsList";
 import { PageHero } from "@/components/layout/PageHero";
 
