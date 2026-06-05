@@ -1,9 +1,6 @@
 import { COPY } from "@/content/copy";
 import { NewsletterForm } from "@/components/newsletter/NewsletterForm";
 
-// News セクション（LatestNews）を microCMS の更新に追従させる ISR。
-export const revalidate = 60;
-
 const ELEMENT_VAR: Record<string, string> = {
   water: "var(--water)",
   fire: "var(--fire)",
