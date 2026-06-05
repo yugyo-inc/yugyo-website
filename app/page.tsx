@@ -47,8 +47,9 @@ export default function Home() {
         <div className="hero__scroll">SCROLL ↓</div>
       </section>
 
-      {/* About / Manifesto（Visionの続き） */}
-      <section className="pad" id="about" data-reveal>
+      {/* About / Manifesto（序 — Visionの続き） */}
+      <section className="pad pos" id="about" data-reveal>
+        <span className="seq seq--jo" aria-hidden="true">序</span>
         <div className="wrap">
           <div className="kicker">
             <span className="ln" />

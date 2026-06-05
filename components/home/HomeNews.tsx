@@ -27,9 +27,6 @@ export async function HomeNews() {
   return (
     <section className="pad mission" id="news" data-reveal>
       <div className="wrap">
-        <span className="seq seq--news" aria-hidden="true">
-          {c.seq}
-        </span>
         <div className="kicker">
           <span className="ln ln--news" />
           <span className="num">{c.kicker}</span>
