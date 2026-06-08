@@ -1,19 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { COPY } from "@/content/copy";
-
-const LINKS = [
-  { label: COPY.nav.work, href: "/#work" },
-  { label: COPY.nav.about, href: "/about" },
-  { label: COPY.nav.news, href: "/#news" },
-  { label: COPY.nav.contact, href: "/contact" },
-];
+import { usePathname } from "next/navigation";
+import { getCopy } from "@/content/copy";
+import { langFromPath, localizeHref, otherLang, LANG_SHORT } from "@/lib/i18n";
 
 export function TopNav() {
+  const pathname = usePathname() || "/";
+  const lang = langFromPath(pathname);
+  const nav = getCopy(lang).nav;
+  const L = (href: string) => localizeHref(lang, href);
+
+  const LINKS = [
+    { label: nav.work, href: "/#projects" },
+    { label: nav.about, href: "/about" },
+    { label: nav.news, href: "/news" },
+    { label: nav.contact, href: "/contact" },
+  ];
+
+  // 言語切替先：現在のパスの対訳パス（同一ページの相手言語へ）。
+  const other = otherLang(lang);
+  const switchHref =
+    lang === "en"
+      ? pathname === "/en"
+        ? "/"
+        : pathname.replace(/^\/en/, "") || "/"
+      : pathname === "/"
+        ? "/en"
+        : `/en${pathname}`;
+
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
-  // 全ページ上部に暗い写真ヘッダーがあるため、スクロールで白→紙地に切替。
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > window.innerHeight * 0.42);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -24,7 +41,7 @@ export function TopNav() {
   return (
     <>
       <header className={`hd${solid ? " solid" : ""}`}>
-        <a href="/" aria-label="yugyo inc.">
+        <a href={L("/")} aria-label="yugyo inc.">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="hd__logo"
@@ -34,10 +51,13 @@ export function TopNav() {
         </a>
         <nav className="hd__nav">
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href}>
+            <a key={l.href} href={L(l.href)}>
               {l.label}
             </a>
           ))}
+          <a className="hd__lang" href={switchHref} hrefLang={other} aria-label={`Switch to ${other === "en" ? "English" : "日本語"}`}>
+            {LANG_SHORT[other]}
+          </a>
         </nav>
         <button
           className="menu-btn"
@@ -54,10 +74,13 @@ export function TopNav() {
           ×
         </button>
         {LINKS.map((l) => (
-          <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+          <a key={l.href} href={L(l.href)} onClick={() => setOpen(false)}>
             {l.label}
           </a>
         ))}
+        <a className="mmenu__lang" href={switchHref} hrefLang={other} onClick={() => setOpen(false)}>
+          {LANG_SHORT[other]} · {other === "en" ? "English" : "日本語"}
+        </a>
       </div>
     </>
   );

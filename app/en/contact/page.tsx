@@ -3,11 +3,11 @@ import { ContactBody } from "@/components/pages/ContactBody";
 import { altLinks } from "@/lib/i18n";
 
 export const metadata: Metadata = {
-  title: "お問い合わせ",
-  description: "株式会社 遊行（yugyo inc.）へのお問い合わせ。福岡, 日本。",
+  title: "Contact",
+  description: "Get in touch with yugyo inc. — Fukuoka, Japan.",
   alternates: altLinks("/contact", "/en/contact"),
 };
 
-export default function ContactJa() {
-  return <ContactBody lang="ja" />;
+export default function ContactEn() {
+  return <ContactBody lang="en" />;
 }

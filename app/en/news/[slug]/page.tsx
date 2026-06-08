@@ -16,17 +16,17 @@ export async function generateMetadata({
     return { title: "Not Found" };
   }
   return {
-    title: news.title_jp,
+    title: news.title_en || news.title_jp,
     description: news.excerpt,
     alternates: altLinks(`/news/${params.slug}`, `/en/news/${params.slug}`),
     openGraph: {
-      title: `${news.title_jp} — yugyo inc.`,
+      title: `${news.title_en || news.title_jp} — yugyo inc.`,
       description: news.excerpt,
     },
   };
 }
 
-export default async function NewsDetailJa({
+export default async function NewsDetailEn({
   params,
 }: {
   params: { slug: string };
@@ -35,5 +35,5 @@ export default async function NewsDetailJa({
   if (!news) {
     notFound();
   }
-  return <NewsBody news={news} lang="ja" />;
+  return <NewsBody news={news} lang="en" />;
 }

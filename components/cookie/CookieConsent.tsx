@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { COPY } from "@/content/copy";
+import { usePathname } from "next/navigation";
+import { getCopy } from "@/content/copy";
+import { langFromPath } from "@/lib/i18n";
 
 const STORAGE_KEY = "yugyo-consent"; // "granted" | "denied"
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID; // 未設定なら解析は一切読み込まれない
@@ -25,6 +27,8 @@ function loadAnalytics() {
 }
 
 export function CookieConsent() {
+  const pathname = usePathname() || "/";
+  const lang = langFromPath(pathname);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -53,7 +57,7 @@ export function CookieConsent() {
   };
 
   if (!open) return null;
-  const c = COPY.cookie;
+  const c = getCopy(lang).cookie;
 
   return (
     <div className="cookie" role="dialog" aria-live="polite" aria-label="Cookie consent">

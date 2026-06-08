@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { format } from "date-fns";
 import { getNews } from "@/lib/cms";
-import { COPY } from "@/content/copy";
+import { getCopy } from "@/content/copy";
 import { CATEGORY_LABEL } from "@/components/news/category";
+import { localizeHref, type Lang } from "@/lib/i18n";
 
 function fmt(value: string): string {
   try {
@@ -12,17 +13,16 @@ function fmt(value: string): string {
   }
 }
 
-// 人物写真の無い記事はブランドの people 写真にフォールバックする
-// （doy concept: 人が映る写真 × News 記事リンク）。
+// 人物写真の無い記事はブランドの people 写真にフォールバックする。
 const FALLBACK = "/photos/colive.jpg";
 
 /**
- * ホームの News（Mission & How-to／園田カラー）。
- * Weaving Relations between the world and locals. を写真×記事で表現。
+ * ホームの News（序）。Weaving Relations between the world and locals. を写真×記事で表現。
+ * News 本文は microCMS（日本語共通）。周辺コピーのみロケール対応。
  */
-export async function HomeNews() {
+export async function HomeNews({ lang = "ja" }: { lang?: Lang }) {
   const { items } = await getNews({ limit: 3 });
-  const c = COPY.news;
+  const c = getCopy(lang).news;
 
   return (
     <section className="pad mission" id="news" data-reveal>
@@ -44,7 +44,7 @@ export async function HomeNews() {
             {items.map((n) => {
               const img = n.hero_image || FALLBACK;
               const external = Boolean(n.external_url);
-              const href = n.external_url || `/news/${n.slug}`;
+              const href = n.external_url || localizeHref(lang, `/news/${n.slug}`);
               const inner = (
                 <>
                   <div
@@ -77,7 +77,7 @@ export async function HomeNews() {
         )}
 
         <div className="mission__foot">
-          <a href="/news">{c.cta}</a>
+          <a href={localizeHref(lang, "/news")}>{c.cta}</a>
         </div>
       </div>
     </section>

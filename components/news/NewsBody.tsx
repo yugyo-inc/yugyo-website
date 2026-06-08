@@ -4,6 +4,7 @@ import type { News } from "@/lib/types";
 import { Container } from "@/components/ui/Container";
 import { CATEGORY_ACCENT, CATEGORY_LABEL } from "./category";
 import { ACCENT_TEXT } from "@/components/shared/accent";
+import { localizeHref, type Lang } from "@/lib/i18n";
 
 function formatDate(value: string): string {
   try {
@@ -13,9 +14,14 @@ function formatDate(value: string): string {
   }
 }
 
-// PB の editor field は信頼できる admin が入力した HTML 文字列。
-// Phase 1 では dangerouslySetInnerHTML を許容（CLAUDE.md TODO: sanitize 検討）。
-export function NewsBody({ news }: { news: News }) {
+const NB_T = {
+  ja: { external: "元の記事を読む", back: "← ニュース一覧へ" },
+  en: { external: "Read the original →", back: "← Back to news" },
+};
+
+// microCMS の本文（日本語共通）。dangerouslySetInnerHTML を許容（CLAUDE.md TODO: sanitize）。
+export function NewsBody({ news, lang = "ja" }: { news: News; lang?: Lang }) {
+  const t = NB_T[lang];
   const accent = CATEGORY_ACCENT[news.category];
   return (
     <article>
@@ -62,13 +68,13 @@ export function NewsBody({ news }: { news: News }) {
             rel="noopener noreferrer"
             className="mt-8 inline-block rounded-md border border-ink-navy px-6 py-3 label text-ink-navy hover:bg-ink-navy hover:text-mist-white transition-colors"
           >
-            元の記事を読む
+            {t.external}
           </a>
         )}
 
         <div className="mt-16 border-t border-paper-deep pt-8">
-          <Link href="/news" className="label text-ink-soft hover:text-ink-navy">
-            ← News 一覧へ
+          <Link href={localizeHref(lang, "/news")} className="label text-ink-soft hover:text-ink-navy">
+            {t.back}
           </Link>
         </div>
       </Container>
