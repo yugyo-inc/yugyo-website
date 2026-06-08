@@ -86,11 +86,12 @@ export const COPY = {
     keyword: "Interpretation",
   },
 
-  // ---- Projects & Clients（急）----
+  // ---- Projects（急）----
+  // Clients & Partners ロゴは権利確認後に追加（現状は非表示）
   projects: {
-    kicker: "Projects & Clients",
+    kicker: "Projects",
     seq: "急",
-    clientsHeading: "Our Clients & Partners",
+    clientsHeading: "Our Clients & Partners", // 未使用（ロゴ確定後に復活）
   },
 
   // ---- About & CTA（クロージング）----

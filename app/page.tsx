@@ -163,18 +163,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
-          {/* Clients & Partners（ロゴは追って差し替え） */}
-          <div className="clients">
-            <h3 className="clients__h">{projects.clientsHeading}</h3>
-            <div className="clients__grid">
-              {["Colive Fukuoka", "Nagasaki", "Kanazawa University", "HafH", "Partners"].map((name) => (
-                <div className="clients__cell" key={name}>
-                  {name}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
