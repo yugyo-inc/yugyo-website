@@ -12,7 +12,7 @@ export function TopNav() {
   const L = (href: string) => localizeHref(lang, href);
 
   const LINKS = [
-    { label: nav.work, href: "/#projects" },
+    { label: nav.work, href: "/projects" },
     { label: nav.about, href: "/about" },
     { label: nav.news, href: "/news" },
     { label: nav.contact, href: "/contact" },

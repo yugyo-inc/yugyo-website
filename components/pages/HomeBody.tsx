@@ -18,12 +18,12 @@ function html(s: string) {
 }
 
 export function HomeBody({ lang }: { lang: Lang }) {
-  const { hero, about, band1, work, whatwedo, band2, projects, cta } = getCopy(lang);
+  const { hero, about, band1, work, whatwedo, band2, cta } = getCopy(lang);
   const L = (href: string) => localizeHref(lang, href);
 
   return (
     <>
-      {/* ===== 序 — Hero（Vision & Brand） ===== */}
+      {/* ===== Hero（Vision & Brand） ===== */}
       <section className="hero">
         <div
           className="hero__img"
@@ -47,9 +47,8 @@ export function HomeBody({ lang }: { lang: Lang }) {
         <div className="hero__scroll">SCROLL ↓</div>
       </section>
 
-      {/* About / Manifesto（序） */}
+      {/* About / Manifesto */}
       <section className="pad pos" id="about" data-reveal>
-        <span className="seq seq--jo" aria-hidden="true">序</span>
         <div className="wrap">
           <div className="kicker">
             <span className="ln" />
@@ -76,17 +75,16 @@ export function HomeBody({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* ===== News（序） ===== */}
+      {/* ===== News ===== */}
       <HomeNews lang={lang} />
 
-      {/* ===== 破 — What we do（書背景） ===== */}
+      {/* ===== What we do（4事業 = クリックで詳細へ／書背景） ===== */}
       <section className="pad whatwedo" id="work" data-reveal>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="whatwedo__sho whatwedo__sho--tsuchi" src="/brand/sho/tsuchi_black.png" alt="" aria-hidden="true" data-parallax="-10" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="whatwedo__sho whatwedo__sho--kaze" src="/brand/sho/kaze_black.png" alt="" aria-hidden="true" data-parallax="8" />
         <div className="wrap whatwedo__inner">
-          <span className="seq seq--do" aria-hidden="true">{whatwedo.seq}</span>
           <div className="kicker">
             <span className="ln ln--do" />
             <span className="num">{whatwedo.kicker}</span>
@@ -97,7 +95,7 @@ export function HomeBody({ lang }: { lang: Lang }) {
           </div>
           <div className="index">
             {work.items.map((it) => (
-              <div className="row" key={it.n}>
+              <Link className="row row--link" key={it.n} href={L(`/projects/${it.slug}`)}>
                 <div className="row__n">{it.n}</div>
                 <div className="row__t">
                   <span className="bar" style={{ background: ELEMENT_VAR[it.color] }} />
@@ -106,8 +104,9 @@ export function HomeBody({ lang }: { lang: Lang }) {
                 <div className="row__d">
                   {it.desc}
                   <span className={`el el-${it.color}`}>{it.el}</span>
+                  <span className="row__cta">{it.cta}</span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -128,29 +127,6 @@ export function HomeBody({ lang }: { lang: Lang }) {
               {band2.linkLabel}
             </a>
           </p>
-        </div>
-      </section>
-
-      {/* ===== 急 — Projects（4事業・クリックで詳細へ） ===== */}
-      <section className="pad" id="projects" data-reveal>
-        <div className="wrap">
-          <span className="seq seq--kyu" aria-hidden="true">{projects.seq}</span>
-          <div className="kicker">
-            <span className="ln" />
-            <span className="num">{projects.kicker}</span>
-          </div>
-          <p className="projects__lead">{projects.lead}</p>
-          <div className="pcards">
-            {work.items.map((it) => (
-              <Link key={it.slug} className="pcard" href={L(`/projects/${it.slug}`)}>
-                <span className="pcard__n">{it.n}</span>
-                <span className="pcard__bar" style={{ background: ELEMENT_VAR[it.color] }} aria-hidden="true" />
-                <h3 className="pcard__title">{it.title}</h3>
-                <p className="pcard__desc">{it.desc}</p>
-                <span className="pcard__cta">{it.cta}</span>
-              </Link>
-            ))}
-          </div>
         </div>
       </section>
 

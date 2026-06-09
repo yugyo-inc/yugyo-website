@@ -50,16 +50,16 @@ export const FOUNDER = {
     "He later served as Social Media Director for the Office of the Prime Minister of Japan and as an Urban Development Advisor to Tsukuba City. In 2019 he co-founded HafH, a subscription-based travel service, before founding yugyo inc. in 2023. He is currently an Associate Professor at the Frontier Institute of Tourism Sciences, Kanazawa University.",
   ],
   bio_jp: [
-    "1983年、長崎県生まれ。筑波大学を卒業後、電通に入社し、PR・マーケティング戦略を専門とする。",
-    "その後、内閣広報室のソーシャルメディアディレクター、つくば市の都市開発アドバイザーを歴任。2019年にサブスクリプション型の旅サービス HafH を共同創業し、2023年に株式会社 遊行を設立。現在は金沢大学 融合研究域 観光学のクロスアポイント准教授も務める。",
+    "1983年、長崎県長崎市生まれ。筑波大学卒業後、株式会社電通でプロモーション・PR分野の経験を積み、内閣官房 首相官邸のソーシャルメディアディレクター、つくば市役所のまちづくりアドバイザーを歴任。",
+    "その後、旅のサブスク「HafH（ハフ）」を共同創業し、株式会社 遊行を設立。現在は金沢大学 先端観光科学研究所 特任准教授、一般社団法人 日本デジタルノマド協会 幹事としても活動し、日本・海外のデジタルノマド市場の発展に取り組む。",
   ],
   experience: [
-    { period: "2023–", role_en: "Associate Professor, Frontier Institute of Tourism Sciences, Kanazawa University", role_jp: "金沢大学 観光学 准教授（クロスアポイント）" },
-    { period: "2023–", role_en: "Founder & CEO, yugyo inc.", role_jp: "株式会社 遊行 代表取締役" },
-    { period: "2019–2022", role_en: "Co-Founder & CEO, HafH (KabuK Style Inc.)", role_jp: "HafH（株式会社 KabuK Style）共同創業・代表" },
-    { period: "2018–2020", role_en: "Urban Development Advisor, Tsukuba City", role_jp: "つくば市 都市開発アドバイザー" },
-    { period: "2015–2017", role_en: "Social Media Director, Office of the Prime Minister of Japan", role_jp: "内閣広報室 ソーシャルメディアディレクター" },
-    { period: "2007–2019", role_en: "Dentsu Inc. — PR & marketing strategy", role_jp: "電通 — PR・マーケティング戦略" },
+    { period: "2023–", role_en: "Associate Professor, Frontier Institute of Tourism Sciences, Kanazawa University", role_jp: "金沢大学 先端観光科学研究所 特任准教授" },
+    { period: "2023–", role_en: "Founder & CEO, yugyo inc.", role_jp: "株式会社 遊行 代表取締役CEO" },
+    { period: "2019–2022", role_en: "Co-Founder & CEO, HafH (KabuK Style Inc.)", role_jp: "HafH（株式会社 KabuK Style）共同創業・代表取締役" },
+    { period: "2018–2020", role_en: "Urban Development Advisor, Tsukuba City", role_jp: "つくば市役所 まちづくりアドバイザー" },
+    { period: "2015–2017", role_en: "Social Media Director, Office of the Prime Minister of Japan", role_jp: "内閣官房 首相官邸 ソーシャルメディアディレクター" },
+    { period: "2007–2019", role_en: "Dentsu Inc. — PR & marketing strategy", role_jp: "株式会社電通 — PR・マーケティング領域" },
   ],
 };
 
