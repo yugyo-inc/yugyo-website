@@ -6,7 +6,7 @@ export const SITE = {
   name_jp: "株式会社 遊行",
   url: "https://yugyo.work",
   contact_email: "info@yugyo.work",
-  founding_year: 2023,
+  founding_year: 2022,
   description_jp:
     "yugyo inc.（株式会社 遊行）は、福岡を拠点に、デジタルノマド・越境・地域共創を手がける会社です。",
   description_en:

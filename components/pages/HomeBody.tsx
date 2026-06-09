@@ -36,7 +36,7 @@ export function HomeBody({ lang }: { lang: Lang }) {
         <img className="hero__brush" src="/brand/sho/arubeki_white.png" alt="" aria-hidden="true" />
         <div className="hero__inner">
           <p className="eyebrow hero__eyebrow">{hero.eyebrow}</p>
-          <h1 className="hero__title">{hero.title}</h1>
+          <h1 className={`hero__title${lang === "ja" ? " hero__title--ja" : ""}`}>{hero.title}</h1>
           <div className="hero__meta">
             {hero.tags.map((t) => (
               <span key={t}>{t}</span>

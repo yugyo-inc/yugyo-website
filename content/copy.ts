@@ -15,7 +15,7 @@ const en = {
 
   // ---- Hero ----
   hero: {
-    eyebrow: "yugyo inc. — Fukuoka, Japan · Est. 2023",
+    eyebrow: "yugyo inc. — Fukuoka, Japan · Est. 2022",
     title: "Be where you are meant to be.",
     tags: ["Digital Nomadism", "Regional Revitalization", "Global Education"],
   },
@@ -159,8 +159,8 @@ const ja: typeof en = {
   nav: { work: "事業", about: "会社概要", news: "ニュース", contact: "お問い合わせ" },
 
   hero: {
-    eyebrow: "yugyo inc. — 福岡, 日本 · 2023年設立",
-    title: "自分らしくいられる<br>場所を見つけよう",
+    eyebrow: "yugyo inc. — 福岡, 日本 · 2022年設立",
+    title: "自分らしくいられる場所を見つけよう",
     tags: ["デジタルノマド", "地域共創", "グローバル教育"],
   },
 

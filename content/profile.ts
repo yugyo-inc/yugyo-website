@@ -14,7 +14,7 @@ export interface ProfileRow {
 export const COMPANY_PROFILE: ProfileRow[] = [
   { label_jp: "会社名", value_jp: "株式会社 遊行（yugyo inc.）", label_en: "Company", value_en: "yugyo inc.（株式会社 遊行）" },
   { label_jp: "代表取締役", value_jp: "大瀬良 亮", label_en: "Representative Director", value_en: "Ryo Osera" },
-  { label_jp: "設立", value_jp: "2023年", label_en: "Founded", value_en: "2023" },
+  { label_jp: "設立", value_jp: "2022年9月", label_en: "Founded", value_en: "September 2022" },
   { label_jp: "資本金", value_jp: "900万円", label_en: "Capital", value_en: "JPY 9,000,000" },
   {
     label_jp: "所在地",
@@ -55,7 +55,7 @@ export const FOUNDER = {
   ],
   experience: [
     { period: "2023–", role_en: "Associate Professor, Frontier Institute of Tourism Sciences, Kanazawa University", role_jp: "金沢大学 先端観光科学研究所 特任准教授" },
-    { period: "2023–", role_en: "Founder & CEO, yugyo inc.", role_jp: "株式会社 遊行 代表取締役CEO" },
+    { period: "2022–", role_en: "Founder & CEO, yugyo inc.", role_jp: "株式会社 遊行 代表取締役CEO" },
     { period: "2019–2022", role_en: "Co-Founder & CEO, HafH (KabuK Style Inc.)", role_jp: "HafH（株式会社 KabuK Style）共同創業・代表取締役" },
     { period: "2018–2020", role_en: "Urban Development Advisor, Tsukuba City", role_jp: "つくば市役所 まちづくりアドバイザー" },
     { period: "2015–2017", role_en: "Social Media Director, Office of the Prime Minister of Japan", role_jp: "内閣官房 首相官邸 ソーシャルメディアディレクター" },
