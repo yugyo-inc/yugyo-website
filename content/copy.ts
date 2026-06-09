@@ -173,7 +173,7 @@ const ja: typeof en = {
 
   band1: {
     eyebrow: "遊行 — Walking the Wild",
-    big: "歩くことが、<br>方法になる。",
+    big: "国境をゆるめる<br>働き方へ。",
     sub: "人は、いつも場所より小さい。会社も、同じ。",
   },
 
