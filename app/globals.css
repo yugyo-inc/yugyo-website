@@ -78,6 +78,8 @@
 @media (min-width: 900px) { .hero__inner { padding: 0 56px 64px; } }
 .hero__eyebrow { color: rgba(255, 255, 255, 0.78); margin-bottom: 26px; }
 .hero__title { color: #fff; font-weight: 700; letter-spacing: -0.03em; line-height: 1.0; font-size: clamp(38px, 6.6vw, 92px); max-width: 15ch; }
+/* 和文ヒーローは字数が多く字面も詰まるため、ひと回り小さめ＆行間広めに */
+.hero__title--ja { font-size: clamp(28px, 4.4vw, 56px); line-height: 1.28; letter-spacing: 0.01em; max-width: 20ch; }
 .hero__sub { color: rgba(247, 244, 238, 0.92); font-weight: 700; font-size: 22px; margin-top: 24px; }
 .hero__meta { margin-top: 30px; display: flex; gap: 28px; flex-wrap: wrap; align-items: center; color: rgba(255, 255, 255, 0.72); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; }
 @media (max-width: 560px) { .hero__meta { flex-direction: column; gap: 9px; align-items: flex-start; } }
@@ -296,3 +298,63 @@
 .cookie__btn--ghost { background: transparent; border: 1px solid rgba(247,244,238,0.4); color: #fff; }
 .cookie__btn--solid { background: var(--paper); border: 1px solid var(--paper); color: var(--ink); }
 .cookie__btn:hover { transform: translateY(-1px); }
+
+/* ---- Language switcher（TopNav / mobile menu）---- */
+.hd__lang { font-size: 12px; font-weight: 700; letter-spacing: .14em; color: #fff; opacity: .82; border: 1px solid rgba(255,255,255,0.4); border-radius: 5px; padding: 4px 10px; transition: opacity .2s, background .2s, color .2s; }
+.hd__lang:hover { opacity: 1; }
+.hd.solid .hd__lang { color: var(--ink); border-color: var(--line); }
+.hd__lang::after { display: none; }
+.mmenu__lang { font-size: 20px !important; font-weight: 700; letter-spacing: .04em; opacity: .8; margin-top: 14px; }
+
+/* ---- Projects（急）グリッド & 詳細ページ ---- */
+.projects__lead { font-size: clamp(17px, 2vw, 22px); line-height: 1.55; color: var(--ink-2); max-width: 46ch; margin: 0 0 44px; }
+.pcards { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+@media (min-width: 680px) { .pcards { grid-template-columns: repeat(2, 1fr); } }
+.pcard { position: relative; background: var(--paper); padding: 34px 30px 30px; display: flex; flex-direction: column; min-height: 230px; transition: background .25s ease, transform .25s ease; }
+.pcard:hover { background: #fff; }
+.pcard__n { font-size: 12px; font-weight: 700; letter-spacing: .12em; color: var(--ink-2); }
+.pcard__bar { display: block; width: 30px; height: 3px; margin: 16px 0 14px; transition: width .35s ease; }
+.pcard:hover .pcard__bar { width: 54px; }
+.pcard__title { font-weight: 700; letter-spacing: -0.02em; font-size: clamp(24px, 3vw, 34px); line-height: 1.08; margin: 0 0 12px; color: var(--ink); }
+.pcard__desc { font-size: 15px; line-height: 1.6; color: var(--ink-2); margin: 0 0 22px; max-width: 38ch; }
+.pcard__cta { margin-top: auto; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); opacity: .7; transition: opacity .2s; }
+.pcard:hover .pcard__cta { opacity: 1; }
+
+.proj { max-width: 760px; }
+.proj__lead { position: relative; font-size: clamp(20px, 2.6vw, 30px); line-height: 1.5; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 52px; padding-left: 22px; }
+.proj__bar { position: absolute; left: 0; top: 8px; bottom: 8px; width: 3px; border-radius: 2px; }
+.proj__sections { border-top: 1px solid var(--line); }
+.proj__section { padding: 36px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 760px) { .proj__section { grid-template-columns: 200px 1fr; gap: 32px; } }
+.proj__h { font-size: 13px; font-weight: 700; letter-spacing: .06em; color: var(--ink); margin: 0; }
+.proj__p { font-size: 16px; line-height: 1.75; color: var(--ink-2); margin: 0; max-width: 56ch; }
+.proj__cta { margin-top: 52px; display: flex; flex-wrap: wrap; align-items: center; gap: 28px; }
+.proj__back { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); transition: color .2s; }
+.proj__back:hover { color: var(--ink); }
+
+/* ---- What we do の行をクリック可能に（4事業→詳細） ---- */
+a.row.row--link { color: inherit; text-decoration: none; }
+a.row.row--link .row__t { color: var(--ink); }
+.row__cta { display: block; margin-top: 14px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); opacity: 0; transform: translateX(-4px); transition: opacity .25s ease, transform .25s ease; }
+.row--link:hover .row__cta { opacity: .75; transform: translateX(0); }
+@media (max-width: 759px) { .row__cta { opacity: .6; transform: none; } }
+
+/* ---- Hero：ロゴ中央レイアウト ---- */
+.hero--center .hero__inner { justify-content: center; align-items: center; text-align: center; padding-bottom: 56px; }
+.hero__logo-big { width: min(78vw, 560px); height: auto; margin: 0 auto 22px; filter: drop-shadow(0 2px 18px rgba(0,0,0,0.25)); }
+.hero--center .hero__eyebrow { margin-bottom: 22px; }
+.hero--center .hero__meta { justify-content: center; }
+.hero--center .hero__nl { margin: 22px auto 0; }
+
+/* ---- セクションのタイトル（ラベル＝大見出し化） ---- */
+.sectitle { font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; font-size: clamp(30px, 5vw, 60px); color: var(--ink); margin: 0 0 26px; }
+.mission .sectitle { margin-bottom: 18px; }
+
+/* band1 の大見出しをひと回り小さく */
+.band__big--sm { font-size: clamp(24px, 3.4vw, 44px) !important; line-height: 1.18; }
+
+/* CTA：ボタンのみ（余白は保つ） */
+.ctaband--minimal { padding: 84px 0; }
+@media (min-width: 900px) { .ctaband--minimal { padding: 120px 0; } }
+.ctaband--minimal .wrap { display: flex; justify-content: center; }
+.ctaband--minimal .ctaband__btn { margin-top: 0; }

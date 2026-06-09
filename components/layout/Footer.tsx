@@ -1,15 +1,25 @@
-import { COPY } from "@/content/copy";
-import { NewsletterForm } from "@/components/newsletter/NewsletterForm";
+"use client";
 
-const MENU = [
-  { label: COPY.nav.work, href: "/#work" },
-  { label: COPY.nav.about, href: "/about" },
-  { label: COPY.nav.news, href: "/#news" },
-  { label: COPY.nav.contact, href: "/contact" },
-];
+import { usePathname } from "next/navigation";
+import { getCopy } from "@/content/copy";
+import { NewsletterForm } from "@/components/newsletter/NewsletterForm";
+import { langFromPath, localizeHref } from "@/lib/i18n";
 
 export function Footer() {
-  const f = COPY.footer;
+  const pathname = usePathname() || "/";
+  const lang = langFromPath(pathname);
+  const c = getCopy(lang);
+  const f = c.footer;
+  const nav = c.nav;
+  const L = (href: string) => localizeHref(lang, href);
+
+  const MENU = [
+    { label: nav.work, href: "/projects" },
+    { label: nav.about, href: "/about" },
+    { label: nav.news, href: "/news" },
+    { label: nav.contact, href: "/contact" },
+  ];
+
   return (
     <footer className="ft" id="contact">
       <div className="wrap ft__top">
@@ -24,27 +34,27 @@ export function Footer() {
               {f.tagline}
             </p>
             <div style={{ marginTop: 30 }}>
-              <h4>{COPY.newsletter.eyebrow}</h4>
+              <h4>{c.newsletter.eyebrow}</h4>
               <p style={{ color: "rgba(247,244,238,0.7)", fontSize: 13, maxWidth: "32ch", marginBottom: 6 }}>
-                {COPY.newsletter.sub}
+                {c.newsletter.sub}
               </p>
-              <NewsletterForm variant="footer" />
+              <NewsletterForm variant="footer" lang={lang} />
             </div>
           </div>
 
           <div>
-            <h4>Menu</h4>
+            <h4>{f.menuLabel}</h4>
             <ul>
               {MENU.map((m) => (
                 <li key={m.href}>
-                  <a href={m.href}>{m.label}</a>
+                  <a href={L(m.href)}>{m.label}</a>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4>Connect</h4>
+            <h4>{f.connectLabel}</h4>
             <ul>
               <li>
                 <a href={`mailto:${f.email}`}>{f.email}</a>
@@ -65,7 +75,7 @@ export function Footer() {
         <div className="ft__bar">
           <span>{f.copyright}</span>
           <span style={{ display: "flex", gap: 18, flexWrap: "wrap", alignItems: "center" }}>
-            <a href="/privacy">Privacy Policy</a>
+            <a href="/privacy">{lang === "ja" ? "プライバシーポリシー" : "Privacy Policy"}</a>
             <a href="/tokushoho">特定商取引法に基づく表記</a>
             <span>{f.place}</span>
           </span>

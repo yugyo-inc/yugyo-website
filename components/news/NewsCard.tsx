@@ -3,6 +3,7 @@ import { format } from "date-fns";
 import type { News } from "@/lib/types";
 import { CATEGORY_ACCENT, CATEGORY_LABEL } from "./category";
 import { ACCENT_TEXT } from "@/components/shared/accent";
+import { localizeHref, type Lang } from "@/lib/i18n";
 
 function formatDate(value: string): string {
   try {
@@ -12,10 +13,10 @@ function formatDate(value: string): string {
   }
 }
 
-export function NewsCard({ news }: { news: News }) {
+export function NewsCard({ news, lang = "ja" }: { news: News; lang?: Lang }) {
   const accent = CATEGORY_ACCENT[news.category];
   const isExternal = Boolean(news.external_url);
-  const href = news.external_url || `/news/${news.slug}`;
+  const href = news.external_url || localizeHref(lang, `/news/${news.slug}`);
 
   const inner = (
     <>

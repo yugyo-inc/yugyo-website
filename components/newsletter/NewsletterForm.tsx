@@ -1,14 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { COPY } from "@/content/copy";
+import { getCopy } from "@/content/copy";
+import type { Lang } from "@/lib/i18n";
 
 type Variant = "hero" | "footer";
 
-export function NewsletterForm({ variant = "footer" }: { variant?: Variant }) {
+export function NewsletterForm({
+  variant = "footer",
+  lang = "ja",
+}: {
+  variant?: Variant;
+  lang?: Lang;
+}) {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<"idle" | "loading" | "ok" | "err">("idle");
 
+  const nl = getCopy(lang).newsletter;
   const wrapClass = variant === "hero" ? "hero__nl" : "ft__nl";
 
   async function submit(e: React.FormEvent) {
@@ -39,7 +47,7 @@ export function NewsletterForm({ variant = "footer" }: { variant?: Variant }) {
   if (state === "ok") {
     return (
       <p className="nl-msg" role="status">
-        {COPY.newsletter.success}
+        {nl.success}
       </p>
     );
   }
@@ -51,17 +59,17 @@ export function NewsletterForm({ variant = "footer" }: { variant?: Variant }) {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder={COPY.newsletter.placeholder}
-          aria-label={COPY.newsletter.heading}
+          placeholder={nl.placeholder}
+          aria-label={nl.heading}
           required
         />
-        <button type="submit" aria-label={COPY.newsletter.button} disabled={state === "loading"}>
+        <button type="submit" aria-label={nl.button} disabled={state === "loading"}>
           {state === "loading" ? "…" : "→"}
         </button>
       </form>
       {state === "err" && (
         <p className="nl-msg" role="status">
-          {COPY.newsletter.error}
+          {nl.error}
         </p>
       )}
     </>
