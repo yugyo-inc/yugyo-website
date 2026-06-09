@@ -27,13 +27,8 @@ export async function HomeNews({ lang = "ja" }: { lang?: Lang }) {
   return (
     <section className="pad mission" id="news" data-reveal>
       <div className="wrap">
-        <div className="kicker">
-          <span className="ln ln--news" />
-          <span className="num">{c.kicker}</span>
-        </div>
-
+        <h2 className="sectitle">{c.kicker}</h2>
         <div className="mission__head">
-          <h2 className="mission__theme" dangerouslySetInnerHTML={{ __html: c.theme }} />
           <p className="mission__lead">{c.lead}</p>
         </div>
 

@@ -338,3 +338,23 @@ a.row.row--link .row__t { color: var(--ink); }
 .row__cta { display: block; margin-top: 14px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); opacity: 0; transform: translateX(-4px); transition: opacity .25s ease, transform .25s ease; }
 .row--link:hover .row__cta { opacity: .75; transform: translateX(0); }
 @media (max-width: 759px) { .row__cta { opacity: .6; transform: none; } }
+
+/* ---- Hero：ロゴ中央レイアウト ---- */
+.hero--center .hero__inner { justify-content: center; align-items: center; text-align: center; padding-bottom: 56px; }
+.hero__logo-big { width: min(78vw, 560px); height: auto; margin: 0 auto 22px; filter: drop-shadow(0 2px 18px rgba(0,0,0,0.25)); }
+.hero--center .hero__eyebrow { margin-bottom: 22px; }
+.hero--center .hero__meta { justify-content: center; }
+.hero--center .hero__nl { margin: 22px auto 0; }
+
+/* ---- セクションのタイトル（ラベル＝大見出し化） ---- */
+.sectitle { font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; font-size: clamp(30px, 5vw, 60px); color: var(--ink); margin: 0 0 26px; }
+.mission .sectitle { margin-bottom: 18px; }
+
+/* band1 の大見出しをひと回り小さく */
+.band__big--sm { font-size: clamp(24px, 3.4vw, 44px) !important; line-height: 1.18; }
+
+/* CTA：ボタンのみ（余白は保つ） */
+.ctaband--minimal { padding: 84px 0; }
+@media (min-width: 900px) { .ctaband--minimal { padding: 120px 0; } }
+.ctaband--minimal .wrap { display: flex; justify-content: center; }
+.ctaband--minimal .ctaband__btn { margin-top: 0; }
