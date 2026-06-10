@@ -17,6 +17,23 @@ function html(s: string) {
   return { __html: s };
 }
 
+// 日本語版トップの事業内容（3本／タイトルは英語表記）。
+const SERVICES_JA: { title: string; desc: string; contact?: boolean }[] = [
+  {
+    title: "Local | Global",
+    desc: "ボーダレスに世界を渡り歩く起業家、スタートアップ、メディア、投資家らに対して、遊行ならではの領域展開を通じて、地域や事業者との接点を増やし、事業の新たな機会創出やビジネスマッチングを提供していきます。デジタルノマドに関わらず、インバウンドマーケティング、並びに新規事業の海外進出支援を行っています。",
+  },
+  {
+    title: "Branding | Marketing",
+    desc: "企業や自治体のブランドコンセプトの新設や改善に向けて、調査、提案、実施、検証まで、チームの一員としてゴールまでご一緒させていただきます。事業提案から、ロゴやキャッチコピー、ウェブサイトの開発、ソーシャルメディアの運用まで広くご相談ください。",
+  },
+  {
+    title: "Publicity",
+    desc: "登壇、執筆、講義（最新情報から事例をご参照ください）",
+    contact: true,
+  },
+];
+
 export function HomeBody({ lang }: { lang: Lang }) {
   return lang === "en" ? <HomeEn /> : <HomeJa />;
 }
@@ -58,8 +75,7 @@ function HomeJa() {
         <div className="hero__veil" />
         <div className="hero__inner hero__inner--center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="hero__logo-big" src="/brand/wordmark_white.png" alt="yugyo inc." />
-          <p className="eyebrow hero__eyebrow">{hero.eyebrow}</p>
+          <img className="hero__logo-big" src="/brand/yugyo_center_white.png" alt="yugyo inc." />
           <div className="hero__meta">
             {hero.tags.map((t) => (
               <span key={t}>{t}</span>
@@ -73,10 +89,13 @@ function HomeJa() {
       <section className="pad pos" id="about" data-reveal>
         <div className="wrap">
           <div className="manifesto">
-            <h2 dangerouslySetInnerHTML={html(about.heading)} />
+            <h2 className="mf-head--ja" dangerouslySetInnerHTML={html(about.heading)} />
             <div>
               <p>{about.body}</p>
               <p className="note" dangerouslySetInnerHTML={html(about.note)} />
+              <a className="inlinelink" href={L("/about")}>
+                会社概要を見る →
+              </a>
             </div>
           </div>
         </div>
@@ -86,7 +105,7 @@ function HomeJa() {
         <div className="band__img" data-parallax="22" style={{ backgroundImage: "url('/photos/p11.jpg')" }} />
         <div className="band__veil" />
         <div className="band__inner" data-reveal>
-          <div className="band__big band__big--sm" dangerouslySetInnerHTML={html(band1.big)} />
+          <div className="band__big band__big--sm">{band1.big}</div>
         </div>
       </section>
 
@@ -100,7 +119,22 @@ function HomeJa() {
         <div className="wrap whatwedo__inner">
           <h2 className="sectitle">{whatwedo.kicker}</h2>
           <p className="whatwedo__lead">{whatwedo.lead}</p>
-          <ProjectRows lang={lang} />
+          <div className="index">
+            {SERVICES_JA.map((s, i) => (
+              <div className="row" key={s.title}>
+                <div className="row__n">{String(i + 1).padStart(2, "0")}</div>
+                <div className="row__t">{s.title}</div>
+                <div className="row__d">
+                  {s.desc}
+                  {s.contact && (
+                    <a className="inlinelink inlinelink--block" href={L("/contact")}>
+                      ご依頼はこちらから →
+                    </a>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
