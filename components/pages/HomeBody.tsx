@@ -75,7 +75,7 @@ function HomeJa() {
         <div className="hero__veil" />
         <div className="hero__inner hero__inner--center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="hero__logo-big" src="/brand/yugyo_center_white.png" alt="yugyo inc." />
+          <img className="hero__logo-big" src="/brand/bewhere_white.png" alt="Be where you are meant to be. — yugyo inc." />
           <div className="hero__meta">
             {hero.tags.map((t) => (
               <span key={t}>{t}</span>

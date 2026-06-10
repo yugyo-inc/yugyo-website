@@ -341,7 +341,7 @@ a.row.row--link .row__t { color: var(--ink); }
 
 /* ---- Hero：ロゴ中央レイアウト ---- */
 .hero--center .hero__inner { justify-content: center; align-items: center; text-align: center; padding-bottom: 56px; }
-.hero__logo-big { width: min(88vw, 680px); height: auto; margin: 0 auto 26px; filter: drop-shadow(0 2px 18px rgba(0,0,0,0.28)); }
+.hero__logo-big { width: min(92vw, 860px); height: auto; margin: 0 auto 26px; filter: drop-shadow(0 2px 18px rgba(0,0,0,0.28)); }
 .hero--center .hero__eyebrow { margin-bottom: 22px; }
 
 /* 和文マニフェスト見出し（改行ありのため行間広め） */
