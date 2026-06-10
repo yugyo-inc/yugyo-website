@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
 import { getCopy } from "@/content/copy";
-import { PROJECTS, projectContent } from "@/content/projects";
+import { getProjects } from "@/content/projects";
 import { localizeHref, type Lang } from "@/lib/i18n";
 
 const ELEMENT_VAR: Record<string, string> = {
@@ -14,6 +14,7 @@ const ELEMENT_VAR: Record<string, string> = {
 export function ProjectsIndexBody({ lang }: { lang: Lang }) {
   const c = getCopy(lang);
   const p = c.pages.projects;
+  const projects = getProjects(lang);
 
   return (
     <>
@@ -21,18 +22,15 @@ export function ProjectsIndexBody({ lang }: { lang: Lang }) {
       <div className="wrap pagebody">
         <p className="projects__lead">{c.projects.lead}</p>
         <div className="pcards">
-          {PROJECTS.map((proj) => {
-            const pc = projectContent(proj, lang);
-            return (
-              <Link key={proj.slug} className="pcard" href={localizeHref(lang, `/projects/${proj.slug}`)}>
-                <span className="pcard__n">{proj.n}</span>
-                <span className="pcard__bar" style={{ background: ELEMENT_VAR[proj.color] }} aria-hidden="true" />
-                <h3 className="pcard__title">{pc.title}</h3>
-                <p className="pcard__desc">{pc.tagline}</p>
-                <span className="pcard__cta">{c.projects.cta}</span>
-              </Link>
-            );
-          })}
+          {projects.map((proj) => (
+            <Link key={proj.slug} className="pcard" href={localizeHref(lang, `/projects/${proj.slug}`)}>
+              <span className="pcard__n">{proj.n}</span>
+              <span className="pcard__bar" style={{ background: ELEMENT_VAR[proj.color] }} aria-hidden="true" />
+              <h3 className="pcard__title">{proj.content.title}</h3>
+              <p className="pcard__desc">{proj.content.tagline}</p>
+              <span className="pcard__cta">{c.projects.cta}</span>
+            </Link>
+          ))}
         </div>
       </div>
     </>

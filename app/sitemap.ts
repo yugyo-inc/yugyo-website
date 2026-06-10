@@ -11,14 +11,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 日英ミラーの共通ルート（法務ページは日本語のみ）
   const mirrored = ["", "/about", "/news", "/contact", "/projects"];
-  const projectPaths = PROJECTS.map((p) => `/projects/${p.slug}`);
   const jaOnly = ["/privacy", "/tokushoho"];
 
   const routes: MetadataRoute.Sitemap = [];
-  for (const path of [...mirrored, ...projectPaths]) {
+  for (const path of mirrored) {
     routes.push({ url: `${base}${path}`, lastModified: now });
     routes.push({ url: `${base}/en${path || "/"}`.replace(/\/$/, "") || `${base}/en`, lastModified: now });
   }
+  // 事業詳細（言語別に slug が異なる）
+  for (const p of PROJECTS.ja) routes.push({ url: `${base}/projects/${p.slug}`, lastModified: now });
+  for (const p of PROJECTS.en) routes.push({ url: `${base}/en/projects/${p.slug}`, lastModified: now });
+
   for (const path of jaOnly) {
     routes.push({ url: `${base}${path}`, lastModified: now });
   }

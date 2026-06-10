@@ -5,22 +5,22 @@ import { PROJECTS, getProject } from "@/content/projects";
 import { altLinks } from "@/lib/i18n";
 
 export function generateStaticParams() {
-  return PROJECTS.map((p) => ({ slug: p.slug }));
+  return PROJECTS.ja.map((p) => ({ slug: p.slug }));
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const p = getProject(params.slug);
+  const p = getProject("ja", params.slug);
   if (!p) return { title: "Not Found" };
   return {
-    title: p.ja.title,
-    description: p.ja.tagline,
+    title: p.content.title,
+    description: p.content.tagline,
     alternates: altLinks(`/projects/${p.slug}`, `/en/projects/${p.slug}`),
-    openGraph: { title: `${p.ja.title} — 株式会社 遊行`, description: p.ja.tagline, images: [p.photo] },
+    openGraph: { title: `${p.content.title} — 株式会社 遊行`, description: p.content.tagline, images: [p.photo] },
   };
 }
 
 export default function ProjectDetailJa({ params }: { params: { slug: string } }) {
-  const project = getProject(params.slug);
+  const project = getProject("ja", params.slug);
   if (!project) notFound();
   return <ProjectDetailBody project={project} lang="ja" />;
 }
