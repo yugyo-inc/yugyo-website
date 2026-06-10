@@ -11,7 +11,7 @@ export function ContactBody({ lang }: { lang: Lang }) {
 
   return (
     <>
-      <PageHero title={p.title} subtitle={p.subtitle} photo="/photos/p2.jpg" />
+      <PageHero title={p.title} subtitle={p.subtitle} photo="/photos/p2.jpg" small={lang === "ja"} />
 
       <div className="wrap pagebody">
         <div className="contact-grid">

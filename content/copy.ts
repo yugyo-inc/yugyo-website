@@ -156,7 +156,7 @@ const en = {
 };
 
 const ja: typeof en = {
-  nav: { work: "事業", about: "会社概要", news: "最新情報", contact: "お問い合わせ" },
+  nav: { work: "事業内容", about: "会社概要", news: "最新情報", contact: "お問い合わせ" },
 
   hero: {
     eyebrow: "yugyo inc. — 福岡, 日本 · 2022年設立",
@@ -272,7 +272,7 @@ const ja: typeof en = {
   pages: {
     about: { title: "会社概要", subtitle: "株式会社 遊行 ｜ yugyo inc." },
     contact: {
-      title: "いっしょに歩く。",
+      title: "お問い合わせ",
       subtitle: "パートナーシップ、取材、登壇、越境・地域でのご一緒。お気軽にどうぞ。",
     },
     news: { title: "最新情報", subtitle: "株式会社 遊行 からの公式お知らせ" },

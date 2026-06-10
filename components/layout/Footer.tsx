@@ -14,8 +14,8 @@ export function Footer() {
   const L = (href: string) => localizeHref(lang, href);
 
   const MENU = [
-    { label: nav.work, href: "/projects" },
     { label: nav.about, href: "/about" },
+    { label: nav.work, href: "/projects" },
     { label: nav.news, href: "/news" },
     { label: nav.contact, href: "/contact" },
   ];
