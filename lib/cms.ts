@@ -35,6 +35,10 @@ interface MicroCmsNews {
   excerpt?: string;
   thumbnail?: MicroCmsImage;
   externalUrl?: string;
+  // 英語版フィールド（任意）。未入力なら日本語へフォールバックする。
+  title_en?: string;
+  content_en?: string;
+  excerpt_en?: string;
 }
 interface MicroCmsListResponse<T> {
   contents: T[];
@@ -63,9 +67,12 @@ function toNews(c: MicroCmsNews): News {
     id: c.id,
     slug: c.id, // microCMS の content id を slug として使う
     title_jp: c.title ?? "",
+    title_en: c.title_en || undefined,
     category,
     excerpt: c.excerpt ?? "",
+    excerpt_en: c.excerpt_en || undefined,
     body_jp: c.content ?? "",
+    body_en: c.content_en || undefined,
     hero_image: c.thumbnail?.url,
     external_url: c.externalUrl || undefined,
     published_at: c.publishedAt ?? c.createdAt,

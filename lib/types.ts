@@ -15,6 +15,7 @@ export interface News {
   slug: string;
   category: NewsCategory;
   excerpt: string;
+  excerpt_en?: string;
   body_jp: string;
   body_en?: string;
   hero_image?: string;

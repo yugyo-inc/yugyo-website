@@ -23,6 +23,12 @@ const NB_T = {
 export function NewsBody({ news, lang = "ja" }: { news: News; lang?: Lang }) {
   const t = NB_T[lang];
   const accent = CATEGORY_ACCENT[news.category];
+  // 英語ページは EN フィールドを優先（未入力なら日本語へフォールバック）。
+  const isEn = lang === "en";
+  const title = isEn ? news.title_en || news.title_jp : news.title_jp;
+  const subtitle = isEn ? undefined : news.title_en;
+  const excerpt = isEn ? news.excerpt_en || news.excerpt : news.excerpt;
+  const body = isEn ? news.body_en || news.body_jp : news.body_jp;
   return (
     <article>
       <div className="border-b border-paper-deep">
@@ -39,11 +45,11 @@ export function NewsBody({ news, lang = "ja" }: { news: News; lang?: Lang }) {
             </time>
           </div>
           <h1 className="mt-4 font-jp font-jpdisplay text-3xl md:text-5xl text-ink-navy leading-display">
-            {news.title_jp}
+            {title}
           </h1>
-          {news.title_en && (
+          {subtitle && (
             <p className="mt-3 font-sans text-base md:text-lg text-ink-soft">
-              {news.title_en}
+              {subtitle}
             </p>
           )}
         </Container>
@@ -52,12 +58,12 @@ export function NewsBody({ news, lang = "ja" }: { news: News; lang?: Lang }) {
       <Container className="py-12 md:py-16">
         {news.external_url ? (
           <p className="font-jp font-jpbody leading-body text-ink-soft">
-            {news.excerpt}
+            {excerpt}
           </p>
         ) : (
           <div
             className="prose-yugyo max-w-prose font-jp font-jpbody leading-body text-ink-navy"
-            dangerouslySetInnerHTML={{ __html: news.body_jp }}
+            dangerouslySetInnerHTML={{ __html: body }}
           />
         )}
 

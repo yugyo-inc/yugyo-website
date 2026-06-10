@@ -17,6 +17,9 @@ export function NewsCard({ news, lang = "ja" }: { news: News; lang?: Lang }) {
   const accent = CATEGORY_ACCENT[news.category];
   const isExternal = Boolean(news.external_url);
   const href = news.external_url || localizeHref(lang, `/news/${news.slug}`);
+  const isEn = lang === "en";
+  const title = isEn ? news.title_en || news.title_jp : news.title_jp;
+  const excerpt = isEn ? news.excerpt_en || news.excerpt : news.excerpt;
 
   const inner = (
     <>
@@ -32,10 +35,10 @@ export function NewsCard({ news, lang = "ja" }: { news: News; lang?: Lang }) {
         </time>
       </div>
       <h3 className="mt-3 font-jp font-jpdisplay text-lg md:text-xl text-ink-navy">
-        {news.title_jp}
+        {title}
       </h3>
       <p className="mt-2 font-jp font-jpbody text-sm leading-body text-ink-soft">
-        {news.excerpt}
+        {excerpt}
       </p>
     </>
   );

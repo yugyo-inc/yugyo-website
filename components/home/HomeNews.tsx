@@ -55,21 +55,24 @@ export async function HomeNews({ lang = "ja" }: { lang?: Lang }) {
               const img = n.hero_image || FALLBACK;
               const external = Boolean(n.external_url);
               const href = n.external_url || localizeHref(lang, `/news/${n.slug}`);
+              const isEn = lang === "en";
+              const title = isEn ? n.title_en || n.title_jp : n.title_jp;
+              const excerpt = isEn ? n.excerpt_en || n.excerpt : n.excerpt;
               const inner = (
                 <>
                   <div
                     className="ncard__img"
                     style={{ backgroundImage: `url('${img}')` }}
                     role="img"
-                    aria-label={n.title_jp}
+                    aria-label={title}
                   />
                   <div className="ncard__body">
                     <div className="ncard__meta">
                       <span className="ncard__cat">{CATEGORY_LABEL[n.category]}</span>
                       <time dateTime={n.published_at}>{fmt(n.published_at)}</time>
                     </div>
-                    <h3 className="ncard__title">{n.title_jp}</h3>
-                    <p className="ncard__excerpt">{n.excerpt}</p>
+                    <h3 className="ncard__title">{title}</h3>
+                    <p className="ncard__excerpt">{excerpt}</p>
                   </div>
                 </>
               );
