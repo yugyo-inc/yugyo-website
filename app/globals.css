@@ -364,5 +364,5 @@ a.row.row--link .row__t { color: var(--ink); }
 /* CTA：ボタンのみ（余白は保つ） */
 .ctaband--minimal { padding: 84px 0; }
 @media (min-width: 900px) { .ctaband--minimal { padding: 120px 0; } }
-.ctaband--minimal .wrap { display: flex; justify-content: center; }
+.ctaband--minimal .wrap { display: flex; justify-content: flex-start; }
 .ctaband--minimal .ctaband__btn { margin-top: 0; }

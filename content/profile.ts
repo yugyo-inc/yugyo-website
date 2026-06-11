@@ -15,7 +15,7 @@ export const COMPANY_PROFILE: ProfileRow[] = [
   { label_jp: "会社名", value_jp: "株式会社 遊行（yugyo inc.）", label_en: "Company", value_en: "yugyo inc.（株式会社 遊行）" },
   { label_jp: "代表取締役", value_jp: "大瀬良 亮", label_en: "Representative Director", value_en: "Ryo Osera" },
   { label_jp: "設立", value_jp: "2022年9月", label_en: "Founded", value_en: "September 2022" },
-  { label_jp: "資本金", value_jp: "900万円", label_en: "Capital", value_en: "JPY 9,000,000" },
+  { label_jp: "資本金", value_jp: "900万円（資本準備金を含む）", label_en: "Capital", value_en: "JPY 9,000,000 (incl. capital reserve)" },
   {
     label_jp: "所在地",
     value_jp: "〒810-0001 福岡県福岡市中央区天神1-11-1 ONE FUKUOKA BLDG. 7階",
