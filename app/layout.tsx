@@ -5,6 +5,11 @@ import { TopNav } from "@/components/layout/TopNav";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/cookie/CookieConsent";
 import { SITE } from "@/lib/constants";
+import {
+  organizationLd,
+  websiteLd,
+  jsonLdScript,
+} from "@/lib/structured-data";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -17,14 +22,23 @@ export const metadata: Metadata = {
     template: "%s — yugyo inc.",
   },
   description:
-    "yugyo inc. works where the world's movement meets the regions of Japan. Digital nomadism, regional revitalization, and global education. Based in Fukuoka.",
+    "株式会社 遊行（yugyo inc.）— デジタルノマド・地域共創・コンサルティング・教育の 4 事業。福岡拠点。",
+  alternates: {
+    canonical: "/",
+    languages: {
+      ja: "/",
+      en: "/en",
+      "x-default": "/",
+    },
+  },
   openGraph: {
-    title: "yugyo inc. — Be where you are meant to be.",
-    description: "Where the world's movement meets the regions of Japan.",
-    url: siteUrl,
-    siteName: "yugyo inc.",
-    locale: "en_US",
     type: "website",
+    siteName: "yugyo inc.",
+    url: siteUrl,
+    locale: "ja_JP",
+    alternateLocale: ["en_US"],
+    title: "yugyo inc. — Be where you are meant to be.",
+    description: "世界の移動が、日本の地域と出会う場所。",
     images: [
       {
         url: "/og.jpg",
@@ -37,7 +51,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "yugyo inc. — Be where you are meant to be.",
-    description: "Where the world's movement meets the regions of Japan.",
+    description: "世界の移動が、日本の地域と出会う場所。",
     images: ["/og.jpg"],
   },
 };
@@ -54,6 +68,14 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <CookieConsent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLdScript(organizationLd)}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLdScript(websiteLd)}
+        />
         {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </body>
     </html>

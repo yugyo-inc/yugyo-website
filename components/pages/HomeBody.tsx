@@ -89,7 +89,7 @@ function HomeJa() {
       <section className="pad pos" id="about" data-reveal>
         <div className="wrap">
           <div className="manifesto">
-            <h2 className="mf-head--ja" dangerouslySetInnerHTML={html(about.heading)} />
+            <h1 className="mf-head--ja" dangerouslySetInnerHTML={html(about.heading)} />
             <div>
               <p>{about.body}</p>
               <p className="note" dangerouslySetInnerHTML={html(about.note)} />
