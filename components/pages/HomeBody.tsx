@@ -74,8 +74,11 @@ function HomeJa() {
         <div className="hero__img" data-parallax="18" role="img" aria-label="A lone figure in a vast landscape" />
         <div className="hero__veil" />
         <div className="hero__inner hero__inner--center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="hero__logo-big" src="/brand/bewhere_white.png" alt="Be where you are meant to be. — yugyo inc." />
+          <h1>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="hero__logo-big" src="/brand/bewhere_white.png" alt="Be where you are meant to be. — yugyo inc." />
+            <span className="sr-only">在るべき場所へ。</span>
+          </h1>
           <div className="hero__meta">
             {hero.tags.map((t) => (
               <span key={t}>{t}</span>
@@ -89,7 +92,7 @@ function HomeJa() {
       <section className="pad pos" id="about" data-reveal>
         <div className="wrap">
           <div className="manifesto">
-            <h1 className="mf-head--ja" dangerouslySetInnerHTML={html(about.heading)} />
+            <h2 className="mf-head--ja" dangerouslySetInnerHTML={html(about.heading)} />
             <div>
               <p>{about.body}</p>
               <p className="note" dangerouslySetInnerHTML={html(about.note)} />
