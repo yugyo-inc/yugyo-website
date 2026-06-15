@@ -44,10 +44,14 @@ export function localizeHref(lang: Lang, href: string): string {
   return `/en${path}`;
 }
 
-/** hreflang 用 alternates。ja 側パスと en 側パスを渡す。 */
-export function altLinks(jaPath: string, enPath: string): Metadata["alternates"] {
+/** hreflang 用 alternates。第1引数は現在ページの言語。canonical は自言語の URL を指す。 */
+export function altLinks(
+  lang: Lang,
+  jaPath: string,
+  enPath: string
+): Metadata["alternates"] {
   return {
-    canonical: jaPath === "/" ? "/" : jaPath,
+    canonical: lang === "en" ? enPath : jaPath,
     languages: {
       ja: jaPath,
       en: enPath,
@@ -55,3 +59,14 @@ export function altLinks(jaPath: string, enPath: string): Metadata["alternates"]
     },
   };
 }
+
+/** OpenGraph locale 用ヘルパー。JP ページは ja_JP、EN ページは en_US。 */
+export const OG_LOCALE: Record<Lang, "ja_JP" | "en_US"> = {
+  ja: "ja_JP",
+  en: "en_US",
+};
+
+export const OG_ALT_LOCALE: Record<Lang, ("ja_JP" | "en_US")[]> = {
+  ja: ["en_US"],
+  en: ["ja_JP"],
+};
