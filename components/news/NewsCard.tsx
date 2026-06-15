@@ -23,23 +23,25 @@ export function NewsCard({ news, lang = "ja" }: { news: News; lang?: Lang }) {
 
   const inner = (
     <>
-      <div className="flex items-center gap-4">
+      <div className="flex items-baseline gap-3 mb-3">
         <span className={`label ${ACCENT_TEXT[accent]}`}>
           {CATEGORY_LABEL[news.category]}
         </span>
         <time
           dateTime={news.published_at}
-          className="font-sans text-xs text-ink-soft"
+          className="font-sans text-xs tracking-normal normal-case text-ink-soft"
         >
           {formatDate(news.published_at)}
         </time>
       </div>
-      <h3 className="mt-3 font-jp font-jpdisplay text-lg md:text-xl text-ink-navy">
+      <h2 className="font-jp font-jpdisplay text-lg md:text-xl leading-tight text-ink-navy">
         {title}
-      </h3>
-      <p className="mt-2 font-jp font-jpbody text-sm leading-body text-ink-soft">
-        {excerpt}
-      </p>
+      </h2>
+      {excerpt && (
+        <p className="mt-2 font-jp font-jpbody text-sm leading-body text-ink-soft line-clamp-2">
+          {excerpt}
+        </p>
+      )}
     </>
   );
 

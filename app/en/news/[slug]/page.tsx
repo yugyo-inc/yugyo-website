@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getNewsBySlug } from "@/lib/cms";
 import { NewsBody } from "@/components/news/NewsBody";
-import { altLinks } from "@/lib/i18n";
+import { altLinks, OG_LOCALE, OG_ALT_LOCALE } from "@/lib/i18n";
+import { jsonLdScript } from "@/lib/structured-data";
 
 export const revalidate = 60;
 
@@ -15,13 +16,30 @@ export async function generateMetadata({
   if (!news) {
     return { title: "Not Found" };
   }
+  const title = news.title_en || news.title_jp;
+  const description = news.excerpt_en || news.excerpt;
+  const ogImage = news.hero_image || "https://yugyo.work/og.jpg";
   return {
-    title: news.title_en || news.title_jp,
-    description: news.excerpt,
-    alternates: altLinks(`/news/${params.slug}`, `/en/news/${params.slug}`),
+    title,
+    description,
+    alternates: altLinks("en", `/news/${params.slug}`, `/en/news/${params.slug}`),
     openGraph: {
-      title: `${news.title_en || news.title_jp} — yugyo inc.`,
-      description: news.excerpt,
+      type: "article",
+      locale: OG_LOCALE.en,
+      alternateLocale: OG_ALT_LOCALE.en,
+      url: `https://yugyo.work/en/news/${params.slug}`,
+      title,
+      description,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      publishedTime: news.published_at,
+      modifiedTime: news.updated,
+      authors: ["Ryo Osera", "yugyo inc."],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
     },
   };
 }
@@ -35,5 +53,38 @@ export default async function NewsDetailEn({
   if (!news) {
     notFound();
   }
-  return <NewsBody news={news} lang="en" />;
+  const title = news.title_en || news.title_jp;
+  const description = news.excerpt_en || news.excerpt;
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: title,
+    image: news.hero_image || "https://yugyo.work/og.jpg",
+    datePublished: news.published_at,
+    dateModified: news.updated,
+    author: { "@type": "Organization", name: "yugyo inc." },
+    publisher: {
+      "@type": "Organization",
+      name: "yugyo inc.",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://yugyo.work/brand/wordmark_white.png",
+      },
+    },
+    description,
+    inLanguage: "en",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://yugyo.work/en/news/${params.slug}`,
+    },
+  };
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(articleLd)}
+      />
+      <NewsBody news={news} lang="en" />
+    </>
+  );
 }

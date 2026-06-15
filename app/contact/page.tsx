@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import { ContactBody } from "@/components/pages/ContactBody";
-import { altLinks } from "@/lib/i18n";
+import { altLinks, OG_LOCALE, OG_ALT_LOCALE } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
-  description: "株式会社 遊行（yugyo inc.）へのお問い合わせ。福岡, 日本。",
-  alternates: altLinks("/contact", "/en/contact"),
+  description: "yugyo inc. へのお問い合わせ・取材依頼・登壇依頼。福岡, 日本。",
+  alternates: altLinks("ja", "/contact", "/en/contact"),
+  openGraph: {
+    locale: OG_LOCALE.ja,
+    alternateLocale: OG_ALT_LOCALE.ja,
+    url: "https://yugyo.work/contact",
+    title: "お問い合わせ — yugyo inc.",
+    description: "yugyo inc. へのお問い合わせ・取材依頼・登壇依頼。",
+  },
 };
 
 export default function ContactJa() {
