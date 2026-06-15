@@ -10,6 +10,7 @@
     "brand-lint": "bash scripts/brand-lint.sh"
   },
   "dependencies": {
+    "@next/third-parties": "14.2.35",
     "date-fns": "^3.6.0",
     "lucide-react": "^0.383.0",
     "next": "^14.2.0",
