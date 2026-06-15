@@ -7,11 +7,21 @@ export const metadata: Metadata = {
   description: "yugyo inc. へのお問い合わせ・取材依頼・登壇依頼。福岡, 日本。",
   alternates: altLinks("ja", "/contact", "/en/contact"),
   openGraph: {
+    type: "website",
+    siteName: "yugyo inc.",
     locale: OG_LOCALE.ja,
     alternateLocale: OG_ALT_LOCALE.ja,
     url: "https://yugyo.work/contact",
     title: "お問い合わせ — yugyo inc.",
     description: "yugyo inc. へのお問い合わせ・取材依頼・登壇依頼。",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "yugyo inc. — Be where you are meant to be.",
+      },
+    ],
   },
 };
 

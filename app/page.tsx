@@ -10,11 +10,21 @@ export const metadata: Metadata = {
     "株式会社 遊行（yugyo inc.）は、世界の移動と日本の地域が出会う場所で仕事をします。デジタルノマド・地域共創・グローバル教育。福岡拠点。",
   alternates: altLinks("ja", "/", "/en"),
   openGraph: {
+    type: "website",
+    siteName: "yugyo inc.",
     locale: OG_LOCALE.ja,
     alternateLocale: OG_ALT_LOCALE.ja,
     url: "https://yugyo.work",
     title: "株式会社 遊行（yugyo inc.）— 在るべき場所へ。",
     description: "世界の移動と日本の地域が出会う場所。",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "yugyo inc. — Be where you are meant to be.",
+      },
+    ],
   },
 };
 

@@ -10,11 +10,21 @@ export const metadata: Metadata = {
     "yugyo inc. works where the world's movement meets the regions of Japan. Digital nomadism, regional revitalization, and global education. Based in Fukuoka.",
   alternates: altLinks("en", "/", "/en"),
   openGraph: {
+    type: "website",
+    siteName: "yugyo inc.",
     locale: OG_LOCALE.en,
     alternateLocale: OG_ALT_LOCALE.en,
     url: "https://yugyo.work/en",
     title: "yugyo inc. — Be where you are meant to be.",
     description: "Where the world's movement meets the regions of Japan.",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "yugyo inc. — Be where you are meant to be.",
+      },
+    ],
   },
 };
 

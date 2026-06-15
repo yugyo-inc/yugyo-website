@@ -7,11 +7,21 @@ export const metadata: Metadata = {
   description: "Company profile and founder of yugyo inc. Founded September 2022, based in Fukuoka.",
   alternates: altLinks("en", "/about", "/en/about"),
   openGraph: {
+    type: "website",
+    siteName: "yugyo inc.",
     locale: OG_LOCALE.en,
     alternateLocale: OG_ALT_LOCALE.en,
     url: "https://yugyo.work/en/about",
     title: "About — yugyo inc.",
     description: "Company profile and founder of yugyo inc.",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "yugyo inc. — Be where you are meant to be.",
+      },
+    ],
   },
 };
 

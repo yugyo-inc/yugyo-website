@@ -8,11 +8,21 @@ export const metadata: Metadata = {
     "株式会社 遊行（yugyo inc.）の会社概要と代表大瀬良亮プロフィール。設立 2022 年 9 月、福岡拠点。",
   alternates: altLinks("ja", "/about", "/en/about"),
   openGraph: {
+    type: "website",
+    siteName: "yugyo inc.",
     locale: OG_LOCALE.ja,
     alternateLocale: OG_ALT_LOCALE.ja,
     url: "https://yugyo.work/about",
     title: "会社概要 — yugyo inc.",
     description: "株式会社 遊行（yugyo inc.）の会社概要と代表大瀬良亮プロフィール。",
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "yugyo inc. — Be where you are meant to be.",
+      },
+    ],
   },
 };
 
