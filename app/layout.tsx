@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { TopNav } from "@/components/layout/TopNav";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/cookie/CookieConsent";
 import { SITE } from "@/lib/constants";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || SITE.url;
 
@@ -51,6 +54,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <CookieConsent />
+        {GA_ID && <GoogleAnalytics gaId={GA_ID} />}
       </body>
     </html>
   );
