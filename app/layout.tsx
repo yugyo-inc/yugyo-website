@@ -49,9 +49,10 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
+    // title / description は各ページの title / description にフォールバックさせる。
+    // 以前はここに日本語固定文が入っており、/en 等の英語ページでも
+    // twitter:description が日本語表示になっていた（ver2 修正）。
     card: "summary_large_image",
-    title: "yugyo inc. — Be where you are meant to be.",
-    description: "世界の移動が、日本の地域と出会う場所。",
     images: ["/og.jpg"],
   },
 };

@@ -44,10 +44,11 @@ export const NAV_LINKS = [
 ] as const;
 
 // 外部リンク（SNS / 関連サイト）
+// 実際に公開中のアカウントに統一（footer / structured-data の sameAs と一致させる, ver2 修正）。
 export const SOCIAL_LINKS = [
-  { label: "Threads", href: "https://www.threads.net/@yugyo.inc" },
-  { label: "X", href: "https://x.com/yugyo_inc" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/yugyo-inc" },
+  { label: "Instagram", href: "https://www.instagram.com/yugyo_nomad/" },
+  { label: "X", href: "https://x.com/yugyo_jp" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/95682142" },
 ] as const;
 
 export const EXTERNAL = {

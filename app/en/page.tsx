@@ -5,7 +5,9 @@ import { altLinks, OG_LOCALE, OG_ALT_LOCALE } from "@/lib/i18n";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "yugyo inc. — Be where you are meant to be.",
+  // absolute で親レイアウトの template（"%s — yugyo inc."）の二重付与を回避。
+  // /en は子セグメントのため template が効き、タイトルが二重化していた（ver2 修正）。
+  title: { absolute: "yugyo inc. — Be where you are meant to be." },
   description:
     "yugyo inc. works where the world's movement meets the regions of Japan. Digital nomadism, regional revitalization, and global education. Based in Fukuoka.",
   alternates: altLinks("en", "/", "/en"),

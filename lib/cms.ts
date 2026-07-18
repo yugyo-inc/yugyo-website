@@ -152,3 +152,21 @@ export async function getNewsBySlug(slug: string): Promise<News | null> {
 export async function getMembers(): Promise<Member[]> {
   return [];
 }
+
+// ---- Site Copy（サイト固定コピーの CMS 化）----
+// よく変わる低リスクのコピーだけを microCMS の「オブジェクト形式」API `site-copy`
+// で管理し、非エンジニアが管理画面から編集 → デプロイ不要で反映できるようにする。
+// 各フィールドは任意。未設定 / CMS 不達のときは content/copy.ts の既定値へフォールバック。
+// ブランド核（Vision / Hero など）はコード側（Kill List CI 配下）に残す方針。
+export interface SiteCopy {
+  // ホーム「最新情報」セクションのリード文（日本語 / 英語）
+  news_lead?: string;
+  news_lead_en?: string;
+}
+
+export async function getSiteCopy(): Promise<SiteCopy> {
+  // オブジェクト形式 API はコンテンツを直接返す（list ではない）。
+  const data = await cmsFetch<SiteCopy>("/site-copy");
+  // 未設定 / エラー時は空オブジェクト → 呼び出し側が copy.ts の既定値を使う。
+  return data ?? {};
+}

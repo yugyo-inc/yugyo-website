@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { format } from "date-fns";
-import { getNews } from "@/lib/cms";
+import { getNews, getSiteCopy } from "@/lib/cms";
 import { getCopy } from "@/content/copy";
 import { CATEGORY_LABEL } from "@/components/news/category";
 import { localizeHref, type Lang } from "@/lib/i18n";
@@ -21,8 +21,15 @@ const FALLBACK = "/photos/colive.jpg";
  * News 本文は microCMS（日本語共通）。周辺コピーのみロケール対応。
  */
 export async function HomeNews({ lang = "ja" }: { lang?: Lang }) {
-  const { items } = await getNews({ limit: 3 });
+  const [{ items }, siteCopy] = await Promise.all([
+    getNews({ limit: 3 }),
+    getSiteCopy(),
+  ]);
   const c = getCopy(lang).news;
+  // CMS に値があればそれを優先、無ければ copy.ts の既定値へフォールバック。
+  const lead =
+    (lang === "en" ? siteCopy.news_lead_en : siteCopy.news_lead)?.trim() ||
+    c.lead;
 
   return (
     <section className="pad mission" id="news" data-reveal>
@@ -35,14 +42,14 @@ export async function HomeNews({ lang = "ja" }: { lang?: Lang }) {
             </div>
             <div className="mission__head">
               <h2 className="mission__theme" dangerouslySetInnerHTML={{ __html: c.theme }} />
-              <p className="mission__lead">{c.lead}</p>
+              <p className="mission__lead">{lead}</p>
             </div>
           </>
         ) : (
           <>
             <h2 className="sectitle">{c.kicker}</h2>
             <div className="mission__head">
-              <p className="mission__lead">{c.lead}</p>
+              <p className="mission__lead">{lead}</p>
             </div>
           </>
         )}
