@@ -60,6 +60,15 @@ export function NewsBody({ news, lang = "ja" }: { news: News; lang?: Lang }) {
       <Container className="py-12 md:py-16">
         {/* 記事本文は中央寄せの読みやすい列幅（max-w-prose = 65ch）に収める */}
         <div className="mx-auto max-w-prose">
+        {news.hero_image && (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={news.hero_image}
+            alt=""
+            className="mb-10 w-full rounded-lg"
+            style={{ filter: "saturate(0.92)" }}
+          />
+        )}
         {news.external_url ? (
           <p className="font-jp font-jpbody leading-body text-ink-soft">
             {excerpt}

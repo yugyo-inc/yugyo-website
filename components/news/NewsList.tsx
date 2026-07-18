@@ -18,8 +18,9 @@ export function NewsList({
       </p>
     );
   }
+  // ホームと同じサムネイル付きグリッド（.ncards / globals.css）
   return (
-    <div className="border-b border-paper-deep">
+    <div className="ncards">
       {items.map((news) => (
         <NewsCard key={news.id} news={news} lang={lang} />
       ))}
