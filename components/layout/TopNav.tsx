@@ -29,6 +29,10 @@ export function TopNav() {
         ? "/en"
         : `/en${pathname}`;
 
+  // news 系ページは薄色背景でダークヒーローが無く、透過ヘッダー（白ロゴ・白リンク）が
+  // 背景と同化して見えないため、スクロール位置に関わらず常時ソリッド表示にする。
+  const forceSolid = /^\/(en\/)?news(\/|$)/.test(pathname);
+
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -40,7 +44,7 @@ export function TopNav() {
 
   return (
     <>
-      <header className={`hd${solid ? " solid" : ""}`}>
+      <header className={`hd${solid || forceSolid ? " solid" : ""}`}>
         <a href={L("/")} aria-label="yugyo inc.">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

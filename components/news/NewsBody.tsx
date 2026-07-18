@@ -33,6 +33,7 @@ export function NewsBody({ news, lang = "ja" }: { news: News; lang?: Lang }) {
     <article>
       <div className="border-b border-paper-deep">
         <Container className="py-16 md:py-24">
+          <div className="mx-auto max-w-prose">
           <div className="flex items-center gap-4">
             <span className={`label ${ACCENT_TEXT[accent]}`}>
               {CATEGORY_LABEL[news.category]}
@@ -52,17 +53,20 @@ export function NewsBody({ news, lang = "ja" }: { news: News; lang?: Lang }) {
               {subtitle}
             </p>
           )}
+          </div>
         </Container>
       </div>
 
       <Container className="py-12 md:py-16">
+        {/* 記事本文は中央寄せの読みやすい列幅（max-w-prose = 65ch）に収める */}
+        <div className="mx-auto max-w-prose">
         {news.external_url ? (
           <p className="font-jp font-jpbody leading-body text-ink-soft">
             {excerpt}
           </p>
         ) : (
           <div
-            className="prose-yugyo max-w-prose font-jp font-jpbody leading-body text-ink-navy"
+            className="prose-yugyo font-jp font-jpbody text-ink-navy"
             dangerouslySetInnerHTML={{ __html: body }}
           />
         )}
@@ -82,6 +86,7 @@ export function NewsBody({ news, lang = "ja" }: { news: News; lang?: Lang }) {
           <Link href={localizeHref(lang, "/news")} className="label text-ink-soft hover:text-ink-navy">
             {t.back}
           </Link>
+        </div>
         </div>
       </Container>
     </article>
