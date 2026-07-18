@@ -134,7 +134,7 @@ const en: Project[] = [
       lead: "People who work, travel, and live across borders. We weave that movement back into the regions of Japan. This is where yugyo began — and where it still centers.",
       sections: [
         { h: "What we do", body: "We build the places and systems that let digital nomads work and live in Japan's regions: host communities, the shape of a stay, and real encounters with local people. Designed not as isolated events, but as a line from stay to relationship." },
-        { h: "Colive Fukuoka", body: "One of Japan's largest programs for digital nomads, held in Fukuoka. Over 500 people from more than 50 countries have come together for an experience that combines work and travel — named Best Global Nomad Fest at the Nomad Retreats Awards 2025. Learn more at colivefukuoka.com." },
+        { h: "Colive Fukuoka", body: "One of Japan's largest programs for digital nomads, held in Fukuoka. Over 500 people from 57 countries have come together for an experience that combines work and travel — named Best Global Nomad Fest at the Nomad Retreats Awards 2025. Learn more at colivefukuoka.com." },
         { h: "Why", body: "A world where people can walk toward the place they are most themselves. The closer we get, the more regions meet new talent — and the more visitors find somewhere to belong." },
       ],
       cta: "Work with us",

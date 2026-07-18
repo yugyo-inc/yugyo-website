@@ -50,7 +50,7 @@ const en = {
   band2: {
     eyebrow: "Colive Fukuoka",
     big: "Invest in your growth.",
-    sub: "Over 500 people from more than 50 countries have come together for a whole new experience in Japan, combining work and travel.",
+    sub: "Over 500 people from 57 countries have come together for a whole new experience in Japan, combining work and travel.",
     linkLabel: "colivefukuoka.com →",
     linkUrl: "https://colivefukuoka.com",
   },
@@ -94,7 +94,7 @@ const en = {
 
   // ---- About & CTA（クロージング）----
   cta: {
-    eyebrow: "Marketing agency for new opportunities",
+    eyebrow: "Your marketing partner in Japan",
     heading: "Let's shape the future together.",
     sub: "Start weaving new relations with us.",
     button: "Contact us",
@@ -160,7 +160,7 @@ const ja: typeof en = {
   nav: { work: "事業内容", about: "会社概要", news: "最新情報", contact: "お問い合わせ" },
 
   hero: {
-    eyebrow: "yugyo inc. — 福岡, 日本 · 2022年設立",
+    eyebrow: "yugyo inc. — 福岡 · 2022年設立",
     title: "自分らしくいられる場所を見つけよう",
     tags: ["デジタルノマド", "地域共創", "グローバル教育"],
   },
@@ -168,7 +168,7 @@ const ja: typeof en = {
   about: {
     kicker: "00 — 株式会社 遊行",
     heading: "自分らしく<br>いられる場所を<br>選べる世界へ。",
-    body: "世界中でボーダレスにビジネスを展開する起業家、スタートアップ、投資家らを中心とした高付加価値インバウンドと、国内外の地域の境界をゆるめるべく、事業開発からコンサルティング、ブランディング、マーケティングなど、国内外の企業の成長を総合的に支援しています。",
+    body: "世界中でボーダレスにビジネスを展開する起業家、スタートアップ、投資家。彼ら高付加価値なインバウンド層と、国内外の地域との境界をゆるめることが、私たちの仕事です。事業開発、コンサルティング、ブランディング、マーケティングまで、企業と地域の成長を総合的に支援しています。",
     note: "<b>遊行（ゆぎょう）</b>とは、仏教の僧侶が布教や修行のために各地を巡り歩くこと。古くは空海や行基、鎌倉末期に時宗を開いた一遍上人の遊行が知られ、知恵を持つ僧が各地を巡ることで、寺の建立や食文化の普及など地域文化の発展に貢献したという。スキルを持つ「個」が知恵を求めて移動する新時代に、誰もが地域へ知恵をもたらし、新しい風土をつくる。その願いを社名に込めました。",
   },
 
@@ -191,7 +191,7 @@ const ja: typeof en = {
   band2: {
     eyebrow: "Colive Fukuoka",
     big: "成長に投資する。",
-    sub: "50カ国以上、500人を超える人々が、働くことと旅することを掛け合わせた、日本での新しい体験のために集いました。",
+    sub: "働くことと旅することを掛け合わせた日本での新しい体験を求めて、世界57カ国から500人を超える人々が集いました。",
     linkLabel: "colivefukuoka.com →",
     linkUrl: "https://colivefukuoka.com",
   },
@@ -215,22 +215,22 @@ const ja: typeof en = {
   },
 
   whatwedo: {
-    kicker: "What we do",
+    kicker: "事業内容",
     seq: "破",
-    theme: "From context,<br>we create meaning.",
-    lead: "事業内容",
+    theme: "文脈から、<br>意味をつくる。",
+    lead: "世界の文脈と日本の文脈を読み解き、事業のかたちに翻訳します。",
     keyword: "解釈 / Interpretation",
   },
 
   projects: {
     kicker: "事業",
     seq: "急",
-    lead: "4つの事業で、世界の移動と日本の地域をつなぎ直す。",
+    lead: "3つの事業で、世界の移動と日本の地域をつなぎ直す。",
     cta: "事業を見る →",
   },
 
   cta: {
-    eyebrow: "新しい機会のためのマーケティングエージェンシー",
+    eyebrow: "新しい機会をひらくマーケティングエージェンシー",
     heading: "いっしょに、未来をかたちにする。",
     sub: "新しい関係を、ここから編みはじめる。",
     button: "お問い合わせ",
@@ -268,7 +268,7 @@ const ja: typeof en = {
       { label: "LinkedIn ↗", url: "https://www.linkedin.com/company/95682142" },
     ],
     copyright: "© 2026 株式会社 遊行 ／ yugyo inc.",
-    place: "福岡, 日本",
+    place: "福岡",
   },
 
   pages: {
@@ -278,7 +278,7 @@ const ja: typeof en = {
       subtitle: "パートナーシップ、取材、登壇、越境・地域でのご一緒。お気軽にどうぞ。",
     },
     news: { title: "最新情報", subtitle: "株式会社 遊行 からの公式お知らせ" },
-    projects: { title: "事業", subtitle: "4つの事業、ひとつの方向 — 在るべき場所へ。" },
+    projects: { title: "事業", subtitle: "3つの事業、ひとつの方向 — 在るべき場所へ。" },
   },
 
   about_page: { company: "01 — 会社概要", founder: "02 — 代表", experience: "経歴" },
