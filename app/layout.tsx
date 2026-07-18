@@ -4,6 +4,7 @@ import "./globals.css";
 import { TopNav } from "@/components/layout/TopNav";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsent } from "@/components/cookie/CookieConsent";
+import { HtmlLang } from "@/components/effects/HtmlLang";
 import { SITE } from "@/lib/constants";
 import {
   organizationLd,
@@ -65,6 +66,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
+        <HtmlLang />
         <TopNav />
         <main>{children}</main>
         <Footer />

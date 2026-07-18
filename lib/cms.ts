@@ -74,6 +74,8 @@ function toNews(c: MicroCmsNews): News {
     body_jp: c.content ?? "",
     body_en: c.content_en || undefined,
     hero_image: c.thumbnail?.url,
+    hero_image_width: c.thumbnail?.width,
+    hero_image_height: c.thumbnail?.height,
     external_url: c.externalUrl || undefined,
     published_at: c.publishedAt ?? c.createdAt,
     status: "published", // 通常 API は公開済みのみ返す

@@ -19,6 +19,9 @@ export interface News {
   body_jp: string;
   body_en?: string;
   hero_image?: string;
+  /** サムネイル原寸（CLS防止のため img width/height に使用） */
+  hero_image_width?: number;
+  hero_image_height?: number;
   external_url?: string;
   published_at: string;
   status: NewsStatus;

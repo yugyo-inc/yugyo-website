@@ -15,7 +15,13 @@ export const organizationLd = {
     alternateName: "大瀬良 亮",
     jobTitle: "CEO",
     url: "https://yugyo.work/about",
-    sameAs: ["https://note.com/ryosera", "https://x.com/yugyo_jp"],
+    // 個人アカウント（会社SNSは Organization.sameAs 側）
+    sameAs: [
+      "https://note.com/ryosera",
+      "https://x.com/ryosera_jp",
+      "https://www.linkedin.com/in/ryo-osera-6b5a5b22/",
+      "https://www.instagram.com/ryosera_jp/",
+    ],
   },
   foundingDate: "2022-09",
   address: {

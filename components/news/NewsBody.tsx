@@ -65,7 +65,9 @@ export function NewsBody({ news, lang = "ja" }: { news: News; lang?: Lang }) {
           <img
             src={news.hero_image}
             alt=""
-            className="mb-10 w-full rounded-lg"
+            width={news.hero_image_width}
+            height={news.hero_image_height}
+            className="mb-10 h-auto w-full rounded-lg"
             style={{ filter: "saturate(0.92)" }}
           />
         )}
