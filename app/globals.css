@@ -87,6 +87,8 @@
 @media (min-width: 900px) { .hero__scroll { display: block; } }
 
 /* hero newsletter (slim) */
+.hero__nl-head { margin-top: 30px; color: rgba(255,255,255,0.88); font-size: 13px; letter-spacing: 0.08em; font-weight: 600; }
+.hero__nl-head + .hero__nl { margin-top: 10px; }
 .hero__nl { margin-top: 34px; display: flex; align-items: center; gap: 0; max-width: 430px; width: 100%; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.35); border-radius: 6px; padding: 4px 6px 4px 16px; }
 .hero__nl input { flex: 1; background: transparent; border: 0; color: #fff; font-family: var(--sans); font-size: 15px; padding: 11px 0; }
 .hero__nl input::placeholder { color: rgba(255,255,255,0.7); }
@@ -328,6 +330,9 @@
 @media (min-width: 760px) { .proj__section { grid-template-columns: 200px 1fr; gap: 32px; } }
 .proj__h { font-size: 13px; font-weight: 700; letter-spacing: .06em; color: var(--ink); margin: 0; }
 .proj__p { font-size: 16px; line-height: 1.75; color: var(--ink-2); margin: 0; max-width: 56ch; }
+/* セクション内の外部リンク列（登壇動画など）。760px以上では本文と同じ2列目に揃える */
+.proj__links { list-style: none; margin: 2px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+@media (min-width: 760px) { .proj__links { grid-column: 2; } }
 .proj__cta { margin-top: 52px; display: flex; flex-wrap: wrap; align-items: center; gap: 28px; }
 .proj__back { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-2); transition: color .2s; }
 .proj__back:hover { color: var(--ink); }
@@ -353,6 +358,8 @@ a.row.row--link .row__t { color: var(--ink); }
 .manifesto .inlinelink { display: inline-block; margin-top: 22px; }
 .hero--center .hero__meta { justify-content: center; }
 .hero--center .hero__nl { margin: 22px auto 0; }
+.hero--center .hero__nl-head { margin: 26px auto 0; }
+.hero--center .hero__nl-head + .hero__nl { margin: 10px auto 0; }
 
 /* ---- セクションのタイトル（ラベル＝大見出し化） ---- */
 .sectitle { font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; font-size: clamp(30px, 5vw, 60px); color: var(--ink); margin: 0 0 26px; }
@@ -366,3 +373,27 @@ a.row.row--link .row__t { color: var(--ink); }
 @media (min-width: 900px) { .ctaband--minimal { padding: 120px 0; } }
 .ctaband--minimal .wrap { display: flex; justify-content: flex-start; }
 .ctaband--minimal .ctaband__btn { margin-top: 0; }
+
+/* ============================================================
+   microCMS 記事本文（.prose-yugyo — components/news/NewsBody.tsx）
+   Tailwind preflight が p/h/ul の margin を全てリセットするため、
+   リッチエディタ出力の行間・段落・リストの体裁をここで復元する。
+   ============================================================ */
+.prose-yugyo { line-height: 1.9; font-size: 16px; }
+@media (min-width: 900px) { .prose-yugyo { font-size: 17px; } }
+.prose-yugyo p { margin: 0 0 1.6em; }
+.prose-yugyo p:last-child { margin-bottom: 0; }
+.prose-yugyo h2 { margin: 2.4em 0 0.8em; font-size: 1.3em; font-weight: 700; line-height: 1.5; }
+.prose-yugyo h3 { margin: 1.9em 0 0.6em; font-size: 1.12em; font-weight: 700; line-height: 1.5; }
+.prose-yugyo h2:first-child, .prose-yugyo h3:first-child { margin-top: 0; }
+.prose-yugyo ul, .prose-yugyo ol { margin: 0 0 1.6em; padding-left: 1.5em; }
+.prose-yugyo ul { list-style: disc; }
+.prose-yugyo ol { list-style: decimal; }
+.prose-yugyo li { margin: 0.35em 0; }
+.prose-yugyo a { text-decoration: underline; text-underline-offset: 3px; }
+.prose-yugyo strong { font-weight: 700; }
+.prose-yugyo img { display: block; max-width: 100%; height: auto; margin: 2em auto; }
+.prose-yugyo figure { margin: 2em 0; }
+.prose-yugyo figcaption { margin-top: 0.6em; font-size: 0.82em; color: var(--ink-2); }
+.prose-yugyo blockquote { margin: 1.8em 0; padding-left: 1.1em; border-left: 2px solid var(--line); color: var(--ink-2); }
+.prose-yugyo hr { margin: 2.6em 0; border: 0; border-top: 1px solid var(--line); }

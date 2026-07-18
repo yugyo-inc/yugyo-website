@@ -113,6 +113,7 @@ const en = {
   newsletter: {
     eyebrow: "Newsletter",
     heading: "Letters from the road.",
+    heroHeading: "Get the latest from yugyo",
     sub: "Notes on nomadism, regions, and the work — a few times a month.",
     placeholder: "you@example.com",
     button: "Subscribe",
@@ -246,6 +247,7 @@ const ja: typeof en = {
   newsletter: {
     eyebrow: "ニュースレター",
     heading: "旅路からの便り。",
+    heroHeading: "遊行からの最新情報を受け取る",
     sub: "デジタルノマド、インバウンドマーケティングなど不定期に情報をご提供しています。",
     placeholder: "you@example.com",
     button: "登録",

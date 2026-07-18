@@ -18,6 +18,9 @@ export function NewsletterForm({
 
   const nl = getCopy(lang).newsletter;
   const wrapClass = variant === "hero" ? "hero__nl" : "ft__nl";
+  // hero 版のみ、登録枠の上に見出しを添える（フッター版は ft 側に既存見出しあり）
+  const heroHead =
+    variant === "hero" ? <p className="hero__nl-head">{nl.heroHeading}</p> : null;
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -46,14 +49,18 @@ export function NewsletterForm({
 
   if (state === "ok") {
     return (
-      <p className="nl-msg" role="status">
-        {nl.success}
-      </p>
+      <>
+        {heroHead}
+        <p className="nl-msg" role="status">
+          {nl.success}
+        </p>
+      </>
     );
   }
 
   return (
     <>
+      {heroHead}
       <form className={wrapClass} onSubmit={submit}>
         <input
           type="email"
