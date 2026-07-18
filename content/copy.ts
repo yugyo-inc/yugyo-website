@@ -150,7 +150,12 @@ const en = {
   },
 
   // ---- About ページの節見出し ----
-  about_page: { company: "01 — Company", founder: "02 — Founder", experience: "Experience" },
+  about_page: {
+    company: "01 — Company",
+    origin: "02 — What “yugyo” means",
+    founder: "03 — Founder",
+    experience: "Experience",
+  },
 
   // ---- Contact ページの aside 見出し ----
   contact_page: { email: "Email", social: "Social", based: "Based in" },
@@ -281,7 +286,12 @@ const ja: typeof en = {
     projects: { title: "事業", subtitle: "3つの事業、ひとつの方向 — 在るべき場所へ。" },
   },
 
-  about_page: { company: "01 — 会社概要", founder: "02 — 代表", experience: "経歴" },
+  about_page: {
+    company: "01 — 会社概要",
+    origin: "02 —「遊行」とは",
+    founder: "03 — 代表",
+    experience: "経歴",
+  },
 
   contact_page: { email: "メール", social: "ソーシャル", based: "拠点" },
 };

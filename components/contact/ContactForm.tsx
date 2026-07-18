@@ -72,6 +72,12 @@ export function ContactForm({ lang = "ja" }: { lang?: Lang }) {
         setState("ok");
         setMsg(t.ok);
         f.reset();
+        // GA4 キーイベント（同意済みで gtag がロードされている場合のみ発火）
+        (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.(
+          "event",
+          "generate_lead",
+          { method: "contact_form" }
+        );
       } else {
         setState("err");
         setMsg(t.errSend);

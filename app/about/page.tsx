@@ -3,9 +3,9 @@ import { AboutBody } from "@/components/pages/AboutBody";
 import { altLinks, OG_LOCALE, OG_ALT_LOCALE } from "@/lib/i18n";
 
 export const metadata: Metadata = {
-  title: "会社概要",
+  title: "会社概要｜「遊行」とは",
   description:
-    "株式会社 遊行（yugyo inc.）の会社概要と代表大瀬良亮プロフィール。設立 2022 年 9 月、福岡拠点。",
+    "遊行（ゆぎょう）とは、僧侶が各地を巡り歩き、知恵で地域文化を育んだ営み。株式会社 遊行（yugyo inc.）の社名の由来と会社概要、代表・大瀬良亮のプロフィール。設立 2022 年 9 月、福岡拠点。",
   alternates: altLinks("ja", "/about", "/en/about"),
   openGraph: {
     type: "website",
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     locale: OG_LOCALE.ja,
     alternateLocale: OG_ALT_LOCALE.ja,
     url: "https://yugyo.work/about",
-    title: "会社概要 — yugyo inc.",
-    description: "株式会社 遊行（yugyo inc.）の会社概要と代表大瀬良亮プロフィール。",
+    title: "会社概要｜「遊行」とは — yugyo inc.",
+    description: "「遊行」の由来と会社概要、代表・大瀬良亮のプロフィール。",
     images: [
       {
         url: "/og.jpg",

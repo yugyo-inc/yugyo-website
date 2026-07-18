@@ -57,6 +57,17 @@ export function AboutBody({ lang }: { lang: Lang }) {
           </table>
         </section>
 
+        {/* 「遊行」とは（社名の由来） */}
+        <section style={{ marginTop: 72 }}>
+          <div className="kicker">
+            <span className="ln" />
+            <span className="num">{ap.origin}</span>
+          </div>
+          <div className="legal__body" style={{ marginTop: 0 }}>
+            <p dangerouslySetInnerHTML={{ __html: c.about.note }} />
+          </div>
+        </section>
+
         {/* Founder */}
         <section style={{ marginTop: 72 }}>
           <div className="kicker">

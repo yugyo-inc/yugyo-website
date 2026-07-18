@@ -39,6 +39,12 @@ export function NewsletterForm({
       if (r.ok && j.ok) {
         setState("ok");
         setEmail("");
+        // GA4 イベント（同意済みで gtag がロードされている場合のみ発火）
+        (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.(
+          "event",
+          "sign_up",
+          { method: "newsletter" }
+        );
       } else {
         setState("err");
       }
