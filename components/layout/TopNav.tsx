@@ -49,7 +49,7 @@ export function TopNav() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="hd__logo"
-            src={solid ? "/brand/wordmark_black.png" : "/brand/wordmark_white.png"}
+            src={solid || forceSolid ? "/brand/wordmark_black.png" : "/brand/wordmark_white.png"}
             alt="yugyo inc."
           />
         </a>
