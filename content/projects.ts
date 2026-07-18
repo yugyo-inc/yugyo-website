@@ -11,6 +11,8 @@ import type { Lang } from "@/lib/i18n";
 export interface ProjectSection {
   h: string;
   body: string;
+  /** 外部リンク（登壇動画・関連サイトなど）。指定時は body の下にリンク列を表示 */
+  links?: { label: string; url: string }[];
 }
 
 export interface ProjectContent {
@@ -41,7 +43,7 @@ const ja: Project[] = [
       lead: "ボーダレスに世界を渡り歩く起業家、スタートアップ、メディア、投資家らに対して、遊行ならではの領域展開を通じて、地域や事業者との接点を増やし、事業の新たな機会創出やビジネスマッチングを提供していきます。",
       sections: [
         {
-          h: "なにをするか",
+          h: "私たちの役割",
           body: "高付加価値なインバウンド層と、国内外の地域・事業者をつなぎ直します。デジタルノマドに限らず、インバウンドマーケティング、並びに新規事業の海外進出支援まで、越境とローカルの両面から機会をつくります。",
         },
         {
@@ -50,7 +52,7 @@ const ja: Project[] = [
         },
         {
           h: "実績",
-          body: "福岡『Colive Fukuoka』、長崎『Digital Nomad Nagasaki』など、地域と世界をつなぐプログラムを企画・運営してきました。",
+          body: "福岡『Colive Fukuoka』は、世界57カ国から500名を超える参加者が集う日本最大級のデジタルノマド誘致プログラムに成長し、2025年には約1.4億円の地域経済効果を生み出しました（Nomad Retreats Awards 2025「Best Global Nomad Fest」受賞）。このほか、長崎『Digital Nomad Nagasaki』の企画・運営をはじめ、福岡市・長崎県・富山県など行政と連携した受託事業を手がけています。",
         },
       ],
       cta: "ご一緒する",
@@ -67,12 +69,16 @@ const ja: Project[] = [
       lead: "企業や自治体のブランドコンセプトの新設や改善に向けて、調査、提案、実施、検証まで、チームの一員としてゴールまでご一緒させていただきます。",
       sections: [
         {
-          h: "なにをするか",
+          h: "私たちの役割",
           body: "ブランドのコンセプト設計から、実装、運用、検証までを一気通貫で。外部の発注先ではなく、チームの一員として並走します。",
         },
         {
           h: "ご相談いただける範囲",
           body: "事業提案、ロゴやキャッチコピー、ウェブサイトの開発、ソーシャルメディアの運用まで広くご相談ください。",
+        },
+        {
+          h: "実績",
+          body: "自治体の観光・関係人口事業のブランド設計から、大学との共同プログラム、民間企業の海外向けマーケティング支援まで、公民の双方でチームの一員として伴走してきました。",
         },
       ],
       cta: "相談する",
@@ -89,8 +95,22 @@ const ja: Project[] = [
       lead: "登壇、執筆、講義。デジタルノマド・地域共創・観光の現場で得た知見を、社会と次の世代へ届けます。",
       sections: [
         {
-          h: "なにをするか",
+          h: "私たちの役割",
           body: "イベント登壇、寄稿・執筆、大学での講義などをお引き受けします。代表は金沢大学 先端観光科学研究所 特任准教授も務めています。",
+        },
+        {
+          h: "登壇・講演",
+          body: "各地のカンファレンスやシンポジウムで、デジタルノマド誘致と地域戦略をテーマに登壇しています。過去の登壇の一部は以下からご覧いただけます。",
+          links: [
+            {
+              label: "スペースシェアシンポジウム2024 — デジタルノマドに選ばれる地域戦略",
+              url: "https://www.youtube.com/watch?v=swwOK2UEI0I",
+            },
+            {
+              label: "X MAGIC【会議室】デジタルノマド特集（2024）",
+              url: "https://www.youtube.com/watch?v=MuythW4IVxs",
+            },
+          ],
         },
         {
           h: "事例",
@@ -114,7 +134,7 @@ const en: Project[] = [
       lead: "People who work, travel, and live across borders. We weave that movement back into the regions of Japan. This is where yugyo began — and where it still centers.",
       sections: [
         { h: "What we do", body: "We build the places and systems that let digital nomads work and live in Japan's regions: host communities, the shape of a stay, and real encounters with local people. Designed not as isolated events, but as a line from stay to relationship." },
-        { h: "Colive Fukuoka", body: "One of Japan's largest programs for digital nomads, held in Fukuoka. Over 500 people from more than 50 countries have come together for an experience that combines work and travel. Learn more at colivefukuoka.com." },
+        { h: "Colive Fukuoka", body: "One of Japan's largest programs for digital nomads, held in Fukuoka. Over 500 people from more than 50 countries have come together for an experience that combines work and travel — named Best Global Nomad Fest at the Nomad Retreats Awards 2025. Learn more at colivefukuoka.com." },
         { h: "Why", body: "A world where people can walk toward the place they are most themselves. The closer we get, the more regions meet new talent — and the more visitors find somewhere to belong." },
       ],
       cta: "Work with us",

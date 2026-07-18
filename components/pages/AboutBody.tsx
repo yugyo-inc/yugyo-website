@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import { PageHero } from "@/components/layout/PageHero";
 import { getCopy } from "@/content/copy";
 import { COMPANY_PROFILE, profileCell, founderView } from "@/content/profile";
@@ -8,6 +10,8 @@ export function AboutBody({ lang }: { lang: Lang }) {
   const p = c.pages.about;
   const ap = c.about_page;
   const founder = founderView(lang);
+  // 代表写真はアセット未配置でも壊れないよう、ビルド時に存在チェックして出し分ける。
+  const hasPhoto = fs.existsSync(path.join(process.cwd(), "public", founder.photo));
 
   return (
     <>
@@ -27,7 +31,25 @@ export function AboutBody({ lang }: { lang: Lang }) {
                 return (
                   <tr key={row.label_jp}>
                     <th scope="row">{cell.label}</th>
-                    <td>{cell.value}</td>
+                    <td>
+                      {row.links ? (
+                        <span style={{ display: "inline-flex", gap: 18, flexWrap: "wrap" }}>
+                          {row.links.map((l) => (
+                            <a
+                              key={l.url}
+                              href={l.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inlinelink"
+                            >
+                              {l.label} ↗
+                            </a>
+                          ))}
+                        </span>
+                      ) : (
+                        cell.value
+                      )}
+                    </td>
                   </tr>
                 );
               })}
@@ -42,12 +64,31 @@ export function AboutBody({ lang }: { lang: Lang }) {
             <span className="num">{ap.founder}</span>
           </div>
           <div className="legal__body" style={{ marginTop: 0 }}>
-            <p style={{ fontWeight: 700, color: "var(--ink)", fontSize: 22, margin: "0 0 4px" }}>
-              {lang === "ja" ? founder.name_jp : founder.name_en}
-            </p>
-            <p style={{ color: "var(--ink-2)", fontSize: 14, margin: "0 0 20px" }}>
-              {lang === "ja" ? `${founder.name_en} ／ ${founder.role}` : `${founder.name_jp} ／ ${founder.role}`}
-            </p>
+            <div style={{ display: "flex", gap: 24, alignItems: "flex-start", marginBottom: 20 }}>
+              {hasPhoto && (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={founder.photo}
+                  alt={lang === "ja" ? founder.name_jp : founder.name_en}
+                  style={{ width: 104, height: 104, objectFit: "cover", borderRadius: 4, flexShrink: 0 }}
+                />
+              )}
+              <div>
+                <p style={{ fontWeight: 700, color: "var(--ink)", fontSize: 22, margin: "0 0 4px" }}>
+                  {lang === "ja" ? founder.name_jp : founder.name_en}
+                </p>
+                <p style={{ color: "var(--ink-2)", fontSize: 14, margin: "0 0 10px" }}>
+                  {lang === "ja" ? `${founder.name_en} ／ ${founder.role}` : `${founder.name_jp} ／ ${founder.role}`}
+                </p>
+                <p style={{ display: "flex", gap: 16, flexWrap: "wrap", fontSize: 13, margin: 0 }}>
+                  {founder.social.map((s) => (
+                    <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer" className="inlinelink">
+                      {s.label} ↗
+                    </a>
+                  ))}
+                </p>
+              </div>
+            </div>
             {founder.bio.map((para, i) => (
               <p key={i}>{para}</p>
             ))}

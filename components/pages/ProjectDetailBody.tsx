@@ -37,6 +37,17 @@ export function ProjectDetailBody({ project, lang }: { project: Project; lang: L
               <section className="proj__section" key={i}>
                 <h2 className="proj__h">{s.h}</h2>
                 <p className="proj__p">{s.body}</p>
+                {s.links && (
+                  <ul className="proj__links">
+                    {s.links.map((l) => (
+                      <li key={l.url}>
+                        <a className="inlinelink" href={l.url} target="_blank" rel="noopener noreferrer">
+                          {l.label} ↗
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </section>
             ))}
           </div>

@@ -4,11 +4,18 @@
 
 import type { Lang } from "@/lib/i18n";
 
+export interface ProfileLink {
+  label: string;
+  url: string;
+}
+
 export interface ProfileRow {
   label_jp: string;
   value_jp: string;
   label_en: string;
   value_en: string;
+  /** 指定時はテキストの代わりにリンク列を表示（会社URL・SNS行用） */
+  links?: ProfileLink[];
 }
 
 export const COMPANY_PROFILE: ProfileRow[] = [
@@ -31,6 +38,24 @@ export const COMPANY_PROFILE: ProfileRow[] = [
     value_en:
       "Planning and operation of programs connecting digital nomads and global talent with Japan's regions; consulting for the public and private sectors; host of Colive Fukuoka.",
   },
+  {
+    label_jp: "会社URL",
+    value_jp: "https://yugyo.work",
+    label_en: "Website",
+    value_en: "https://yugyo.work",
+    links: [{ label: "yugyo.work", url: "https://yugyo.work" }],
+  },
+  {
+    label_jp: "SNS",
+    value_jp: "Instagram / X / LinkedIn",
+    label_en: "Social",
+    value_en: "Instagram / X / LinkedIn",
+    links: [
+      { label: "Instagram", url: "https://www.instagram.com/yugyo_nomad/" },
+      { label: "X", url: "https://x.com/yugyo_jp" },
+      { label: "LinkedIn", url: "https://www.linkedin.com/company/95682142" },
+    ],
+  },
 ];
 
 export function profileCell(row: ProfileRow, lang: Lang): { label: string; value: string } {
@@ -45,6 +70,14 @@ export const FOUNDER = {
   name_jp: "大瀬良 亮",
   role_en: "Founder & CEO",
   role_jp: "代表取締役",
+  /** プロフィール写真（public/photos/founder.jpg）。未配置の間は AboutBody 側で非表示。 */
+  photo: "/photos/founder.jpg",
+  /** 個人SNS（会社SNSとは別に併記） */
+  social: [
+    { label: "note", url: "https://note.com/ryosera" },
+    { label: "X", url: "https://x.com/ryosera_jp" },
+    { label: "LinkedIn", url: "https://www.linkedin.com/in/ryo-osera-6b5a5b22/" },
+  ],
   bio_en: [
     "Born in 1983 in Nagasaki, Japan. After graduating from the University of Tsukuba, Ryo began his career at Dentsu Inc., specializing in public relations and marketing strategy.",
     "He later served as Social Media Director for the Office of the Prime Minister of Japan and as an Urban Development Advisor to Tsukuba City. In 2019 he co-founded HafH, a subscription-based travel service, before founding yugyo inc. in 2023. He is currently an Associate Professor at the Frontier Institute of Tourism Sciences, Kanazawa University.",
@@ -69,6 +102,8 @@ export function founderView(lang: Lang) {
     name_jp: FOUNDER.name_jp,
     role: lang === "ja" ? FOUNDER.role_jp : FOUNDER.role_en,
     bio: lang === "ja" ? FOUNDER.bio_jp : FOUNDER.bio_en,
+    photo: FOUNDER.photo,
+    social: FOUNDER.social,
     experience: FOUNDER.experience.map((e) => ({
       period: e.period,
       role: lang === "ja" ? e.role_jp : e.role_en,
