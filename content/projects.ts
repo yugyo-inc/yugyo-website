@@ -52,7 +52,11 @@ const ja: Project[] = [
         },
         {
           h: "実績",
-          body: "福岡『Colive Fukuoka』は、世界57カ国から500名を超える参加者が集う日本最大級のデジタルノマド誘致プログラムに成長し、2025年には約1.4億円の地域経済効果を生み出しました（Nomad Retreats Awards 2025「Best Global Nomad Fest」受賞）。このほか、長崎『Digital Nomad Nagasaki』の企画・運営をはじめ、福岡市・長崎県・富山県など行政と連携した受託事業を手がけています。",
+          body: "『Colive Fukuoka』（福岡市）は、世界50カ国以上から500名を超える参加者が集う日本最大級のデジタルノマド誘致プログラムに成長。2025年には約1.4億円の地域経済効果を生み出しました（Nomad Retreats Awards 2025「Best Global Nomad Fest」受賞）。『Digital Nomad Nagasaki』（長崎県）の企画・運営をはじめ、行政と連携した受託事業を手がけています。",
+          links: [
+            { label: "Colive Fukuoka", url: "https://colivefukuoka.com" },
+            { label: "Digital Nomad Nagasaki", url: "https://www.nagasakinomad.com/" },
+          ],
         },
       ],
       cta: "ご一緒する",
