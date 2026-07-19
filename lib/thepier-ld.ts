@@ -18,11 +18,11 @@ export function pierLodgingLd(lang: Lang) {
     description:
       lang === "ja"
         ? "長崎・五島列島のコリビング（家具付きシェアハウス）。鍵付き個室6室、コワーキング。家賃55,000円＋光熱費・共益費15,000円（月額合計70,000円）から。株式会社 遊行が運営。"
-        : "A coliving space in Japan on the Goto Islands, Nagasaki. Six furnished private rooms, coworking space, utilities and Wi-Fi included from US$700/month. Operated by yugyo inc.",
+        : "A coliving space in Japan on the Goto Islands, Nagasaki. Six furnished private rooms, coworking space, utilities and Wi-Fi included from US$520/month. Operated by yugyo inc.",
     url,
     image: `${BASE}/photos/thepier/hero.jpg`,
     email: "coliving@yugyo.work",
-    priceRange: lang === "ja" ? "¥70,000〜/月（家賃＋光熱費・共益費）" : "From US$700/month",
+    priceRange: lang === "ja" ? "¥70,000〜/月（家賃＋光熱費・共益費）" : "From US$520/month",
     address: {
       "@type": "PostalAddress",
       streetAddress: "1-7-12 Bukeyashiki, 2F SERENDIP HOTEL GOTO",

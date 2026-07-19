@@ -1,8 +1,8 @@
 // content/thepier.ts — The Pier | Goto Nagasaki（Coliving）ページの日英コンテンツ v3
 // ============================================================================
 // 出典: The Pier | Wiki（Notion）Basic Info・Haruka実運用価格反映（2026-07-20 改定）
-// 料金: 月額合計 ¥70,000（JP表記は 家賃¥55,000＋光熱費・共益費¥15,000 の別出し／ENは US$700 込み表記）
-//       + 夏季(7-9月) ¥14,000 / US$140 + デポジット ¥30,000 / US$200
+// 料金: JP = 家賃¥55,000＋光熱費・共益費¥15,000（月額合計¥70,000）＋夏季¥14,000
+//       EN = US$520/月 込み表記＋夏季US$80（2026-07-20 Ryo指示でENは据え置き）＋デポジット ¥30,000 / US$200
 // 短期滞在の料金は交渉用のため非公開（サイト掲載NG）。
 // 通貨は JPページ=円のみ / ENページ=ドルのみ。
 // ============================================================================
@@ -18,7 +18,7 @@ export interface PierFaq {
  *  長期割（2026-07-19 改定）: 総額に対して 2ヶ月以上 -15% / 3ヶ月以上 -20% / 6ヶ月以上 -30% */
 export const PIER_PRICING = {
   ja: { currency: "¥", monthly: 70000, summer: 14000, deposit: 30000, locale: "ja-JP" },
-  en: { currency: "US$", monthly: 700, summer: 140, deposit: 200, locale: "en-US" },
+  en: { currency: "US$", monthly: 520, summer: 80, deposit: 200, locale: "en-US" },
 } as const;
 
 /** 滞在月数 → 総額割引率 */
@@ -132,7 +132,7 @@ interface PierContent {
 const en: PierContent = {
   metaTitle: "The Pier Coliving — Coliving in Japan | Goto Islands, Nagasaki",
   metaDescription:
-    "The Pier Coliving is a coliving space in Japan, on the Goto Islands of Nagasaki — six furnished private rooms, coworking, and island life from US$700/month, utilities included. English-friendly, operated by yugyo inc.",
+    "The Pier Coliving is a coliving space in Japan, on the Goto Islands of Nagasaki — six furnished private rooms, coworking, and island life from US$520/month, utilities included. English-friendly, operated by yugyo inc.",
   nav: {
     story: "Story",
     rooms: "Rooms",
@@ -177,7 +177,7 @@ const en: PierContent = {
     heading: "Ready when you are. Just get in touch.",
     lead: "One simple monthly rate. Everything included.",
     monthlyLabel: "Monthly stay",
-    monthlyValue: "US$700",
+    monthlyValue: "US$520",
     monthlyUnit: "/ month",
     included: [
       "Private furnished room",
@@ -189,7 +189,7 @@ const en: PierContent = {
       { label: "Long stay: 2+ months", value: "15% off", note: "Off the total stay" },
       { label: "Long stay: 3+ months", value: "20% off", note: "Off the total stay" },
       { label: "Long stay: 6+ months", value: "30% off", note: "Off the total stay" },
-      { label: "Summer (Jul–Sep)", value: "+ US$140 / month", note: "Air-conditioning season surcharge" },
+      { label: "Summer (Jul–Sep)", value: "+ US$80 / month", note: "Air-conditioning season surcharge" },
       { label: "Deposit", value: "US$200", note: "Paid in advance, refunded at move-out if no problems" },
       { label: "Second guest", value: "+50%", note: "The 2nd person stays at half price — 1.5× in total" },
     ],
