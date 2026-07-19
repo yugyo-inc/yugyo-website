@@ -199,7 +199,7 @@ const en: PierContent = {
     heading: "Closer than you think.",
     address: "2F SERENDIP HOTEL GOTO, 1-7-12 Bukeyashiki, Goto, Nagasaki 853-0017, Japan",
     addressUrl: "https://maps.google.com/?q=SERENDIP+HOTEL+GOTO+1-7-12+Bukeyashiki+Goto+Nagasaki",
-    body: "Fly from Fukuoka or Nagasaki to Fukue Airport, or take the ferry or jetfoil to Fukue Port. The Pier is a 10-minute walk from the port — no car needed. We will guide you on the best route from wherever you are.",
+    body: "Fly to Fukue Airport in about 40 minutes from Fukuoka or Nagasaki. By sea, the jetfoil from Nagasaki Port takes about 85 minutes, and an overnight ferry sails from Hakata Port in Fukuoka. The Pier is a 10-minute walk from Fukue Port and about 10 minutes by car from the airport — no car needed. We will guide you on the best route from wherever you are.",
   },
   faq: {
     kicker: "FAQ",
@@ -336,7 +336,7 @@ const ja: PierContent = {
     heading: "意外と近い、<br>五島列島。",
     address: "〒853-0017 長崎県五島市武家屋敷1-7-12 SERENDIP HOTEL GOTO 2階",
     addressUrl: "https://maps.google.com/?q=SERENDIP+HOTEL+GOTO+%E9%95%B7%E5%B4%8E%E7%9C%8C%E4%BA%94%E5%B3%B6%E5%B8%82%E6%AD%A6%E5%AE%B6%E5%B1%8B%E6%95%B71-7-12",
-    body: "福岡・長崎から飛行機で福江空港へ約40分、またはフェリー・ジェットフォイルで福江港へ。港から徒歩10分、車がなくても大丈夫です。最適なルートは事前にご案内します。",
+    body: "福岡空港・長崎空港から飛行機で約40分、福江空港へ。船なら長崎港からジェットフォイルで約85分、博多港からは夜行フェリー「太古」も運航しています。The Pier は福江港から徒歩10分、福江空港から車で約10分。車がなくても大丈夫です。最適なルートは事前にご案内します。",
   },
   faq: {
     kicker: "よくあるご質問",
