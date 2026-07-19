@@ -220,6 +220,31 @@ const en: Project[] = [
       cta: "Let's talk",
     },
   },
+  {
+    slug: "coliving",
+    n: "05",
+    color: "earth",
+    photo: "/photos/thepier/hero.jpg",
+    content: {
+      title: "Coliving",
+      tagline: "A home for people who belong everywhere.",
+      lead: "We develop, operate, and consult on coliving — shared homes for digital nomads and location-independent people, run from the ground up.",
+      sections: [
+        {
+          h: "What we do",
+          body: "Coliving — housing, workspace, and community in one — is spreading worldwide as the home base of digital nomads. Drawing on the hands-on knowledge of running our own space, yugyo covers the full arc: concept design, development, daily operation, and consulting.",
+        },
+        {
+          h: "The Pier Coliving",
+          body: "On the Goto Islands of Nagasaki, we run The Pier Coliving — six furnished private rooms above a pier-inspired shared floor, where residents from around the world mix with island life. We also consult on the coliving and long-stay domain for a major urban developer.",
+          links: [
+            { label: "The Pier Coliving", url: "/en/thepiercoliving" },
+          ],
+        },
+      ],
+      cta: "Start a conversation",
+    },
+  },
 ];
 
 export const PROJECTS: Record<Lang, Project[]> = { ja, en };

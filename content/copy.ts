@@ -43,6 +43,7 @@ const en = {
       { n: "02", slug: "local-revitalization", title: "Local Revitalization", desc: "Making a new impact in Fukuoka, Nagasaki, and Kanazawa.", el: "Fire · Community", color: "fire", cta: "Read more →" },
       { n: "03", slug: "consulting", title: "Consulting", desc: "Cross-border strategy, workation, and regional partnership.", el: "Earth · Public", color: "earth", cta: "Read more →" },
       { n: "04", slug: "education", title: "Education", desc: "Rethinking how we work and how we travel.", el: "Sky · Counsel", color: "sky", cta: "Read more →" },
+      { n: "05", slug: "coliving", title: "Coliving", desc: "The Pier Coliving — an archipelago home in the Goto Islands.", el: "Earth · Stay", color: "earth", cta: "Read more →" },
     ],
   },
 
@@ -88,7 +89,7 @@ const en = {
   projects: {
     kicker: "Projects",
     seq: "急",
-    lead: "Four practices weaving global movement into the regions of Japan.",
+    lead: "Five practices weaving global movement into the regions of Japan.",
     cta: "View the project →",
   },
 
@@ -146,7 +147,7 @@ const en = {
       subtitle: "Partnerships, press, speaking, or working with us across borders and regions.",
     },
     news: { title: "News", subtitle: "Official updates from yugyo inc." },
-    projects: { title: "Projects", subtitle: "Four practices, one direction — be where you are meant to be." },
+    projects: { title: "Projects", subtitle: "Five practices, one direction — be where you are meant to be." },
   },
 
   // ---- About ページの節見出し ----

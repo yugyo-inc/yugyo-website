@@ -17,7 +17,7 @@ export function ThePierBody({ lang }: { lang: Lang }) {
   const exists = (p: string) =>
     fs.existsSync(path.join(process.cwd(), "public", p));
   const slides = PIER_HERO_SLIDES.filter(exists);
-  const photos = PIER_GALLERY.filter(exists);
+  const photos = PIER_GALLERY.filter((p) => exists(p.src));
 
   return (
     <>
@@ -80,7 +80,13 @@ export function ThePierBody({ lang }: { lang: Lang }) {
           <div className="pier-gallery__track">
             {[...photos, ...photos].map((p, i) => (
               /* eslint-disable-next-line @next/next/no-img-element */
-              <img key={i} src={p} alt="" loading="lazy" aria-hidden={i >= photos.length} />
+              <img
+                key={i}
+                src={p.src}
+                alt={i >= photos.length ? "" : lang === "ja" ? p.alt_ja : p.alt_en}
+                loading="lazy"
+                aria-hidden={i >= photos.length}
+              />
             ))}
           </div>
         </section>

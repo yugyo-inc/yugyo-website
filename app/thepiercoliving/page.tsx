@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { ThePierBody } from "@/components/pages/ThePierBody";
 import { getThePier } from "@/content/thepier";
 import { altLinks, OG_LOCALE, OG_ALT_LOCALE } from "@/lib/i18n";
+import { jsonLdScript } from "@/lib/structured-data";
+import { pierLodgingLd, pierFaqLd } from "@/lib/thepier-ld";
 
 const c = getThePier("ja");
 
@@ -22,5 +24,17 @@ export const metadata: Metadata = {
 };
 
 export default function ThePierJa() {
-  return <ThePierBody lang="ja" />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(pierLodgingLd("ja"))}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(pierFaqLd("ja"))}
+      />
+      <ThePierBody lang="ja" />
+    </>
+  );
 }

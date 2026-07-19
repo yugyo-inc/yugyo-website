@@ -119,9 +119,9 @@ interface PierContent {
 }
 
 const en: PierContent = {
-  metaTitle: "The Pier Coliving — An Archipelago Home in the Goto Islands, Nagasaki",
+  metaTitle: "The Pier Coliving — Coliving in Japan | Goto Islands, Nagasaki",
   metaDescription:
-    "The Pier is a coliving space on the Goto Islands, Nagasaki — six furnished private rooms, coworking, and island life on Japan's western edge. Monthly stays from US$520, operated by yugyo inc.",
+    "The Pier Coliving is a coliving space in Japan, on the Goto Islands of Nagasaki — six furnished private rooms, coworking, and island life from US$520/month, utilities included. English-friendly, operated by yugyo inc.",
   nav: {
     story: "Story",
     rooms: "Rooms",
@@ -248,8 +248,7 @@ const en: PierContent = {
     kicker: "Find us on",
     items: [
       { label: "Instagram @thepiergoto", url: "https://www.instagram.com/thepiergoto/" },
-      { label: "Mapmelon", url: "https://www.mapmelon.com/colivings/the-pier-goto-nagasaki" },
-      { label: "Coliving.com", url: "https://coliving.com" },
+      { label: "Coliving.com", url: "https://coliving.com/spaces/kqmdc4ca" },
       { label: "Google Maps", url: "https://maps.google.com/?q=SERENDIP+HOTEL+GOTO+1-7-12+Bukeyashiki+Goto+Nagasaki" },
     ],
   },
@@ -257,7 +256,7 @@ const en: PierContent = {
 };
 
 const ja: PierContent = {
-  metaTitle: "The Pier Coliving — 五島列島のコリビング・シェアハウス",
+  metaTitle: "The Pier Coliving — 五島列島のコリビング・シェアハウス（長崎・月5.2万円〜）",
   metaDescription:
     "The Pier は長崎・五島列島の家具付きシェアハウス（コリビング）。鍵付き個室6室とコワーキング、島の暮らし。1ヶ月から月額52,000円で。株式会社 遊行が運営しています。",
   nav: {
@@ -386,8 +385,7 @@ const ja: PierContent = {
     kicker: "掲載メディア・リンク",
     items: [
       { label: "Instagram @thepiergoto", url: "https://www.instagram.com/thepiergoto/" },
-      { label: "Mapmelon", url: "https://www.mapmelon.com/colivings/the-pier-goto-nagasaki" },
-      { label: "Coliving.com", url: "https://coliving.com" },
+      { label: "Coliving.com", url: "https://coliving.com/spaces/kqmdc4ca" },
       { label: "ADDRESS", url: "https://address.love/homes/502" },
       { label: "Google マップ", url: "https://maps.google.com/?q=SERENDIP+HOTEL+GOTO+%E9%95%B7%E5%B4%8E%E7%9C%8C%E4%BA%94%E5%B3%B6%E5%B8%82%E6%AD%A6%E5%AE%B6%E5%B1%8B%E6%95%B71-7-12" },
     ],
@@ -410,16 +408,16 @@ export const PIER_HERO_SLIDES = [
   "/photos/thepier/h5.jpg", // デッキのヨガ
 ];
 
-/** ギャラリー写真（自動スライド帯） */
-export const PIER_GALLERY = [
-  "/photos/thepier/g01.jpg",
-  "/photos/thepier/g02.jpg",
-  "/photos/thepier/g03.jpg",
-  "/photos/thepier/g04.jpg",
-  "/photos/thepier/g05.jpg",
-  "/photos/thepier/g06.jpg",
-  "/photos/thepier/g07.jpg",
-  "/photos/thepier/g08.jpg",
-  "/photos/thepier/g09.jpg",
-  "/photos/thepier/g10.jpg",
+/** ギャラリー写真（自動スライド帯・alt は画像SEO/アクセシビリティ用） */
+export const PIER_GALLERY: { src: string; alt_en: string; alt_ja: string }[] = [
+  { src: "/photos/thepier/g01.jpg", alt_en: "Residents relaxing in the shared living and coworking space at The Pier Coliving", alt_ja: "The Pier Coliving の共用リビング・コワーキングでくつろぐ住人たち" },
+  { src: "/photos/thepier/g02.jpg", alt_en: "Furnished private room with semi-double bed at The Pier Coliving, Goto Islands", alt_ja: "セミダブルベッドを備えた The Pier Coliving の家具付き個室" },
+  { src: "/photos/thepier/g03.jpg", alt_en: "Turquoise sea of the Goto Islands, Nagasaki", alt_ja: "五島列島の透きとおった海" },
+  { src: "/photos/thepier/g04.jpg", alt_en: "Coworking space for remote work at The Pier Coliving", alt_ja: "リモートワーク用のコワーキングスペース" },
+  { src: "/photos/thepier/g05.jpg", alt_en: "Fresh local seafood of the Goto Islands", alt_ja: "五島の新鮮な海の幸（舟盛り）" },
+  { src: "/photos/thepier/g06.jpg", alt_en: "Resident working on a laptop at The Pier Coliving", alt_ja: "The Pier Coliving でノートPCで働く住人" },
+  { src: "/photos/thepier/g07.jpg", alt_en: "Residents running on the green hills of Onidake, Goto", alt_ja: "五島・鬼岳の丘を走る住人たち" },
+  { src: "/photos/thepier/g08.jpg", alt_en: "Shared kitchen at The Pier Coliving", alt_ja: "The Pier Coliving の共用キッチン" },
+  { src: "/photos/thepier/g09.jpg", alt_en: "Morning yoga on the wooden deck by the sea", alt_ja: "海辺のデッキでの朝ヨガ" },
+  { src: "/photos/thepier/g10.jpg", alt_en: "Resident reading in a private room", alt_ja: "個室で読書する住人" },
 ];
