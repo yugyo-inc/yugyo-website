@@ -602,3 +602,23 @@ a.row.row--link .row__t { color: var(--ink); }
 /* ヘッダーワードマーク（The Pier Coliving） */
 .pier-wordmark { font-size: 18px; letter-spacing: -0.005em; }
 @media (max-width: 560px) { .pier-wordmark__sub { display: none; } }
+
+/* ============================================================
+   和文の改行ルール（2026-07-19 Ryo指示・サイト全域）
+   目的: 「て。」「る。」のような助詞・語尾1〜2文字だけの孤立行を防ぎ、
+   文節単位の自然な折り返しにする。
+   - word-break: auto-phrase … BudouXベースの文節折返し（Chrome/Edge 119+）
+   - text-wrap: pretty … 最終行の孤立を避ける行分割最適化
+   - line-break: strict … 行頭の小書き仮名・長音符を禁則
+   非対応ブラウザは通常の折返しに自動フォールバック（無害）。
+   ============================================================ */
+:lang(ja) { line-break: strict; }
+:lang(ja) :is(h1, h2, h3, h4,
+  .pcard__title, .pcard__desc, .ncard__title, .ncard__excerpt,
+  .mission__lead, .whatwedo__lead, .projects__lead, .pier-lead,
+  .pagehead__sub, .hero__sub, .pier-hero__sub, .band__sub,
+  .row__t, .row__d, .manifesto p, .pier-card p, .pier-cell p,
+  .pier-steps__box p, .pier-faq__list p, .cform__msg) {
+  word-break: auto-phrase;
+  text-wrap: pretty;
+}
