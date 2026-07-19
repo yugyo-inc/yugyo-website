@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { getThePier, PIER_PRICING } from "@/content/thepier";
+import { getThePier, PIER_PRICING, pierDiscountRate } from "@/content/thepier";
 import type { Lang } from "@/lib/i18n";
 
 /**
@@ -11,7 +11,8 @@ import type { Lang } from "@/lib/i18n";
  */
 
 // lengthOptions のインデックス → 月数（null = 短期・未定/概算なし）
-const MONTHS_BY_INDEX: (number | null)[] = [1, 2, 3, 6, 6, null];
+// 「4〜6ヶ月」は下限4ヶ月で概算（〜表示）
+const MONTHS_BY_INDEX: (number | null)[] = [1, 2, 3, 4, 6, null];
 
 function summerMonthCount(start: Date, months: number): number {
   // 夏季 = 7〜9月。滞在に含まれる夏季の月数を数える
@@ -34,16 +35,16 @@ export function PierApplyForm({ lang = "ja" }: { lang?: Lang }) {
   const [lengthIdx, setLengthIdx] = useState(0);
   const [guestsIdx, setGuestsIdx] = useState(0);
 
-  // 概算計算（長期割: 2ヶ月以上=m2 / 6ヶ月以上=m6 の月額を適用）
+  // 概算計算（長期割 2026-07-19 改定: 総額に対し 2ヶ月〜-15% / 3ヶ月〜-20% / 6ヶ月〜-30%）
   const estimate = useMemo(() => {
     const months = MONTHS_BY_INDEX[lengthIdx];
     if (months === null) return { kind: "short" as const };
-    const perMonth =
-      months >= 6 ? price.m6 : months >= 2 ? price.m2 : price.monthly;
     const start = moveIn ? new Date(moveIn) : null;
     const summer = start ? summerMonthCount(start, months) : 0;
-    let total = perMonth * months + price.summer * summer;
-    if (guestsIdx === 1) total = Math.round(total * 1.5);
+    let total = price.monthly * months + price.summer * summer;
+    if (guestsIdx === 1) total = total * 1.5;
+    const rate = pierDiscountRate(months);
+    total = Math.round(total * (1 - rate));
     const isRange = lengthIdx === 3; // 4〜6ヶ月 → 「〜」表示
     return {
       kind: "est" as const,
@@ -51,7 +52,7 @@ export function PierApplyForm({ lang = "ja" }: { lang?: Lang }) {
       summer,
       total,
       isRange,
-      longStay: months >= 2, // 長期割適用
+      discountPct: Math.round(rate * 100),
     };
   }, [lengthIdx, guestsIdx, moveIn, price]);
 
@@ -195,7 +196,11 @@ export function PierApplyForm({ lang = "ja" }: { lang?: Lang }) {
                 .join(" · ") || " "}
             </p>
             <p className="pier-est__note">{t.est.depositNote}</p>
-            {estimate.longStay && <p className="pier-est__note">{t.est.longStay}</p>}
+            {estimate.discountPct > 0 && (
+              <p className="pier-est__note">
+                {t.est.longStay}（-{estimate.discountPct}%）
+              </p>
+            )}
             <p className="pier-est__disclaimer">{t.est.disclaimer}</p>
           </>
         )}

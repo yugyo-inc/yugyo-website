@@ -13,12 +13,20 @@ export interface PierFaq {
   a: string;
 }
 
-/** 料金計算（フォームの概算表示にも使用） */
+/** 料金計算（フォームの概算表示にも使用）
+ *  長期割（2026-07-19 改定）: 総額に対して 2ヶ月以上 -15% / 3ヶ月以上 -20% / 6ヶ月以上 -30% */
 export const PIER_PRICING = {
-  // monthly = 1ヶ月 / m2 = 2ヶ月以上（長期割）/ m6 = 6ヶ月以上（長期割）
-  ja: { currency: "¥", monthly: 52000, m2: 50000, m6: 48000, summer: 10000, deposit: 30000, locale: "ja-JP" },
-  en: { currency: "US$", monthly: 520, m2: 500, m6: 480, summer: 80, deposit: 200, locale: "en-US" },
+  ja: { currency: "¥", monthly: 52000, summer: 10000, deposit: 30000, locale: "ja-JP" },
+  en: { currency: "US$", monthly: 520, summer: 80, deposit: 200, locale: "en-US" },
 } as const;
+
+/** 滞在月数 → 総額割引率 */
+export function pierDiscountRate(months: number): number {
+  if (months >= 6) return 0.3;
+  if (months >= 3) return 0.2;
+  if (months >= 2) return 0.15;
+  return 0;
+}
 
 interface PierContent {
   metaTitle: string;
@@ -166,8 +174,9 @@ const en: PierContent = {
       "Kitchen, shower & laundry",
     ],
     extras: [
-      { label: "Long stay: 2+ months", value: "US$500 / month", note: "Long-stay discount" },
-      { label: "Long stay: 6+ months", value: "US$480 / month", note: "Long-stay discount" },
+      { label: "Long stay: 2+ months", value: "15% off", note: "Off the total stay" },
+      { label: "Long stay: 3+ months", value: "20% off", note: "Off the total stay" },
+      { label: "Long stay: 6+ months", value: "30% off", note: "Off the total stay" },
       { label: "Summer (Jul–Sep)", value: "+ US$80 / month", note: "Air-conditioning season surcharge" },
       { label: "Deposit", value: "US$200", note: "Paid in advance, refunded at move-out if no problems" },
       { label: "Second guest", value: "+50%", note: "The 2nd person stays at half price — 1.5× in total" },
@@ -230,7 +239,7 @@ const en: PierContent = {
       summerNote: "incl. summer surcharge",
       guestsNote: "2 guests (2nd person half price)",
       depositNote: "+ US$200 deposit (refundable)",
-      longStay: "Long-stay discount applied.",
+      longStay: "Long-stay discount applied",
       shortStay: "For short stays, rates are individual — just ask us.",
       disclaimer: "Rough estimate. Final quote comes with our reply.",
     },
@@ -303,8 +312,9 @@ const ja: PierContent = {
       "キッチン・シャワー・ランドリー",
     ],
     extras: [
-      { label: "長期割: 2ヶ月以上", value: "月額 ¥50,000", note: "2ヶ月以上の滞在で適用" },
-      { label: "長期割: 6ヶ月以上", value: "月額 ¥48,000", note: "6ヶ月以上の滞在で適用" },
+      { label: "長期割: 2ヶ月以上", value: "総額 15% OFF", note: "" },
+      { label: "長期割: 3ヶ月以上", value: "総額 20% OFF", note: "" },
+      { label: "長期割: 6ヶ月以上", value: "総額 30% OFF", note: "" },
       { label: "夏季（7〜9月）", value: "＋¥10,000/月", note: "冷房調整費として" },
       { label: "デポジット", value: "¥30,000", note: "事前払い・退去時に問題がなければ返金" },
       { label: "2名でのご利用", value: "＋50%", note: "2人目は半額（合計1.5倍）" },
@@ -367,7 +377,7 @@ const ja: PierContent = {
       summerNote: "夏季料金を含む",
       guestsNote: "2名（2人目は半額）",
       depositNote: "＋デポジット ¥30,000（返金制）",
-      longStay: "長期割が適用されています。",
+      longStay: "長期割を適用",
       shortStay: "短期滞在の料金は個別にご案内します。まずはご相談ください。",
       disclaimer: "あくまで概算です。正式なお見積りは返信時にご案内します。",
     },
