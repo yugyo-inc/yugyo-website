@@ -1,18 +1,18 @@
 import fs from "node:fs";
 import path from "node:path";
-import { PageHero } from "@/components/layout/PageHero";
 import { Motion } from "@/components/effects/Motion";
+import { PierNav } from "@/components/thepier/PierNav";
+import { PierApplyForm } from "@/components/thepier/PierApplyForm";
 import { getThePier, PIER_GALLERY } from "@/content/thepier";
-import { localizeHref, type Lang } from "@/lib/i18n";
+import type { Lang } from "@/lib/i18n";
 
 /**
- * The Pier | Goto Nagasaki — Coliving ページ（日英共通）。
- * 世界の Coliving サイトの定石（Hero → Story → Gallery → Space → Rates →
- * Access → FAQ → CTA）を yugyo の序破急エディトリアルで組んだもの。
+ * The Pier | Goto Nagasaki — 独立サイト体裁のトップページ。
+ * 構成: Hero(100vh) → Story → Gallery → Rooms → Space → Rates → Flow →
+ * Access → FAQ → Apply(フォーム) → リンク。参照 = 旧Canvaサイト × yugyo編集様式。
  */
 export function ThePierBody({ lang }: { lang: Lang }) {
   const c = getThePier(lang);
-  const L = (href: string) => localizeHref(lang, href);
 
   // 写真はアセット未配置でも壊れないよう、ビルド時に存在チェックして出し分ける
   const photos = PIER_GALLERY.filter((p) =>
@@ -22,21 +22,42 @@ export function ThePierBody({ lang }: { lang: Lang }) {
     path.join(process.cwd(), "public", "photos/thepier/hero.jpg")
   )
     ? "/photos/thepier/hero.jpg"
-    : "/photos/p1.jpg"; // 写真到着までの仮
+    : "/photos/p1.jpg";
 
   return (
     <>
-      <PageHero title={c.hero.title} subtitle={c.hero.sub} photo={heroPhoto} />
+      <PierNav lang={lang} />
 
-      {/* 01 Story */}
-      <section className="pad" data-reveal>
+      {/* Hero（フルビューポート） */}
+      <section className="hero pier-hero">
+        <div
+          className="hero__img"
+          data-parallax="18"
+          style={{ backgroundImage: `url('${heroPhoto}')` }}
+          role="img"
+          aria-label="The beach of the Goto Islands"
+        />
+        <div className="hero__veil" />
+        <div className="hero__inner">
+          <p className="eyebrow hero__eyebrow">{c.hero.eyebrow}</p>
+          <h1 className="hero__title">{c.hero.title}</h1>
+          <p className="pier-hero__sub">{c.hero.sub}</p>
+          <a className="pier-hero__cta" href="#apply">
+            {c.hero.cta} <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div className="hero__scroll">SCROLL ↓</div>
+      </section>
+
+      {/* 01 Story（The Pier Blue バンド） */}
+      <section className="pad pier-band" id="story" data-reveal>
         <div className="wrap">
-          <div className="kicker">
+          <div className="kicker kicker--light">
             <span className="ln" />
             <span className="num">{c.story.kicker}</span>
           </div>
           <div className="manifesto">
-            <h2 dangerouslySetInnerHTML={{ __html: c.story.heading }} />
+            <h2>{c.story.heading}</h2>
             <div>
               {c.story.body.map((p, i) => (
                 <p key={i} style={{ marginBottom: 18 }}>
@@ -67,15 +88,35 @@ export function ThePierBody({ lang }: { lang: Lang }) {
         </section>
       )}
 
-      {/* 03 Space */}
-      <section className="pad" data-reveal>
+      {/* 03 Rooms */}
+      <section className="pad" id="rooms" data-reveal>
+        <div className="wrap">
+          <div className="kicker">
+            <span className="ln" />
+            <span className="num">{c.rooms.kicker}</span>
+          </div>
+          <h2 className="pier-h2">{c.rooms.heading}</h2>
+          <p className="pier-lead">{c.rooms.lead}</p>
+          <div className="pier-grid pier-grid--3">
+            {c.rooms.items.map((it) => (
+              <div className="pier-cell" key={it.title}>
+                <h3>{it.title}</h3>
+                <p>{it.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 04 Space */}
+      <section className="pad" data-reveal style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="kicker">
             <span className="ln" />
             <span className="num">{c.space.kicker}</span>
           </div>
           <h2 className="pier-h2">{c.space.heading}</h2>
-          <div className="pier-grid">
+          <div className="pier-grid pier-grid--3">
             {c.space.items.map((it) => (
               <div className="pier-cell" key={it.title}>
                 <h3>{it.title}</h3>
@@ -86,10 +127,10 @@ export function ThePierBody({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* 04 Rates */}
-      <section className="pad pier-rates" data-reveal>
+      {/* 05 Rates（The Pier Blue バンド） */}
+      <section className="pad pier-band" id="rates" data-reveal>
         <div className="wrap">
-          <div className="kicker">
+          <div className="kicker kicker--light">
             <span className="ln" />
             <span className="num">{c.pricing.kicker}</span>
           </div>
@@ -127,8 +168,31 @@ export function ThePierBody({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* 05 Access */}
+      {/* 06 Flow（入居までの流れ・Notion Basic Info 要約） */}
       <section className="pad" data-reveal>
+        <div className="wrap">
+          <div className="kicker">
+            <span className="ln" />
+            <span className="num">{c.flow.kicker}</span>
+          </div>
+          <h2 className="pier-h2">{c.flow.heading}</h2>
+          <ol className="pier-flow">
+            {c.flow.steps.map((s, i) => (
+              <li key={s.title}>
+                <span className="pier-flow__n">{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+          <p className="pier-smallnote">{c.flow.note}</p>
+        </div>
+      </section>
+
+      {/* 07 Access */}
+      <section className="pad" id="access" data-reveal style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="kicker">
             <span className="ln" />
@@ -138,14 +202,18 @@ export function ThePierBody({ lang }: { lang: Lang }) {
             <h2>{c.access.heading}</h2>
             <div>
               <p>{c.access.body}</p>
-              <p className="note">{c.access.address}</p>
+              <p className="note">
+                <a className="inlinelink" href={c.access.addressUrl} target="_blank" rel="noopener noreferrer">
+                  {c.access.address} ↗
+                </a>
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 06 FAQ */}
-      <section className="pad pier-faq" data-reveal>
+      {/* 08 FAQ */}
+      <section className="pad pier-faq" id="faq" data-reveal style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="kicker">
             <span className="ln" />
@@ -162,27 +230,35 @@ export function ThePierBody({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="pad pier-cta" data-reveal>
+      {/* 09 Apply（フォーム・The Pier Blue バンド） */}
+      <section className="pad pier-band" id="apply" data-reveal>
         <div className="wrap">
-          <h2 className="pier-h2">{c.cta.heading}</h2>
-          <p className="pier-lead">{c.cta.sub}</p>
-          <div className="pier-cta__row">
-            <a className="ctaband__btn" href={L("/contact")}>
-              {c.cta.button} <span aria-hidden="true">→</span>
-            </a>
-            <a className="inlinelink" href={`mailto:${c.cta.email}`}>
-              {c.cta.email}
-            </a>
-            <a
-              className="inlinelink"
-              href={c.cta.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Instagram @thepiergoto ↗
-            </a>
+          <div className="kicker kicker--light">
+            <span className="ln" />
+            <span className="num">{c.apply.kicker}</span>
           </div>
+          <h2 className="pier-h2">{c.apply.heading}</h2>
+          <p className="pier-lead">{c.apply.sub}</p>
+          <div className="pier-apply__wrap">
+            <PierApplyForm lang={lang} />
+          </div>
+        </div>
+      </section>
+
+      {/* リンク・フッターノート */}
+      <section className="pad" data-reveal style={{ paddingBottom: 72 }}>
+        <div className="wrap">
+          <p className="eyebrow">{c.links.kicker}</p>
+          <div className="pier-links">
+            {c.links.items.map((l) => (
+              <a key={l.url} className="inlinelink" href={l.url} target="_blank" rel="noopener noreferrer">
+                {l.label} ↗
+              </a>
+            ))}
+          </div>
+          <p className="pier-smallnote" style={{ marginTop: 28 }}>
+            {c.footerNote}
+          </p>
         </div>
       </section>
 

@@ -440,3 +440,57 @@ a.row.row--link .row__t { color: var(--ink); }
 
 /* CTA */
 .pier-cta__row { margin-top: 30px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+
+/* ============================================================
+   The Pier v2 — 独立サイト体裁（PierNav / Blue band / Flow / Form）
+   ============================================================ */
+/* WCAG AA: #5C7080 上の #fff ≈ 4.9:1（本文可） */
+:root { --pier-blue: #5C7080; --pier-blue-deep: #4A5B68; }
+
+/* PierNav（.hd を流用しつつ専用ワードマーク） */
+.pier-wordmark { color: #fff; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; display: flex; align-items: baseline; gap: 10px; }
+.pier-wordmark__sub { font-size: 10.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; opacity: .75; }
+.hd.solid .pier-wordmark { color: var(--ink); }
+.pier-nav__apply { border: 1px solid rgba(255,255,255,0.55); border-radius: 5px; padding: 6px 14px; }
+.hd.solid .pier-nav__apply { border-color: var(--ink); }
+.pier-nav__parent { opacity: .6; }
+
+/* Hero */
+.pier-hero__sub { margin-top: 20px; color: rgba(247,244,238,0.92); font-size: clamp(15px, 1.5vw, 19px); max-width: 44ch; }
+.pier-hero__cta { display: inline-block; margin-top: 30px; color: #fff; border: 1px solid rgba(255,255,255,0.7); border-radius: 6px; padding: 13px 26px; font-weight: 700; font-size: 14px; letter-spacing: .06em; transition: background .25s, color .25s; align-self: flex-start; }
+.pier-hero__cta:hover { background: var(--paper); color: var(--ink); }
+
+/* The Pier Blue 全幅バンド（低彩度の海霞色・白文字） */
+.pier-band { background: var(--pier-blue); color: #fff; }
+.pier-band .manifesto p, .pier-band .pier-lead { color: rgba(247,244,238,0.88); }
+.pier-band .manifesto .note { color: rgba(247,244,238,0.72); }
+.pier-band .kicker--light .num { color: rgba(247,244,238,0.85); }
+.pier-band .kicker--light .ln { background: rgba(247,244,238,0.85); }
+.pier-band .pier-price th { color: rgba(247,244,238,0.8); border-color: rgba(247,244,238,0.35); }
+.pier-band .pier-price td { color: #fff; border-color: rgba(247,244,238,0.2); }
+.pier-band .pier-price strong { color: #fff; }
+.pier-band .pier-note, .pier-band .pier-smallnote { color: rgba(247,244,238,0.72); }
+
+/* 入居フロー */
+.pier-flow { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.pier-flow li { display: grid; grid-template-columns: 64px 1fr; gap: 20px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+.pier-flow__n { font-weight: 700; font-size: 13px; letter-spacing: .1em; color: var(--pier-blue-deep); padding-top: 3px; }
+.pier-flow h3 { font-size: 16px; font-weight: 700; }
+.pier-flow p { margin-top: 6px; font-size: 14.5px; line-height: 1.75; color: var(--ink-2); max-width: 62ch; }
+
+/* 申込フォーム（バンド上） */
+.pier-apply__wrap { margin-top: 36px; max-width: 720px; }
+.pier-form__grid { display: grid; gap: 0 28px; }
+@media (min-width: 760px) { .pier-form__grid { grid-template-columns: 1fr 1fr; } }
+.pier-band .cform__field label { color: rgba(247,244,238,0.85); }
+.pier-band .cform__field input, .pier-band .cform__field select, .pier-band .cform__field textarea {
+  background: rgba(255,255,255,0.94); border: 1px solid rgba(255,255,255,0.4); color: var(--ink);
+}
+.pier-band .cform__btn { background: var(--ink); color: var(--paper); border: 0; }
+.pier-band .cform__btn:hover { background: #16263c; }
+.pier-band .cform__msg.ok { color: #fff; }
+.pier-band .cform__msg.err { color: #FFD9CF; }
+.cform__field select { width: 100%; font-family: var(--sans); font-size: 15px; padding: 12px 14px; border-radius: 5px; border: 1px solid var(--line); background: #fff; color: var(--ink); }
+
+/* リンク列 */
+.pier-links { margin-top: 18px; display: flex; gap: 26px; flex-wrap: wrap; }

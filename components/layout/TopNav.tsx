@@ -32,6 +32,8 @@ export function TopNav() {
   // news 系ページは薄色背景でダークヒーローが無く、透過ヘッダー（白ロゴ・白リンク）が
   // 背景と同化して見えないため、スクロール位置に関わらず常時ソリッド表示にする。
   const forceSolid = /^\/(en\/)?news(\/|$)/.test(pathname);
+  // The Pier は独立サイト体裁のため専用 PierNav を使う（グローバルナビは出さない）
+  const isPier = /^\/(en\/)?thepiercoliving(\/|$)/.test(pathname);
 
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
@@ -41,6 +43,8 @@ export function TopNav() {
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  if (isPier) return null;
 
   return (
     <>
