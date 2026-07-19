@@ -61,7 +61,7 @@ export function ThePierBody({ lang }: { lang: Lang }) {
             <span className="num">{c.story.kicker}</span>
           </div>
           <div className="manifesto">
-            <h2>{c.story.heading}</h2>
+            <h2 dangerouslySetInnerHTML={{ __html: c.story.heading }} />
             <div>
               {c.story.body.map((p, i) => (
                 <p key={i} style={{ marginBottom: 18 }}>
@@ -93,7 +93,7 @@ export function ThePierBody({ lang }: { lang: Lang }) {
             <span className="ln" />
             <span className="num">{c.rooms.kicker}</span>
           </div>
-          <h2 className="pier-h2">{c.rooms.heading}</h2>
+          <h2 className="pier-h2" dangerouslySetInnerHTML={{ __html: c.rooms.heading }} />
           <p className="pier-lead pier-lead--wide">{c.rooms.lead}</p>
           <div className="pier-cards">
             {c.rooms.cards.map((card) => (
@@ -119,7 +119,7 @@ export function ThePierBody({ lang }: { lang: Lang }) {
             <span className="ln" />
             <span className="num">{c.pricing.kicker}</span>
           </div>
-          <h2 className="pier-h2">{c.pricing.heading}</h2>
+          <h2 className="pier-h2" dangerouslySetInnerHTML={{ __html: c.pricing.heading }} />
           <p className="pier-lead">{c.pricing.lead}</p>
           <div className="pier-pricing">
             <div className="pier-pricing__main">
@@ -184,7 +184,7 @@ export function ThePierBody({ lang }: { lang: Lang }) {
             <span className="num">{c.access.kicker}</span>
           </div>
           <div className="manifesto">
-            <h2>{c.access.heading}</h2>
+            <h2 dangerouslySetInnerHTML={{ __html: c.access.heading }} />
             <div>
               <p>{c.access.body}</p>
               <p className="note">
@@ -238,13 +238,6 @@ export function ThePierBody({ lang }: { lang: Lang }) {
           <div className="pier-apply__wrap">
             <PierApplyForm lang={lang} />
           </div>
-        </div>
-      </section>
-
-      {/* フッターノート */}
-      <section data-reveal style={{ padding: "56px 0 72px" }}>
-        <div className="wrap">
-          <p className="pier-smallnote">{c.footerNote}</p>
         </div>
       </section>
 

@@ -277,7 +277,7 @@ const ja: PierContent = {
   },
   story: {
     kicker: "ストーリー",
-    heading: "1ヶ月から住める、五島列島の家具付きシェアハウス。",
+    heading: "1ヶ月から住める、<br>五島列島の家具付きシェアハウス。",
     body: [
       "日本の西の果て、五島列島。青い海と白い空、歴史ある教会群、そして本土が忘れてしまった暮らしの速度がここにあります。The Pier は2018年にこの島で生まれ、現在は、世界の移動と日本の地域をつなぐ株式会社 遊行が運営しています。",
       "桟橋（Pier）という名前のとおり、ここは「たどり着く場所」です。住人（風の人）と島の人（土の人）が混じり合い、新しい風土が生まれる。自分たちだけがいい暮らしの場ではなく、地域に開かれ、地域と共に暮らす家でありたいと願っています。",
@@ -286,7 +286,7 @@ const ja: PierContent = {
   },
   rooms: {
     kicker: "部屋と空間",
-    heading: "明日から始められる、1ヶ月の島暮らし。",
+    heading: "明日から始められる、<br>1ヶ月の島暮らし。",
     lead: "家具もWi-Fiも光熱費も、ぜんぶ揃った全6室の小さなシェアハウス。鍵を受け取ったその日から、島の暮らしが始まります。",
     photo: "/photos/thepier/g02.jpg",
     cards: [
@@ -300,7 +300,7 @@ const ja: PierContent = {
   },
   pricing: {
     kicker: "料金",
-    heading: "明日からでも滞在OK。まずはご連絡を。",
+    heading: "明日からでも滞在OK。<br>まずはご連絡を。",
     lead: "月額ひとつの、シンプルな料金です。",
     monthlyLabel: "月額滞在",
     monthlyValue: "¥52,000",
@@ -334,7 +334,7 @@ const ja: PierContent = {
   },
   access: {
     kicker: "アクセス",
-    heading: "意外と近い、五島列島。",
+    heading: "意外と近い、<br>五島列島。",
     address: "〒853-0017 長崎県五島市武家屋敷1-7-12 SERENDIP HOTEL GOTO 2階",
     addressUrl: "https://maps.google.com/?q=SERENDIP+HOTEL+GOTO+%E9%95%B7%E5%B4%8E%E7%9C%8C%E4%BA%94%E5%B3%B6%E5%B8%82%E6%AD%A6%E5%AE%B6%E5%B1%8B%E6%95%B71-7-12",
     body: "福岡・長崎から飛行機で福江空港へ約40分、またはフェリー・ジェットフォイルで福江港へ。港から徒歩10分、車がなくても大丈夫です。最適なルートは事前にご案内します。",
