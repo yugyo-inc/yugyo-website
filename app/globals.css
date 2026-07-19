@@ -569,12 +569,26 @@ a.row.row--link .row__t { color: var(--ink); }
    The Pier v4 ＋ 全体タイポ改善（2026-07-19 Ryo指示）
    ============================================================ */
 
-/* 日本語の大見出しは行間を広げる（欧文の詰まった行送りは和文では窮屈）
-   サイト全体（yugyo本体含む）に適用 */
-.manifesto h2:lang(ja), .pier-h2:lang(ja), .mf-head--ja, .pagehead__title:lang(ja) {
+/* ============================================================
+   和文タイポの行間一括改善（2026-07-19 Ryo指示・サイト全域）
+   欧文向けの詰まった行送り（1.0〜1.2）は和文では窮屈なため、
+   日本語ページ（:lang(ja)）では大見出し1.34 / カード見出し1.5 /
+   抜粋1.7 に統一する。英語ページは従来の欧文タイポを維持。
+   ============================================================ */
+/* 大見出し（display系） */
+.manifesto h2:lang(ja), .pier-h2:lang(ja), .mf-head--ja, .pagehead__title:lang(ja),
+.legal__title:lang(ja), .mission__theme:lang(ja), .whatwedo__theme:lang(ja),
+.ctaband__heading:lang(ja), .ft__vision:lang(ja), .sectitle:lang(ja),
+.hero__title:lang(ja), .leading-display:lang(ja) {
   line-height: 1.34;
   letter-spacing: 0.01em;
 }
+/* 中見出し・カードタイトル */
+.row__t:lang(ja), .pcard__title:lang(ja), .band__big--sm:lang(ja) { line-height: 1.3; }
+.ncard__title:lang(ja) { line-height: 1.5; }
+/* 抜粋・リード文 */
+.ncard__excerpt:lang(ja) { line-height: 1.7; }
+.mission__lead:lang(ja), .whatwedo__lead:lang(ja), .projects__lead:lang(ja) { line-height: 1.8; }
 
 /* Rooms リード文は改行させず幅を広く取る */
 .pier-lead--wide { max-width: none; }
