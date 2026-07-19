@@ -151,3 +151,8 @@ node_modules/
 *.log
 .DS_Store
 .vercel
+
+# local
+.claude/
+AGENTS.md
+_photo_inbox_thepier/

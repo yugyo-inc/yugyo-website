@@ -397,3 +397,194 @@ a.row.row--link .row__t { color: var(--ink); }
 .prose-yugyo figcaption { margin-top: 0.6em; font-size: 0.82em; color: var(--ink-2); }
 .prose-yugyo blockquote { margin: 1.8em 0; padding-left: 1.1em; border-left: 2px solid var(--line); color: var(--ink-2); }
 .prose-yugyo hr { margin: 2.6em 0; border: 0; border-top: 1px solid var(--line); }
+
+/* ============================================================
+   The Pier | Goto Nagasaki（/thepiercoliving）
+   ============================================================ */
+.pier-h2 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; font-size: clamp(28px, 4vw, 48px); max-width: 24ch; }
+.pier-lead { margin-top: 16px; color: var(--ink-2); font-size: clamp(15px, 1.4vw, 18px); max-width: 46ch; }
+
+/* 自動スライドギャラリー（CSS マーキー・hover/reduced-motion で停止） */
+.pier-gallery { overflow: hidden; padding: 8px 0; }
+.pier-gallery__track { display: flex; gap: 14px; width: max-content; animation: pier-scroll 60s linear infinite; }
+.pier-gallery__track img { height: 320px; width: auto; border-radius: 8px; filter: saturate(0.92); object-fit: cover; }
+@media (max-width: 760px) { .pier-gallery__track img { height: 210px; } }
+.pier-gallery:hover .pier-gallery__track { animation-play-state: paused; }
+@keyframes pier-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .pier-gallery__track { animation: none; overflow-x: auto; width: auto; }
+}
+
+/* 空間グリッド */
+.pier-grid { margin-top: 40px; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+@media (min-width: 760px) { .pier-grid { grid-template-columns: repeat(3, 1fr); } }
+.pier-cell { background: var(--paper); padding: 26px 24px 30px; }
+.pier-cell h3 { font-size: 15px; font-weight: 700; letter-spacing: .01em; }
+.pier-cell p { margin-top: 8px; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+
+/* 料金 */
+.pier-price-grid { margin-top: 36px; display: grid; gap: 40px; }
+@media (min-width: 900px) { .pier-price-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+.pier-price strong { font-weight: 700; color: var(--ink); }
+.pier-note { display: block; margin-top: 4px; font-size: 12.5px; color: var(--ink-2); }
+.pier-smallnote { margin-top: 22px; font-size: 12.5px; color: var(--ink-2); }
+
+/* FAQ */
+.pier-faq__list { border-top: 1px solid var(--line); }
+.pier-faq__list details { border-bottom: 1px solid var(--line); }
+.pier-faq__list summary { cursor: pointer; padding: 20px 4px; font-weight: 700; font-size: 16px; list-style: none; position: relative; padding-right: 36px; }
+.pier-faq__list summary::-webkit-details-marker { display: none; }
+.pier-faq__list summary::after { content: '+'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-weight: 400; font-size: 22px; color: var(--ink-2); }
+.pier-faq__list details[open] summary::after { content: '−'; }
+.pier-faq__list details p { padding: 0 4px 22px; color: var(--ink-2); font-size: 15px; line-height: 1.8; max-width: 65ch; }
+
+/* CTA */
+.pier-cta__row { margin-top: 30px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+
+/* ============================================================
+   The Pier v2 — 独立サイト体裁（PierNav / Blue band / Flow / Form）
+   ============================================================ */
+/* WCAG AA: #5C7080 上の #fff ≈ 4.9:1（本文可） */
+:root { --pier-blue: #5C7080; --pier-blue-deep: #4A5B68; }
+
+/* PierNav（.hd を流用しつつ専用ワードマーク） */
+.pier-wordmark { color: #fff; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; display: flex; align-items: baseline; gap: 10px; }
+.pier-wordmark__sub { font-size: 10.5px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; opacity: .75; }
+.hd.solid .pier-wordmark { color: var(--ink); }
+.pier-nav__apply { border: 1px solid rgba(255,255,255,0.55); border-radius: 5px; padding: 6px 14px; }
+.hd.solid .pier-nav__apply { border-color: var(--ink); }
+.pier-nav__parent { opacity: .6; }
+
+/* Hero */
+.pier-hero__sub { margin-top: 20px; color: rgba(247,244,238,0.92); font-size: clamp(15px, 1.5vw, 19px); max-width: 44ch; }
+.pier-hero__cta { display: inline-block; margin-top: 30px; color: #fff; border: 1px solid rgba(255,255,255,0.7); border-radius: 6px; padding: 13px 26px; font-weight: 700; font-size: 14px; letter-spacing: .06em; transition: background .25s, color .25s; align-self: flex-start; }
+.pier-hero__cta:hover { background: var(--paper); color: var(--ink); }
+
+/* The Pier Blue 全幅バンド（低彩度の海霞色・白文字） */
+.pier-band { background: var(--pier-blue); color: #fff; }
+.pier-band .manifesto p, .pier-band .pier-lead { color: rgba(247,244,238,0.88); }
+.pier-band .manifesto .note { color: rgba(247,244,238,0.72); }
+.pier-band .kicker--light .num { color: rgba(247,244,238,0.85); }
+.pier-band .kicker--light .ln { background: rgba(247,244,238,0.85); }
+.pier-band .pier-price th { color: rgba(247,244,238,0.8); border-color: rgba(247,244,238,0.35); }
+.pier-band .pier-price td { color: #fff; border-color: rgba(247,244,238,0.2); }
+.pier-band .pier-price strong { color: #fff; }
+.pier-band .pier-note, .pier-band .pier-smallnote { color: rgba(247,244,238,0.72); }
+
+/* 入居フロー */
+.pier-flow { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.pier-flow li { display: grid; grid-template-columns: 64px 1fr; gap: 20px; padding: 26px 0; border-bottom: 1px solid var(--line); }
+.pier-flow__n { font-weight: 700; font-size: 13px; letter-spacing: .1em; color: var(--pier-blue-deep); padding-top: 3px; }
+.pier-flow h3 { font-size: 16px; font-weight: 700; }
+.pier-flow p { margin-top: 6px; font-size: 14.5px; line-height: 1.75; color: var(--ink-2); max-width: 62ch; }
+
+/* 申込フォーム（バンド上） */
+.pier-apply__wrap { margin-top: 36px; max-width: 720px; }
+.pier-form__grid { display: grid; gap: 0 28px; }
+@media (min-width: 760px) { .pier-form__grid { grid-template-columns: 1fr 1fr; } }
+.pier-band .cform__field label { color: rgba(247,244,238,0.85); }
+.pier-band .cform__field input, .pier-band .cform__field select, .pier-band .cform__field textarea {
+  background: rgba(255,255,255,0.94); border: 1px solid rgba(255,255,255,0.4); color: var(--ink);
+}
+.pier-band .cform__btn { background: var(--ink); color: var(--paper); border: 0; }
+.pier-band .cform__btn:hover { background: #16263c; }
+.pier-band .cform__msg.ok { color: #fff; }
+.pier-band .cform__msg.err { color: #FFD9CF; }
+.cform__field select { width: 100%; font-family: var(--sans); font-size: 15px; padding: 12px 14px; border-radius: 5px; border: 1px solid var(--line); background: #fff; color: var(--ink); }
+
+/* リンク列 */
+.pier-links { margin-top: 18px; display: flex; gap: 26px; flex-wrap: wrap; }
+
+/* ============================================================
+   The Pier v3 — Heroスライドショー / 写真カード / 価格パネル /
+   ステップ図 / 概算ボックス / 地図 / リンク枠
+   ============================================================ */
+
+/* Hero スライドショー（5枚 × 6秒 = 30秒周期のクロスフェード） */
+.pier-hero__slide { opacity: 0; animation: pier-hero-fade 30s linear infinite; }
+.pier-hero__slide.is-first { opacity: 1; }
+.pier-hero__slide.is-first ~ .pier-hero__slide { opacity: 0; }
+@keyframes pier-hero-fade {
+  0% { opacity: 0; } 3% { opacity: 1; } 20% { opacity: 1; } 26% { opacity: 0; } 100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pier-hero__slide { animation: none; }
+}
+.pier-hero__title { max-width: 18ch; }
+
+/* Rooms & Space 写真カード */
+.pier-cards { margin-top: 44px; display: grid; gap: 34px 28px; }
+@media (min-width: 700px) { .pier-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1020px) { .pier-cards { grid-template-columns: repeat(3, 1fr); } }
+.pier-card__img { width: 100%; aspect-ratio: 3 / 2; background-size: cover; background-position: center; border-radius: 8px; filter: saturate(0.92); }
+.pier-card h3 { margin-top: 14px; font-size: 15px; font-weight: 700; letter-spacing: .02em; }
+.pier-card p { margin-top: 6px; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+
+/* 価格パネル */
+.pier-pricing { margin-top: 40px; display: grid; gap: 26px; }
+@media (min-width: 900px) { .pier-pricing { grid-template-columns: 1.2fr 1fr; align-items: stretch; } }
+.pier-pricing__main { background: rgba(255,255,255,0.96); color: var(--ink); border-radius: 8px; padding: 34px 36px; }
+.pier-pricing__label { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-2); }
+.pier-pricing__value { margin-top: 8px; font-weight: 700; letter-spacing: -0.02em; font-size: clamp(40px, 5vw, 58px); line-height: 1; }
+.pier-pricing__value span { font-size: 17px; font-weight: 600; letter-spacing: 0; color: var(--ink-2); margin-left: 8px; }
+.pier-pricing__included { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 8px; }
+.pier-pricing__included li { font-size: 14px; color: var(--ink-2); padding-left: 20px; position: relative; }
+.pier-pricing__included li::before { content: '✓'; position: absolute; left: 0; font-weight: 700; color: var(--pier-blue-deep); }
+.pier-pricing__extras { display: grid; gap: 1px; background: rgba(247,244,238,0.3); border: 1px solid rgba(247,244,238,0.3); border-radius: 8px; overflow: hidden; }
+.pier-pricing__extra { background: var(--pier-blue); padding: 18px 22px; }
+.pier-pricing__extra .l { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(247,244,238,0.75); }
+.pier-pricing__extra .v { margin-top: 4px; font-size: 20px; font-weight: 700; color: #fff; }
+.pier-pricing__extra .n { margin-top: 2px; font-size: 12.5px; color: rgba(247,244,238,0.75); }
+
+/* ステップ図（ブロック＋矢印） */
+.pier-steps { margin-top: 44px; display: grid; gap: 14px; }
+@media (min-width: 900px) { .pier-steps { grid-template-columns: repeat(4, 1fr) ; gap: 0; } }
+.pier-steps__item { display: flex; align-items: stretch; }
+.pier-steps__box { flex: 1; border: 1px solid var(--line); border-radius: 8px; padding: 22px 22px 24px; background: var(--white); position: relative; }
+.pier-steps__n { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--pier-blue); color: #fff; font-size: 13px; font-weight: 700; }
+.pier-steps__box h3 { margin-top: 12px; font-size: 15px; font-weight: 700; }
+.pier-steps__box p { margin-top: 6px; font-size: 13.5px; line-height: 1.65; color: var(--ink-2); }
+.pier-steps__arrow { display: none; align-self: center; padding: 0 10px; font-size: 20px; font-weight: 700; color: var(--pier-blue-deep); }
+@media (min-width: 900px) { .pier-steps__arrow { display: block; } }
+@media (max-width: 899px) {
+  .pier-steps__item { flex-direction: column; }
+  .pier-steps__item:not(:last-child)::after { content: '↓'; text-align: center; color: var(--pier-blue-deep); font-weight: 700; font-size: 18px; padding: 6px 0 0; }
+}
+
+/* 概算費用ボックス */
+.pier-est { margin: 6px 0 26px; background: rgba(14,27,44,0.25); border: 1px solid rgba(247,244,238,0.35); border-radius: 8px; padding: 20px 24px; }
+.pier-est__title { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(247,244,238,0.8); }
+.pier-est__value { margin-top: 6px; font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+.pier-est__months { font-size: 15px; font-weight: 600; color: rgba(247,244,238,0.8); }
+.pier-est__note { margin-top: 4px; font-size: 13px; color: rgba(247,244,238,0.85); }
+.pier-est__disclaimer { margin-top: 8px; font-size: 11.5px; color: rgba(247,244,238,0.6); }
+
+/* 地図 */
+.pier-map { margin-top: 44px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); filter: saturate(0.85); }
+
+/* リンク枠（色は変えず、枠でアテンション） */
+.pier-links-box { border: 1px solid var(--ink); border-radius: 8px; padding: 30px 34px; }
+
+/* ============================================================
+   The Pier v4 ＋ 全体タイポ改善（2026-07-19 Ryo指示）
+   ============================================================ */
+
+/* 日本語の大見出しは行間を広げる（欧文の詰まった行送りは和文では窮屈）
+   サイト全体（yugyo本体含む）に適用 */
+.manifesto h2:lang(ja), .pier-h2:lang(ja), .mf-head--ja, .pagehead__title:lang(ja) {
+  line-height: 1.34;
+  letter-spacing: 0.01em;
+}
+
+/* Rooms リード文は改行させず幅を広く取る */
+.pier-lead--wide { max-width: none; }
+
+/* ヒーロー内 掲載メディア・リンク */
+.pier-hero__links { margin-top: 34px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.pier-hero__links-label { font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(247,244,238,0.65); }
+.pier-hero__links a { font-size: 12.5px; font-weight: 600; color: rgba(247,244,238,0.9); border-bottom: 1px solid rgba(247,244,238,0.4); padding-bottom: 2px; transition: color .2s, border-color .2s; }
+.pier-hero__links a:hover { color: #fff; border-color: #fff; }
+
+/* ヘッダーワードマーク（The Pier Coliving） */
+.pier-wordmark { font-size: 18px; letter-spacing: -0.005em; }
+@media (max-width: 560px) { .pier-wordmark__sub { display: none; } }

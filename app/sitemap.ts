@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   // 日英ミラーの共通ルート（法務ページは日本語のみ）
-  const mirrored = ["", "/about", "/news", "/contact", "/projects"];
+  const mirrored = ["", "/about", "/news", "/contact", "/projects", "/thepiercoliving"];
   const jaOnly = ["/privacy", "/tokushoho"];
 
   const routes: MetadataRoute.Sitemap = [];

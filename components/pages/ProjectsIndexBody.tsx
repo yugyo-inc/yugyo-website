@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
 import { getCopy } from "@/content/copy";
@@ -18,7 +20,16 @@ export function ProjectsIndexBody({ lang }: { lang: Lang }) {
 
   return (
     <>
-      <PageHero title={p.title} subtitle={p.subtitle} photo="/photos/colive.jpg" />
+      <PageHero
+        title={p.title}
+        subtitle={p.subtitle}
+        // CLF Coworking Day の写真（wework45.jpg）到着までは colive.jpg でフォールバック
+        photo={
+          fs.existsSync(path.join(process.cwd(), "public", "photos/wework45.jpg"))
+            ? "/photos/wework45.jpg"
+            : "/photos/colive.jpg"
+        }
+      />
       <div className="wrap pagebody">
         <p className="projects__lead">{c.projects.lead}</p>
         <div className="pcards">
