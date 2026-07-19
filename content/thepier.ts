@@ -1,7 +1,8 @@
 // content/thepier.ts — The Pier | Goto Nagasaki（Coliving）ページの日英コンテンツ v3
 // ============================================================================
-// 出典: The Pier | Wiki（Notion）Basic Info・Ryo指示（2026-07-19 最終修正）
-// 料金: 月額 US$520 / ¥52,000（基本）+ 夏季(7-9月) US$80 / ¥10,000 + デポジット US$200 / ¥30,000
+// 出典: The Pier | Wiki（Notion）Basic Info・Haruka実運用価格反映（2026-07-20 改定）
+// 料金: 月額合計 ¥70,000（JP表記は 家賃¥55,000＋光熱費・共益費¥15,000 の別出し／ENは US$700 込み表記）
+//       + 夏季(7-9月) ¥14,000 / US$140 + デポジット ¥30,000 / US$200
 // 短期滞在の料金は交渉用のため非公開（サイト掲載NG）。
 // 通貨は JPページ=円のみ / ENページ=ドルのみ。
 // ============================================================================
@@ -16,8 +17,8 @@ export interface PierFaq {
 /** 料金計算（フォームの概算表示にも使用）
  *  長期割（2026-07-19 改定）: 総額に対して 2ヶ月以上 -15% / 3ヶ月以上 -20% / 6ヶ月以上 -30% */
 export const PIER_PRICING = {
-  ja: { currency: "¥", monthly: 52000, summer: 10000, deposit: 30000, locale: "ja-JP" },
-  en: { currency: "US$", monthly: 520, summer: 80, deposit: 200, locale: "en-US" },
+  ja: { currency: "¥", monthly: 70000, summer: 14000, deposit: 30000, locale: "ja-JP" },
+  en: { currency: "US$", monthly: 700, summer: 140, deposit: 200, locale: "en-US" },
 } as const;
 
 /** 滞在月数 → 総額割引率 */
@@ -131,7 +132,7 @@ interface PierContent {
 const en: PierContent = {
   metaTitle: "The Pier Coliving — Coliving in Japan | Goto Islands, Nagasaki",
   metaDescription:
-    "The Pier Coliving is a coliving space in Japan, on the Goto Islands of Nagasaki — six furnished private rooms, coworking, and island life from US$520/month, utilities included. English-friendly, operated by yugyo inc.",
+    "The Pier Coliving is a coliving space in Japan, on the Goto Islands of Nagasaki — six furnished private rooms, coworking, and island life from US$700/month, utilities included. English-friendly, operated by yugyo inc.",
   nav: {
     story: "Story",
     rooms: "Rooms",
@@ -176,7 +177,7 @@ const en: PierContent = {
     heading: "Ready when you are. Just get in touch.",
     lead: "One simple monthly rate. Everything included.",
     monthlyLabel: "Monthly stay",
-    monthlyValue: "US$520",
+    monthlyValue: "US$700",
     monthlyUnit: "/ month",
     included: [
       "Private furnished room",
@@ -188,7 +189,7 @@ const en: PierContent = {
       { label: "Long stay: 2+ months", value: "15% off", note: "Off the total stay" },
       { label: "Long stay: 3+ months", value: "20% off", note: "Off the total stay" },
       { label: "Long stay: 6+ months", value: "30% off", note: "Off the total stay" },
-      { label: "Summer (Jul–Sep)", value: "+ US$80 / month", note: "Air-conditioning season surcharge" },
+      { label: "Summer (Jul–Sep)", value: "+ US$140 / month", note: "Air-conditioning season surcharge" },
       { label: "Deposit", value: "US$200", note: "Paid in advance, refunded at move-out if no problems" },
       { label: "Second guest", value: "+50%", note: "The 2nd person stays at half price — 1.5× in total" },
     ],
@@ -276,9 +277,9 @@ const en: PierContent = {
 };
 
 const ja: PierContent = {
-  metaTitle: "The Pier Coliving — 五島列島のコリビング・シェアハウス（長崎・月5.2万円〜）",
+  metaTitle: "The Pier Coliving — 五島列島のコリビング・シェアハウス（長崎・家賃5.5万円〜）",
   metaDescription:
-    "The Pier は長崎・五島列島の家具付きシェアハウス（コリビング）。鍵付き個室6室とコワーキング、島の暮らし。1ヶ月から月額52,000円で。株式会社 遊行が運営しています。",
+    "The Pier は長崎・五島列島の家具付きシェアハウス（コリビング）。鍵付き個室6室とコワーキング、島の暮らし。1ヶ月から、家賃55,000円＋光熱費・共益費15,000円。株式会社 遊行が運営しています。",
   nav: {
     story: "ストーリー",
     rooms: "部屋",
@@ -314,28 +315,28 @@ const ja: PierContent = {
       { img: "/photos/thepier/g04.jpg", title: "Coworking", desc: "高速で安定したWi-Fiと快適なワークスペース。Web会議用のミーティングルームも。" },
       { img: "/photos/thepier/g08.jpg", title: "Kitchen", desc: "調理器具と食器が揃った共用キッチン＆リビング。つくって、食べて、くつろぐ。" },
       { img: "/photos/thepier/shower.jpg", title: "Shower & Laundry", desc: "シャワールームと洗濯機を住人専用フロア内に完備。" },
-      { img: "/photos/thepier/g01.jpg", title: "Utilities", desc: "水道・電気・ガス・Wi-Fi・共用部の清掃まで込み。追加料金はありません。" },
+      { img: "/photos/thepier/g01.jpg", title: "Utilities", desc: "水道・電気・ガス・Wi-Fi・共用部の清掃は、月々の光熱費・共益費でカバー。それ以外の追加料金はありません。" },
       { img: "/photos/thepier/fishing.jpg", title: "Neighborhood", desc: "スーパーも食堂もカフェも徒歩圏内。福江港から徒歩10分。" },
     ],
   },
   pricing: {
     kicker: "料金",
     heading: "明日からでも滞在OK。<br>まずはご連絡を。",
-    lead: "月額ひとつの、シンプルな料金です。",
-    monthlyLabel: "月額滞在",
-    monthlyValue: "¥52,000",
+    lead: "家賃と光熱費・共益費を分けた、わかりやすい料金です。",
+    monthlyLabel: "家賃",
+    monthlyValue: "¥55,000",
     monthlyUnit: "/ 月",
     included: [
-      "家具付き個室",
-      "光熱費・Wi-Fi・共益費込み",
+      "家具付き個室（鍵付き）",
       "コワーキング＆ミーティングルーム",
       "キッチン・シャワー・ランドリー",
+      "敷金・礼金・仲介手数料なし",
     ],
     extras: [
-      { label: "長期割: 2ヶ月以上", value: "総額 15% OFF", note: "" },
-      { label: "長期割: 3ヶ月以上", value: "総額 20% OFF", note: "" },
-      { label: "長期割: 6ヶ月以上", value: "総額 30% OFF", note: "" },
-      { label: "夏季（7〜9月）", value: "＋¥10,000/月", note: "冷房調整費として" },
+      { label: "光熱費・共益費", value: "¥15,000/月", note: "電気・ガス・水道・Wi-Fi・共用部清掃" },
+      { label: "月額合計", value: "¥70,000/月", note: "家賃＋光熱費・共益費" },
+      { label: "夏季（7〜9月）", value: "＋¥14,000/月", note: "冷房調整費として" },
+      { label: "長期割: 2ヶ月以上", value: "総額 15% OFF", note: "3ヶ月以上 20% / 6ヶ月以上 30%" },
       { label: "デポジット", value: "¥30,000", note: "事前払い・退去時に問題がなければ返金" },
       { label: "2名でのご利用", value: "＋50%", note: "2人目は半額（合計1.5倍）" },
     ],
@@ -362,7 +363,7 @@ const ja: PierContent = {
   faq: {
     kicker: "よくあるご質問",
     items: [
-      { q: "料金には何が含まれていますか？", a: "鍵付き個室、高速Wi-Fi、共用スペース（キッチン・リビング・コワーキング）の利用、水道・電気・ガスなどの光熱費、共用部の定期清掃が含まれます。" },
+      { q: "料金には何が含まれていますか？", a: "家賃55,000円で鍵付き個室と共用スペース（キッチン・リビング・コワーキング）をご利用いただけます。水道・電気・ガス・高速Wi-Fi・共用部の定期清掃は光熱費・共益費15,000円に含まれ、月額合計は70,000円です。敷金・礼金・仲介手数料はありません。" },
       { q: "プライバシーは確保できますか？", a: "はい。各入居者に鍵付きの個室をご用意しています。共用スペースにも静かに過ごせる場所があり、自分のペースで暮らせます。" },
       { q: "どんな人が滞在していますか？", a: "国内外のリモートワーカー、フリーランス、旅人など。島の落ち着いた暮らしの中で、自然と人とのつながりが生まれます。" },
       { q: "リモートワークに向いていますか？", a: "高速で安定したWi-Fi、集中しやすい静かな環境、快適なワークスペースを整えています。Web会議用のミーティングルームもあります。" },
@@ -401,7 +402,7 @@ const ja: PierContent = {
     errSend: "送信に失敗しました。お手数ですが coliving@yugyo.work へ直接ご連絡ください。",
     hp: "空欄のまま",
     est: {
-      title: "概算費用",
+      title: "概算費用（家賃＋光熱費・共益費込み）",
       monthsLabel: (n) => `${n}ヶ月`,
       summerNote: "夏季料金を含む",
       guestsNote: "2名（2人目は半額）",
