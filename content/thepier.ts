@@ -226,7 +226,7 @@ const en: PierContent = {
   reviews: {
     kicker: "Reviews",
     heading: "Voices from the residents.",
-    sub: "What guests say on Google — rated 5.0 by 12 reviewers.",
+    sub: "What guests say on Google.",
     mapsLabel: "Read all reviews on Google Maps",
     translatedNote: "Translated from Japanese",
     prev: "Previous review",
@@ -372,8 +372,8 @@ const ja: PierContent = {
   },
   reviews: {
     kicker: "クチコミ",
-    heading: "住んだ人の、<br>本当の声。",
-    sub: "Google クチコミで評価 5.0（12件）。世界と日本の住人たちの声をそのまま掲載しています。",
+    heading: "住人のレビュー",
+    sub: "世界と日本の住人たちの声（Google Review）より。",
     mapsLabel: "Google マップですべてのクチコミを見る",
     translatedNote: "英語のクチコミの翻訳",
     prev: "前のクチコミへ",
@@ -381,7 +381,7 @@ const ja: PierContent = {
   },
   apply: {
     kicker: "入居申込",
-    heading: "いつでもお気軽にお問い合わせください。",
+    heading: "いつでもお気軽に<br>お問い合わせください。",
     sub: "チェックインの時期と滞在期間を選ぶと、概算費用が表示されます。3営業日以内にご返信します。",
     name: "お名前 *",
     namePh: "お名前",

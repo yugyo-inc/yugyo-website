@@ -53,6 +53,7 @@ export function PierReviews({ lang }: { lang: Lang }) {
             <article className="pier-review" key={r.author} lang={lang}>
               <div className="pier-review__stars" aria-label={`${r.stars} / 5`}>
                 {"★★★★★"}
+                <span className="pier-review__score">{r.stars.toFixed(1)}</span>
               </div>
               <p className="pier-review__text">{text}</p>
               <footer className="pier-review__meta">

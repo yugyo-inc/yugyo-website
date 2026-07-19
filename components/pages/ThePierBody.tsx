@@ -119,6 +119,19 @@ export function ThePierBody({ lang }: { lang: Lang }) {
         </div>
       </section>
 
+      {/* Reviews（Google クチコミ・スライダー） */}
+      <section className="pad" id="reviews" data-reveal>
+        <div className="wrap">
+          <div className="kicker">
+            <span className="ln" />
+            <span className="num">{c.reviews.kicker}</span>
+          </div>
+          <h2 className="pier-h2" dangerouslySetInnerHTML={{ __html: c.reviews.heading }} />
+          <p className="pier-lead pier-lead--wide">{c.reviews.sub}</p>
+          <PierReviews lang={lang} />
+        </div>
+      </section>
+
       {/* Rates（価格パネル・The Pier Blue バンド） */}
       <section className="pad pier-band" id="rates" data-reveal>
         <div className="wrap">
@@ -233,19 +246,6 @@ export function ThePierBody({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* Reviews（Google クチコミ・スライダー） */}
-      <section className="pad" id="reviews" data-reveal style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <div className="kicker">
-            <span className="ln" />
-            <span className="num">{c.reviews.kicker}</span>
-          </div>
-          <h2 className="pier-h2" dangerouslySetInnerHTML={{ __html: c.reviews.heading }} />
-          <p className="pier-lead pier-lead--wide">{c.reviews.sub}</p>
-          <PierReviews lang={lang} />
-        </div>
-      </section>
-
       {/* Apply（概算計算つきフォーム・The Pier Blue バンド） */}
       <section className="pad pier-band" id="apply" data-reveal>
         <div className="wrap">
@@ -253,7 +253,7 @@ export function ThePierBody({ lang }: { lang: Lang }) {
             <span className="ln" />
             <span className="num">{c.apply.kicker}</span>
           </div>
-          <h2 className="pier-h2">{c.apply.heading}</h2>
+          <h2 className="pier-h2" dangerouslySetInnerHTML={{ __html: c.apply.heading }} />
           <p className="pier-lead">{c.apply.sub}</p>
           <div className="pier-apply__wrap">
             <PierApplyForm lang={lang} />

@@ -640,9 +640,14 @@ a.row.row--link .row__t { color: var(--ink); }
   background: #fff; border: 1px solid var(--line); border-radius: 8px;
   padding: 26px 26px 20px; display: flex; flex-direction: column;
 }
+/* 星は Google のレビュー表示と同じ黄色（#FABB05） */
 .pier-review__stars {
-  color: var(--pier-blue, #5C7080); font-size: 15px; letter-spacing: 3px;
-  margin-bottom: 14px;
+  color: #FABB05; font-size: 15px; letter-spacing: 3px;
+  margin-bottom: 14px; display: flex; align-items: baseline;
+}
+.pier-review__score {
+  color: var(--ink); font-size: 13px; font-weight: 700; letter-spacing: .02em;
+  margin-left: 10px; font-variant-numeric: tabular-nums;
 }
 .pier-review__text {
   white-space: pre-line; font-size: 14px; line-height: 1.85;
