@@ -37,6 +37,7 @@ interface PierContent {
     rates: string;
     access: string;
     faq: string;
+    reviews: string;
     apply: string;
     parent: string;
   };
@@ -79,6 +80,15 @@ interface PierContent {
     body: string;
   };
   faq: { kicker: string; items: PierFaq[] };
+  reviews: {
+    kicker: string;
+    heading: string;
+    sub: string;
+    mapsLabel: string;
+    translatedNote: string;
+    prev: string;
+    next: string;
+  };
   apply: {
     kicker: string;
     heading: string;
@@ -128,6 +138,7 @@ const en: PierContent = {
     rates: "Rates",
     access: "Access",
     faq: "FAQ",
+    reviews: "Reviews",
     apply: "Apply Now",
     parent: "yugyo inc.",
   },
@@ -212,6 +223,15 @@ const en: PierContent = {
       { q: "What should I bring?", a: "Rooms come fully furnished — bed, desk, chair, storage. Just bring your clothes and personal items. Daily essentials are available at nearby shops." },
     ],
   },
+  reviews: {
+    kicker: "Reviews",
+    heading: "Voices from the residents.",
+    sub: "What guests say on Google — rated 5.0 by 12 reviewers.",
+    mapsLabel: "Read all reviews on Google Maps",
+    translatedNote: "Translated from Japanese",
+    prev: "Previous review",
+    next: "Next review",
+  },
   apply: {
     kicker: "Apply",
     heading: "The island is waiting.",
@@ -265,6 +285,7 @@ const ja: PierContent = {
     rates: "料金",
     access: "アクセス",
     faq: "FAQ",
+    reviews: "クチコミ",
     apply: "入居申込",
     parent: "yugyo inc.",
   },
@@ -348,6 +369,15 @@ const ja: PierContent = {
       { q: "車がなくても行けますか？", a: "はい。五島へはフェリーまたは飛行機で。福江港・福江空港からはバス、タクシー、徒歩でアクセスできます。なお施設に駐車場はありません。" },
       { q: "持ち物は何が必要ですか？", a: "お部屋にはベッド・机・椅子・収納が揃っています。衣類や洗面道具など身の回りの品だけお持ちください。日用品は島内のお店で購入できます。" },
     ],
+  },
+  reviews: {
+    kicker: "クチコミ",
+    heading: "住んだ人の、<br>本当の声。",
+    sub: "Google クチコミで評価 5.0（12件）。世界と日本の住人たちの声をそのまま掲載しています。",
+    mapsLabel: "Google マップですべてのクチコミを見る",
+    translatedNote: "英語のクチコミの翻訳",
+    prev: "前のクチコミへ",
+    next: "次のクチコミへ",
   },
   apply: {
     kicker: "入居申込",

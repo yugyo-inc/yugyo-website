@@ -26,6 +26,7 @@ export function PierNav({ lang = "ja" }: { lang?: Lang }) {
     { label: nav.rates, href: "#rates" },
     { label: nav.access, href: "#access" },
     { label: nav.faq, href: "#faq" },
+    { label: nav.reviews, href: "#reviews" },
   ];
 
   const switchHref = lang === "ja" ? "/en/thepiercoliving" : "/thepiercoliving";

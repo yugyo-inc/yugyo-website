@@ -3,6 +3,7 @@ import path from "node:path";
 import { Motion } from "@/components/effects/Motion";
 import { PierNav } from "@/components/thepier/PierNav";
 import { PierApplyForm } from "@/components/thepier/PierApplyForm";
+import { PierReviews } from "@/components/thepier/PierReviews";
 import { getThePier, PIER_GALLERY, PIER_HERO_SLIDES } from "@/content/thepier";
 import type { Lang } from "@/lib/i18n";
 
@@ -229,6 +230,19 @@ export function ThePierBody({ lang }: { lang: Lang }) {
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Reviews（Google クチコミ・スライダー） */}
+      <section className="pad" id="reviews" data-reveal style={{ paddingTop: 0 }}>
+        <div className="wrap">
+          <div className="kicker">
+            <span className="ln" />
+            <span className="num">{c.reviews.kicker}</span>
+          </div>
+          <h2 className="pier-h2" dangerouslySetInnerHTML={{ __html: c.reviews.heading }} />
+          <p className="pier-lead pier-lead--wide">{c.reviews.sub}</p>
+          <PierReviews lang={lang} />
         </div>
       </section>
 
