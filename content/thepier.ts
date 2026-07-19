@@ -211,12 +211,14 @@ export function getThePier(lang: Lang): PierContent {
 
 /** ギャラリー写真（public/photos/thepier/ 配下）。差し替えはここを編集 */
 export const PIER_GALLERY = [
-  "/photos/thepier/g01.jpg",
-  "/photos/thepier/g02.jpg",
-  "/photos/thepier/g03.jpg",
-  "/photos/thepier/g04.jpg",
-  "/photos/thepier/g05.jpg",
-  "/photos/thepier/g06.jpg",
-  "/photos/thepier/g07.jpg",
-  "/photos/thepier/g08.jpg",
+  "/photos/thepier/g01.jpg", // 共用リビング・コワーキング
+  "/photos/thepier/g02.jpg", // 個室
+  "/photos/thepier/g03.jpg", // 五島の海
+  "/photos/thepier/g04.jpg", // コワーキングスペース
+  "/photos/thepier/g05.jpg", // 島の食
+  "/photos/thepier/g06.jpg", // リモートワーク
+  "/photos/thepier/g07.jpg", // 鬼岳の丘
+  "/photos/thepier/g08.jpg", // 共用キッチン
+  "/photos/thepier/g09.jpg", // デッキのヨガ
+  "/photos/thepier/g10.jpg", // 部屋で読書
 ];
