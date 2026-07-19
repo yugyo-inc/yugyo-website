@@ -564,3 +564,27 @@ a.row.row--link .row__t { color: var(--ink); }
 
 /* リンク枠（色は変えず、枠でアテンション） */
 .pier-links-box { border: 1px solid var(--ink); border-radius: 8px; padding: 30px 34px; }
+
+/* ============================================================
+   The Pier v4 ＋ 全体タイポ改善（2026-07-19 Ryo指示）
+   ============================================================ */
+
+/* 日本語の大見出しは行間を広げる（欧文の詰まった行送りは和文では窮屈）
+   サイト全体（yugyo本体含む）に適用 */
+.manifesto h2:lang(ja), .pier-h2:lang(ja), .mf-head--ja, .pagehead__title:lang(ja) {
+  line-height: 1.34;
+  letter-spacing: 0.01em;
+}
+
+/* Rooms リード文は改行させず幅を広く取る */
+.pier-lead--wide { max-width: none; }
+
+/* ヒーロー内 掲載メディア・リンク */
+.pier-hero__links { margin-top: 34px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.pier-hero__links-label { font-size: 10.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(247,244,238,0.65); }
+.pier-hero__links a { font-size: 12.5px; font-weight: 600; color: rgba(247,244,238,0.9); border-bottom: 1px solid rgba(247,244,238,0.4); padding-bottom: 2px; transition: color .2s, border-color .2s; }
+.pier-hero__links a:hover { color: #fff; border-color: #fff; }
+
+/* ヘッダーワードマーク（The Pier Coliving） */
+.pier-wordmark { font-size: 18px; letter-spacing: -0.005em; }
+@media (max-width: 560px) { .pier-wordmark__sub { display: none; } }

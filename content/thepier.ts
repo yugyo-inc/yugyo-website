@@ -15,8 +15,9 @@ export interface PierFaq {
 
 /** 料金計算（フォームの概算表示にも使用） */
 export const PIER_PRICING = {
-  ja: { currency: "¥", monthly: 52000, summer: 10000, deposit: 30000, locale: "ja-JP" },
-  en: { currency: "US$", monthly: 520, summer: 80, deposit: 200, locale: "en-US" },
+  // monthly = 1ヶ月 / m2 = 2ヶ月以上（長期割）/ m6 = 6ヶ月以上（長期割）
+  ja: { currency: "¥", monthly: 52000, m2: 50000, m6: 48000, summer: 10000, deposit: 30000, locale: "ja-JP" },
+  en: { currency: "US$", monthly: 520, m2: 500, m6: 480, summer: 80, deposit: 200, locale: "en-US" },
 } as const;
 
 interface PierContent {
@@ -110,7 +111,7 @@ interface PierContent {
 }
 
 const en: PierContent = {
-  metaTitle: "The Pier | Goto Nagasaki — Coliving on Japan's western islands",
+  metaTitle: "The Pier Coliving — An Archipelago Home in the Goto Islands, Nagasaki",
   metaDescription:
     "The Pier is a coliving space on the Goto Islands, Nagasaki — six furnished private rooms, coworking, and island life on Japan's western edge. Monthly stays from US$520, operated by yugyo inc.",
   nav: {
@@ -124,8 +125,8 @@ const en: PierContent = {
   },
   hero: {
     eyebrow: "Coliving space in Goto Islands, Nagasaki, Japan",
-    title: "The Pier | Goto Nagasaki",
-    sub: "To Live. To Belong. — a coliving space on Japan's western edge, where remote work meets island life.",
+    title: "The Pier Coliving",
+    sub: "An Archipelago Home in the Goto Islands, Nagasaki.",
     cta: "Apply Now",
   },
   story: {
@@ -146,9 +147,9 @@ const en: PierContent = {
       { img: "/photos/thepier/g02.jpg", title: "Rooms", desc: "Six private lockable rooms with a semi-double bed, desk, and storage. Up to two guests per room." },
       { img: "/photos/thepier/g04.jpg", title: "Coworking", desc: "Fast, stable Wi-Fi, comfortable workspaces, and a meeting room for video calls." },
       { img: "/photos/thepier/g08.jpg", title: "Kitchen", desc: "A shared kitchen and living room, stocked with cookware and tableware." },
-      { img: "/photos/thepier/g11.jpg", title: "Shower & Laundry", desc: "Shower rooms and washing machines on the residents-only floor." },
+      { img: "/photos/thepier/shower.jpg", title: "Shower & Laundry", desc: "Shower rooms and washing machines on the residents-only floor." },
       { img: "/photos/thepier/g01.jpg", title: "Utilities", desc: "Water, electricity, gas, Wi-Fi, and cleaning of common areas — all included. No hidden fees." },
-      { img: "/photos/thepier/g05.jpg", title: "Neighborhood", desc: "Supermarkets, cafés, and local eateries within walking distance. Ten minutes on foot from Fukue Port." },
+      { img: "/photos/thepier/fishing.jpg", title: "Neighborhood", desc: "Supermarkets, cafés, and local eateries within walking distance. Ten minutes on foot from Fukue Port." },
     ],
   },
   pricing: {
@@ -165,6 +166,8 @@ const en: PierContent = {
       "Kitchen, shower & laundry",
     ],
     extras: [
+      { label: "Long stay: 2+ months", value: "US$500 / month", note: "Long-stay discount" },
+      { label: "Long stay: 6+ months", value: "US$480 / month", note: "Long-stay discount" },
       { label: "Summer (Jul–Sep)", value: "+ US$80 / month", note: "Air-conditioning season surcharge" },
       { label: "Deposit", value: "US$200", note: "Paid in advance, refunded at move-out if no problems" },
       { label: "Second guest", value: "+50%", note: "The 2nd person stays at half price — 1.5× in total" },
@@ -227,7 +230,7 @@ const en: PierContent = {
       summerNote: "incl. summer surcharge",
       guestsNote: "2 guests (2nd person half price)",
       depositNote: "+ US$200 deposit (refundable)",
-      longStay: "Long-stay discounts are negotiable for 3+ months.",
+      longStay: "Long-stay discount applied.",
       shortStay: "For short stays, rates are individual — just ask us.",
       disclaimer: "Rough estimate. Final quote comes with our reply.",
     },
@@ -241,11 +244,11 @@ const en: PierContent = {
       { label: "Google Maps", url: "https://maps.google.com/?q=SERENDIP+HOTEL+GOTO+1-7-12+Bukeyashiki+Goto+Nagasaki" },
     ],
   },
-  footerNote: "The Pier | Goto Nagasaki is operated by yugyo inc. — coliving@yugyo.work",
+  footerNote: "The Pier Coliving is operated by yugyo inc. — coliving@yugyo.work",
 };
 
 const ja: PierContent = {
-  metaTitle: "The Pier | Goto Nagasaki — 五島列島のコリビング・シェアハウス",
+  metaTitle: "The Pier Coliving — 五島列島のコリビング・シェアハウス",
   metaDescription:
     "The Pier は長崎・五島列島の家具付きシェアハウス（コリビング）。鍵付き個室6室とコワーキング、島の暮らし。1ヶ月から月額52,000円で。株式会社 遊行が運営しています。",
   nav: {
@@ -259,8 +262,8 @@ const ja: PierContent = {
   },
   hero: {
     eyebrow: "Coliving space in Goto Islands, Nagasaki | 五島列島のコリビング",
-    title: "The Pier | Goto Nagasaki",
-    sub: "To Live. To Belong. — 日本の西の果てで、ゆっくり暮らす。リモートワークと島の暮らしが、ここで出会う。",
+    title: "The Pier Coliving",
+    sub: "An Archipelago Home in the Goto Islands, Nagasaki.",
     cta: "入居を申し込む",
   },
   story: {
@@ -274,16 +277,16 @@ const ja: PierContent = {
   },
   rooms: {
     kicker: "部屋と空間",
-    heading: "明日から、住める。準備は、いらない。",
+    heading: "明日から始められる、1ヶ月の島暮らし。",
     lead: "家具もWi-Fiも光熱費も、ぜんぶ揃った全6室の小さなシェアハウス。鍵を受け取ったその日から、島の暮らしが始まります。",
     photo: "/photos/thepier/g02.jpg",
     cards: [
       { img: "/photos/thepier/g02.jpg", title: "Rooms", desc: "鍵付き個室・全6室。セミダブルベッド・机・収納つき。1室2名まで滞在できます。" },
       { img: "/photos/thepier/g04.jpg", title: "Coworking", desc: "高速で安定したWi-Fiと快適なワークスペース。Web会議用のミーティングルームも。" },
       { img: "/photos/thepier/g08.jpg", title: "Kitchen", desc: "調理器具と食器が揃った共用キッチン＆リビング。つくって、食べて、くつろぐ。" },
-      { img: "/photos/thepier/g11.jpg", title: "Shower & Laundry", desc: "シャワールームと洗濯機を住人専用フロア内に完備。" },
+      { img: "/photos/thepier/shower.jpg", title: "Shower & Laundry", desc: "シャワールームと洗濯機を住人専用フロア内に完備。" },
       { img: "/photos/thepier/g01.jpg", title: "Utilities", desc: "水道・電気・ガス・Wi-Fi・共用部の清掃まで込み。追加料金はありません。" },
-      { img: "/photos/thepier/g05.jpg", title: "Neighborhood", desc: "スーパーも食堂もカフェも徒歩圏内。福江港から徒歩10分。" },
+      { img: "/photos/thepier/fishing.jpg", title: "Neighborhood", desc: "スーパーも食堂もカフェも徒歩圏内。福江港から徒歩10分。" },
     ],
   },
   pricing: {
@@ -300,6 +303,8 @@ const ja: PierContent = {
       "キッチン・シャワー・ランドリー",
     ],
     extras: [
+      { label: "長期割: 2ヶ月以上", value: "月額 ¥50,000", note: "2ヶ月以上の滞在で適用" },
+      { label: "長期割: 6ヶ月以上", value: "月額 ¥48,000", note: "6ヶ月以上の滞在で適用" },
       { label: "夏季（7〜9月）", value: "＋¥10,000/月", note: "冷房調整費として" },
       { label: "デポジット", value: "¥30,000", note: "事前払い・退去時に問題がなければ返金" },
       { label: "2名でのご利用", value: "＋50%", note: "2人目は半額（合計1.5倍）" },
@@ -337,7 +342,7 @@ const ja: PierContent = {
   },
   apply: {
     kicker: "入居申込",
-    heading: "島は、待っています。",
+    heading: "いつでもお気軽にお問い合わせください。",
     sub: "チェックインの時期と滞在期間を選ぶと、概算費用が表示されます。3営業日以内にご返信します。",
     name: "お名前 *",
     namePh: "お名前",
@@ -362,7 +367,7 @@ const ja: PierContent = {
       summerNote: "夏季料金を含む",
       guestsNote: "2名（2人目は半額）",
       depositNote: "＋デポジット ¥30,000（返金制）",
-      longStay: "3ヶ月以上は長期割のご相談が可能です。",
+      longStay: "長期割が適用されています。",
       shortStay: "短期滞在の料金は個別にご案内します。まずはご相談ください。",
       disclaimer: "あくまで概算です。正式なお見積りは返信時にご案内します。",
     },
@@ -373,10 +378,11 @@ const ja: PierContent = {
       { label: "Instagram @thepiergoto", url: "https://www.instagram.com/thepiergoto/" },
       { label: "Mapmelon", url: "https://www.mapmelon.com/colivings/the-pier-goto-nagasaki" },
       { label: "Coliving.com", url: "https://coliving.com" },
+      { label: "ADDRESS", url: "https://address.love/homes/502" },
       { label: "Google マップ", url: "https://maps.google.com/?q=SERENDIP+HOTEL+GOTO+%E9%95%B7%E5%B4%8E%E7%9C%8C%E4%BA%94%E5%B3%B6%E5%B8%82%E6%AD%A6%E5%AE%B6%E5%B1%8B%E6%95%B71-7-12" },
     ],
   },
-  footerNote: "The Pier | Goto Nagasaki は株式会社 遊行が運営しています — coliving@yugyo.work",
+  footerNote: "The Pier Coliving は株式会社 遊行が運営しています — coliving@yugyo.work",
 };
 
 export const THEPIER: Record<Lang, PierContent> = { ja, en };

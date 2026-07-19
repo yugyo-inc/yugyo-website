@@ -34,8 +34,8 @@ export function PierNav({ lang = "ja" }: { lang?: Lang }) {
     <>
       <header className={`hd${solid ? " solid" : ""}`}>
         <a className="pier-wordmark" href={lang === "ja" ? "/thepiercoliving" : "/en/thepiercoliving"}>
-          The Pier
-          <span className="pier-wordmark__sub">Goto Nagasaki</span>
+          The Pier Coliving
+          <span className="pier-wordmark__sub">Goto Islands, Nagasaki</span>
         </a>
         <nav className="hd__nav">
           {links.map((l) => (

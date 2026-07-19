@@ -34,13 +34,15 @@ export function PierApplyForm({ lang = "ja" }: { lang?: Lang }) {
   const [lengthIdx, setLengthIdx] = useState(0);
   const [guestsIdx, setGuestsIdx] = useState(0);
 
-  // 概算計算
+  // 概算計算（長期割: 2ヶ月以上=m2 / 6ヶ月以上=m6 の月額を適用）
   const estimate = useMemo(() => {
     const months = MONTHS_BY_INDEX[lengthIdx];
     if (months === null) return { kind: "short" as const };
+    const perMonth =
+      months >= 6 ? price.m6 : months >= 2 ? price.m2 : price.monthly;
     const start = moveIn ? new Date(moveIn) : null;
     const summer = start ? summerMonthCount(start, months) : 0;
-    let total = price.monthly * months + price.summer * summer;
+    let total = perMonth * months + price.summer * summer;
     if (guestsIdx === 1) total = Math.round(total * 1.5);
     const isRange = lengthIdx === 3; // 4〜6ヶ月 → 「〜」表示
     return {
@@ -49,7 +51,7 @@ export function PierApplyForm({ lang = "ja" }: { lang?: Lang }) {
       summer,
       total,
       isRange,
-      longStay: months >= 3,
+      longStay: months >= 2, // 長期割適用
     };
   }, [lengthIdx, guestsIdx, moveIn, price]);
 

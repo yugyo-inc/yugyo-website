@@ -40,6 +40,15 @@ export function ThePierBody({ lang }: { lang: Lang }) {
           <a className="pier-hero__cta" href="#apply">
             {c.hero.cta} <span aria-hidden="true">→</span>
           </a>
+          {/* 掲載メディア・リンク（ヒーロー内に埋め込み） */}
+          <div className="pier-hero__links">
+            <span className="pier-hero__links-label">{c.links.kicker}</span>
+            {c.links.items.map((l) => (
+              <a key={l.url} href={l.url} target="_blank" rel="noopener noreferrer">
+                {l.label} ↗
+              </a>
+            ))}
+          </div>
         </div>
         <div className="hero__scroll">SCROLL ↓</div>
       </section>
@@ -85,7 +94,7 @@ export function ThePierBody({ lang }: { lang: Lang }) {
             <span className="num">{c.rooms.kicker}</span>
           </div>
           <h2 className="pier-h2">{c.rooms.heading}</h2>
-          <p className="pier-lead">{c.rooms.lead}</p>
+          <p className="pier-lead pier-lead--wide">{c.rooms.lead}</p>
           <div className="pier-cards">
             {c.rooms.cards.map((card) => (
               <div className="pier-card" key={card.title}>
@@ -187,7 +196,7 @@ export function ThePierBody({ lang }: { lang: Lang }) {
           </div>
           <div className="pier-map">
             <iframe
-              src="https://www.google.com/maps?q=SERENDIP%20HOTEL%20GOTO%20Nagasaki&output=embed&hl=en"
+              src="https://www.google.com/maps?q=The%20Pier%20Goto%20Nagasaki&output=embed"
               width="100%"
               height="380"
               style={{ border: 0 }}
@@ -232,22 +241,10 @@ export function ThePierBody({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* リンク（枠で強調）・フッターノート */}
-      <section className="pad" data-reveal style={{ paddingBottom: 72 }}>
+      {/* フッターノート */}
+      <section data-reveal style={{ padding: "56px 0 72px" }}>
         <div className="wrap">
-          <div className="pier-links-box">
-            <p className="eyebrow">{c.links.kicker}</p>
-            <div className="pier-links">
-              {c.links.items.map((l) => (
-                <a key={l.url} className="inlinelink" href={l.url} target="_blank" rel="noopener noreferrer">
-                  {l.label} ↗
-                </a>
-              ))}
-            </div>
-          </div>
-          <p className="pier-smallnote" style={{ marginTop: 28 }}>
-            {c.footerNote}
-          </p>
+          <p className="pier-smallnote">{c.footerNote}</p>
         </div>
       </section>
 
