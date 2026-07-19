@@ -3,44 +3,39 @@ import path from "node:path";
 import { Motion } from "@/components/effects/Motion";
 import { PierNav } from "@/components/thepier/PierNav";
 import { PierApplyForm } from "@/components/thepier/PierApplyForm";
-import { getThePier, PIER_GALLERY } from "@/content/thepier";
+import { getThePier, PIER_GALLERY, PIER_HERO_SLIDES } from "@/content/thepier";
 import type { Lang } from "@/lib/i18n";
 
 /**
- * The Pier | Goto Nagasaki — 独立サイト体裁のトップページ。
- * 構成: Hero(100vh) → Story → Gallery → Rooms → Space → Rates → Flow →
- * Access → FAQ → Apply(フォーム) → リンク。参照 = 旧Canvaサイト × yugyo編集様式。
+ * The Pier | Goto Nagasaki — 独立サイト体裁のトップページ v3。
+ * Hero(スライドショー) → Story → Gallery → Rooms&Space(写真カード6) →
+ * Rates(価格パネル) → Flow(矢印ステップ) → Access(地図) → FAQ → Apply(概算計算フォーム) → Links。
  */
 export function ThePierBody({ lang }: { lang: Lang }) {
   const c = getThePier(lang);
 
-  // 写真はアセット未配置でも壊れないよう、ビルド時に存在チェックして出し分ける
-  const photos = PIER_GALLERY.filter((p) =>
-    fs.existsSync(path.join(process.cwd(), "public", p))
-  );
-  const heroPhoto = fs.existsSync(
-    path.join(process.cwd(), "public", "photos/thepier/hero.jpg")
-  )
-    ? "/photos/thepier/hero.jpg"
-    : "/photos/p1.jpg";
+  const exists = (p: string) =>
+    fs.existsSync(path.join(process.cwd(), "public", p));
+  const slides = PIER_HERO_SLIDES.filter(exists);
+  const photos = PIER_GALLERY.filter(exists);
 
   return (
     <>
       <PierNav lang={lang} />
 
-      {/* Hero（フルビューポート） */}
+      {/* Hero（自動スライドショー） */}
       <section className="hero pier-hero">
-        <div
-          className="hero__img"
-          data-parallax="18"
-          style={{ backgroundImage: `url('${heroPhoto}')` }}
-          role="img"
-          aria-label="The beach of the Goto Islands"
-        />
+        {slides.map((s, i) => (
+          <div
+            key={s}
+            className={`hero__img pier-hero__slide${i === 0 ? " is-first" : ""}`}
+            style={{ backgroundImage: `url('${s}')`, animationDelay: `${i * 6}s` }}
+          />
+        ))}
         <div className="hero__veil" />
         <div className="hero__inner">
           <p className="eyebrow hero__eyebrow">{c.hero.eyebrow}</p>
-          <h1 className="hero__title">{c.hero.title}</h1>
+          <h1 className="hero__title pier-hero__title">{c.hero.title}</h1>
           <p className="pier-hero__sub">{c.hero.sub}</p>
           <a className="pier-hero__cta" href="#apply">
             {c.hero.cta} <span aria-hidden="true">→</span>
@@ -49,7 +44,7 @@ export function ThePierBody({ lang }: { lang: Lang }) {
         <div className="hero__scroll">SCROLL ↓</div>
       </section>
 
-      {/* 01 Story（The Pier Blue バンド） */}
+      {/* Story（The Pier Blue バンド） */}
       <section className="pad pier-band" id="story" data-reveal>
         <div className="wrap">
           <div className="kicker kicker--light">
@@ -70,25 +65,19 @@ export function ThePierBody({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* 02 Gallery（自動スライド） */}
+      {/* Gallery（自動スライド帯） */}
       {photos.length > 0 && (
         <section className="pier-gallery" aria-label="Photo gallery">
           <div className="pier-gallery__track">
             {[...photos, ...photos].map((p, i) => (
               /* eslint-disable-next-line @next/next/no-img-element */
-              <img
-                key={i}
-                src={p}
-                alt=""
-                loading="lazy"
-                aria-hidden={i >= photos.length}
-              />
+              <img key={i} src={p} alt="" loading="lazy" aria-hidden={i >= photos.length} />
             ))}
           </div>
         </section>
       )}
 
-      {/* 03 Rooms */}
+      {/* Rooms & Space（写真カード6枚） */}
       <section className="pad" id="rooms" data-reveal>
         <div className="wrap">
           <div className="kicker">
@@ -97,37 +86,24 @@ export function ThePierBody({ lang }: { lang: Lang }) {
           </div>
           <h2 className="pier-h2">{c.rooms.heading}</h2>
           <p className="pier-lead">{c.rooms.lead}</p>
-          <div className="pier-grid pier-grid--3">
-            {c.rooms.items.map((it) => (
-              <div className="pier-cell" key={it.title}>
-                <h3>{it.title}</h3>
-                <p>{it.desc}</p>
+          <div className="pier-cards">
+            {c.rooms.cards.map((card) => (
+              <div className="pier-card" key={card.title}>
+                <div
+                  className="pier-card__img"
+                  style={{ backgroundImage: `url('${card.img}')` }}
+                  role="img"
+                  aria-label={card.title}
+                />
+                <h3>{card.title}</h3>
+                <p>{card.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 04 Space */}
-      <section className="pad" data-reveal style={{ paddingTop: 0 }}>
-        <div className="wrap">
-          <div className="kicker">
-            <span className="ln" />
-            <span className="num">{c.space.kicker}</span>
-          </div>
-          <h2 className="pier-h2">{c.space.heading}</h2>
-          <div className="pier-grid pier-grid--3">
-            {c.space.items.map((it) => (
-              <div className="pier-cell" key={it.title}>
-                <h3>{it.title}</h3>
-                <p>{it.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 05 Rates（The Pier Blue バンド） */}
+      {/* Rates（価格パネル・The Pier Blue バンド） */}
       <section className="pad pier-band" id="rates" data-reveal>
         <div className="wrap">
           <div className="kicker kicker--light">
@@ -136,39 +112,34 @@ export function ThePierBody({ lang }: { lang: Lang }) {
           </div>
           <h2 className="pier-h2">{c.pricing.heading}</h2>
           <p className="pier-lead">{c.pricing.lead}</p>
-          <div className="pier-price-grid">
-            <table className="legal__table pier-price">
-              <tbody>
-                {c.pricing.monthly.map((r) => (
-                  <tr key={r.label}>
-                    <th scope="row">{r.label}</th>
-                    <td>
-                      <strong>{r.value}</strong>
-                      {r.note ? <span className="pier-note">{r.note}</span> : null}
-                    </td>
-                  </tr>
+          <div className="pier-pricing">
+            <div className="pier-pricing__main">
+              <p className="pier-pricing__label">{c.pricing.monthlyLabel}</p>
+              <p className="pier-pricing__value">
+                {c.pricing.monthlyValue}
+                <span>{c.pricing.monthlyUnit}</span>
+              </p>
+              <ul className="pier-pricing__included">
+                {c.pricing.included.map((it) => (
+                  <li key={it}>{it}</li>
                 ))}
-              </tbody>
-            </table>
-            <table className="legal__table pier-price">
-              <tbody>
-                {c.pricing.short.map((r) => (
-                  <tr key={r.label}>
-                    <th scope="row">{r.label}</th>
-                    <td>
-                      <strong>{r.value}</strong>
-                      {r.note ? <span className="pier-note">{r.note}</span> : null}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+              </ul>
+            </div>
+            <div className="pier-pricing__extras">
+              {c.pricing.extras.map((ex) => (
+                <div className="pier-pricing__extra" key={ex.label}>
+                  <p className="l">{ex.label}</p>
+                  <p className="v">{ex.value}</p>
+                  {ex.note ? <p className="n">{ex.note}</p> : null}
+                </div>
+              ))}
+            </div>
           </div>
           <p className="pier-smallnote">{c.pricing.note}</p>
         </div>
       </section>
 
-      {/* 06 Flow（入居までの流れ・Notion Basic Info 要約） */}
+      {/* Flow（ブロック＋矢印） */}
       <section className="pad" data-reveal>
         <div className="wrap">
           <div className="kicker">
@@ -176,22 +147,27 @@ export function ThePierBody({ lang }: { lang: Lang }) {
             <span className="num">{c.flow.kicker}</span>
           </div>
           <h2 className="pier-h2">{c.flow.heading}</h2>
-          <ol className="pier-flow">
+          <div className="pier-steps">
             {c.flow.steps.map((s, i) => (
-              <li key={s.title}>
-                <span className="pier-flow__n">{String(i + 1).padStart(2, "0")}</span>
-                <div>
+              <div className="pier-steps__item" key={s.title}>
+                <div className="pier-steps__box">
+                  <span className="pier-steps__n">{i + 1}</span>
                   <h3>{s.title}</h3>
                   <p>{s.desc}</p>
                 </div>
-              </li>
+                {i < c.flow.steps.length - 1 && (
+                  <span className="pier-steps__arrow" aria-hidden="true">
+                    →
+                  </span>
+                )}
+              </div>
             ))}
-          </ol>
+          </div>
           <p className="pier-smallnote">{c.flow.note}</p>
         </div>
       </section>
 
-      {/* 07 Access */}
+      {/* Access（地図つき） */}
       <section className="pad" id="access" data-reveal style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="kicker">
@@ -209,10 +185,21 @@ export function ThePierBody({ lang }: { lang: Lang }) {
               </p>
             </div>
           </div>
+          <div className="pier-map">
+            <iframe
+              src="https://www.google.com/maps?q=SERENDIP%20HOTEL%20GOTO%20Nagasaki&output=embed&hl=en"
+              width="100%"
+              height="380"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="The Pier | Goto Nagasaki — Map"
+            />
+          </div>
         </div>
       </section>
 
-      {/* 08 FAQ */}
+      {/* FAQ */}
       <section className="pad pier-faq" id="faq" data-reveal style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="kicker">
@@ -230,7 +217,7 @@ export function ThePierBody({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* 09 Apply（フォーム・The Pier Blue バンド） */}
+      {/* Apply（概算計算つきフォーム・The Pier Blue バンド） */}
       <section className="pad pier-band" id="apply" data-reveal>
         <div className="wrap">
           <div className="kicker kicker--light">
@@ -245,16 +232,18 @@ export function ThePierBody({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* リンク・フッターノート */}
+      {/* リンク（枠で強調）・フッターノート */}
       <section className="pad" data-reveal style={{ paddingBottom: 72 }}>
         <div className="wrap">
-          <p className="eyebrow">{c.links.kicker}</p>
-          <div className="pier-links">
-            {c.links.items.map((l) => (
-              <a key={l.url} className="inlinelink" href={l.url} target="_blank" rel="noopener noreferrer">
-                {l.label} ↗
-              </a>
-            ))}
+          <div className="pier-links-box">
+            <p className="eyebrow">{c.links.kicker}</p>
+            <div className="pier-links">
+              {c.links.items.map((l) => (
+                <a key={l.url} className="inlinelink" href={l.url} target="_blank" rel="noopener noreferrer">
+                  {l.label} ↗
+                </a>
+              ))}
+            </div>
           </div>
           <p className="pier-smallnote" style={{ marginTop: 28 }}>
             {c.footerNote}

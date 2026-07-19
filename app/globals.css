@@ -494,3 +494,73 @@ a.row.row--link .row__t { color: var(--ink); }
 
 /* リンク列 */
 .pier-links { margin-top: 18px; display: flex; gap: 26px; flex-wrap: wrap; }
+
+/* ============================================================
+   The Pier v3 — Heroスライドショー / 写真カード / 価格パネル /
+   ステップ図 / 概算ボックス / 地図 / リンク枠
+   ============================================================ */
+
+/* Hero スライドショー（5枚 × 6秒 = 30秒周期のクロスフェード） */
+.pier-hero__slide { opacity: 0; animation: pier-hero-fade 30s linear infinite; }
+.pier-hero__slide.is-first { opacity: 1; }
+.pier-hero__slide.is-first ~ .pier-hero__slide { opacity: 0; }
+@keyframes pier-hero-fade {
+  0% { opacity: 0; } 3% { opacity: 1; } 20% { opacity: 1; } 26% { opacity: 0; } 100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pier-hero__slide { animation: none; }
+}
+.pier-hero__title { max-width: 18ch; }
+
+/* Rooms & Space 写真カード */
+.pier-cards { margin-top: 44px; display: grid; gap: 34px 28px; }
+@media (min-width: 700px) { .pier-cards { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1020px) { .pier-cards { grid-template-columns: repeat(3, 1fr); } }
+.pier-card__img { width: 100%; aspect-ratio: 3 / 2; background-size: cover; background-position: center; border-radius: 8px; filter: saturate(0.92); }
+.pier-card h3 { margin-top: 14px; font-size: 15px; font-weight: 700; letter-spacing: .02em; }
+.pier-card p { margin-top: 6px; font-size: 14px; line-height: 1.7; color: var(--ink-2); }
+
+/* 価格パネル */
+.pier-pricing { margin-top: 40px; display: grid; gap: 26px; }
+@media (min-width: 900px) { .pier-pricing { grid-template-columns: 1.2fr 1fr; align-items: stretch; } }
+.pier-pricing__main { background: rgba(255,255,255,0.96); color: var(--ink); border-radius: 8px; padding: 34px 36px; }
+.pier-pricing__label { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-2); }
+.pier-pricing__value { margin-top: 8px; font-weight: 700; letter-spacing: -0.02em; font-size: clamp(40px, 5vw, 58px); line-height: 1; }
+.pier-pricing__value span { font-size: 17px; font-weight: 600; letter-spacing: 0; color: var(--ink-2); margin-left: 8px; }
+.pier-pricing__included { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 8px; }
+.pier-pricing__included li { font-size: 14px; color: var(--ink-2); padding-left: 20px; position: relative; }
+.pier-pricing__included li::before { content: '✓'; position: absolute; left: 0; font-weight: 700; color: var(--pier-blue-deep); }
+.pier-pricing__extras { display: grid; gap: 1px; background: rgba(247,244,238,0.3); border: 1px solid rgba(247,244,238,0.3); border-radius: 8px; overflow: hidden; }
+.pier-pricing__extra { background: var(--pier-blue); padding: 18px 22px; }
+.pier-pricing__extra .l { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(247,244,238,0.75); }
+.pier-pricing__extra .v { margin-top: 4px; font-size: 20px; font-weight: 700; color: #fff; }
+.pier-pricing__extra .n { margin-top: 2px; font-size: 12.5px; color: rgba(247,244,238,0.75); }
+
+/* ステップ図（ブロック＋矢印） */
+.pier-steps { margin-top: 44px; display: grid; gap: 14px; }
+@media (min-width: 900px) { .pier-steps { grid-template-columns: repeat(4, 1fr) ; gap: 0; } }
+.pier-steps__item { display: flex; align-items: stretch; }
+.pier-steps__box { flex: 1; border: 1px solid var(--line); border-radius: 8px; padding: 22px 22px 24px; background: var(--white); position: relative; }
+.pier-steps__n { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; background: var(--pier-blue); color: #fff; font-size: 13px; font-weight: 700; }
+.pier-steps__box h3 { margin-top: 12px; font-size: 15px; font-weight: 700; }
+.pier-steps__box p { margin-top: 6px; font-size: 13.5px; line-height: 1.65; color: var(--ink-2); }
+.pier-steps__arrow { display: none; align-self: center; padding: 0 10px; font-size: 20px; font-weight: 700; color: var(--pier-blue-deep); }
+@media (min-width: 900px) { .pier-steps__arrow { display: block; } }
+@media (max-width: 899px) {
+  .pier-steps__item { flex-direction: column; }
+  .pier-steps__item:not(:last-child)::after { content: '↓'; text-align: center; color: var(--pier-blue-deep); font-weight: 700; font-size: 18px; padding: 6px 0 0; }
+}
+
+/* 概算費用ボックス */
+.pier-est { margin: 6px 0 26px; background: rgba(14,27,44,0.25); border: 1px solid rgba(247,244,238,0.35); border-radius: 8px; padding: 20px 24px; }
+.pier-est__title { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(247,244,238,0.8); }
+.pier-est__value { margin-top: 6px; font-size: clamp(26px, 3.4vw, 36px); font-weight: 700; color: #fff; letter-spacing: -0.01em; }
+.pier-est__months { font-size: 15px; font-weight: 600; color: rgba(247,244,238,0.8); }
+.pier-est__note { margin-top: 4px; font-size: 13px; color: rgba(247,244,238,0.85); }
+.pier-est__disclaimer { margin-top: 8px; font-size: 11.5px; color: rgba(247,244,238,0.6); }
+
+/* 地図 */
+.pier-map { margin-top: 44px; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); filter: saturate(0.85); }
+
+/* リンク枠（色は変えず、枠でアテンション） */
+.pier-links-box { border: 1px solid var(--ink); border-radius: 8px; padding: 30px 34px; }

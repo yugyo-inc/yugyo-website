@@ -1,21 +1,23 @@
-// content/thepier.ts — The Pier | Goto Nagasaki（Coliving）ページの日英コンテンツ
+// content/thepier.ts — The Pier | Goto Nagasaki（Coliving）ページの日英コンテンツ v3
 // ============================================================================
-// 出典: The Pier | Wiki（Notion）Basic Info（ee2afa91…）・賃料表・FAQ・コンセプト
-// 料金・フローは 2026-07 時点。改定時はこのファイルのみ更新すればよい。
+// 出典: The Pier | Wiki（Notion）Basic Info・Ryo指示（2026-07-19 最終修正）
+// 料金: 月額 US$520 / ¥52,000（基本）+ 夏季(7-9月) US$80 / ¥10,000 + デポジット US$200 / ¥30,000
+// 短期滞在の料金は交渉用のため非公開（サイト掲載NG）。
+// 通貨は JPページ=円のみ / ENページ=ドルのみ。
 // ============================================================================
 
 import type { Lang } from "@/lib/i18n";
-
-export interface PierPrice {
-  label: string;
-  value: string;
-  note?: string;
-}
 
 export interface PierFaq {
   q: string;
   a: string;
 }
+
+/** 料金計算（フォームの概算表示にも使用） */
+export const PIER_PRICING = {
+  ja: { currency: "¥", monthly: 52000, summer: 10000, deposit: 30000, locale: "ja-JP" },
+  en: { currency: "US$", monthly: 520, summer: 80, deposit: 200, locale: "en-US" },
+} as const;
 
 interface PierContent {
   metaTitle: string;
@@ -36,24 +38,22 @@ interface PierContent {
     body: string[];
     note: string;
   };
-  gallery: { kicker: string };
   rooms: {
     kicker: string;
     heading: string;
     lead: string;
-    items: { title: string; desc: string }[];
-  };
-  space: {
-    kicker: string;
-    heading: string;
-    items: { title: string; desc: string }[];
+    photo: string;
+    cards: { img: string; title: string; desc: string }[];
   };
   pricing: {
     kicker: string;
     heading: string;
     lead: string;
-    monthly: PierPrice[];
-    short: PierPrice[];
+    monthlyLabel: string;
+    monthlyValue: string;
+    monthlyUnit: string;
+    included: string[];
+    extras: { label: string; value: string; note?: string }[];
     note: string;
   };
   flow: {
@@ -91,6 +91,16 @@ interface PierContent {
     errFill: string;
     errSend: string;
     hp: string;
+    est: {
+      title: string;
+      monthsLabel: (n: string) => string;
+      summerNote: string;
+      guestsNote: string;
+      depositNote: string;
+      longStay: string;
+      shortStay: string;
+      disclaimer: string;
+    };
   };
   links: {
     kicker: string;
@@ -102,7 +112,7 @@ interface PierContent {
 const en: PierContent = {
   metaTitle: "The Pier | Goto Nagasaki — Coliving on Japan's western islands",
   metaDescription:
-    "The Pier is a coliving space on the Goto Islands, Nagasaki — six private rooms, coworking, and island life on Japan's western edge. Monthly stays from US$500, operated by yugyo inc.",
+    "The Pier is a coliving space on the Goto Islands, Nagasaki — six furnished private rooms, coworking, and island life on Japan's western edge. Monthly stays from US$520, operated by yugyo inc.",
   nav: {
     story: "Story",
     rooms: "Rooms",
@@ -114,12 +124,12 @@ const en: PierContent = {
   },
   hero: {
     eyebrow: "Coliving space in Goto Islands, Nagasaki, Japan",
-    title: "To Live. To Belong.",
-    sub: "A coliving space on Japan's western edge — where remote work meets island life.",
+    title: "The Pier | Goto Nagasaki",
+    sub: "To Live. To Belong. — a coliving space on Japan's western edge, where remote work meets island life.",
     cta: "Apply Now",
   },
   story: {
-    kicker: "01 — Story",
+    kicker: "Story",
     heading: "Where wind meets soil.",
     body: [
       "The Goto Islands sit at the far western edge of Japan — blue sea, white sky, historic churches, and a pace of life the mainland forgot. The Pier opened here in 2018, and is now run by yugyo inc., a Fukuoka company that connects global movement with Japan's regions.",
@@ -127,65 +137,60 @@ const en: PierContent = {
     ],
     note: "The interior is designed after the piers of Goto, in the blue of its sea and the white of its sky.",
   },
-  gallery: { kicker: "02 — The Place" },
   rooms: {
-    kicker: "03 — Rooms",
-    heading: "Semi-double. Six rooms. One island.",
-    lead: "Every room is private and lockable, furnished with a semi-double bed, desk, chair, and storage — so two people can share a room, and one person can spread out.",
-    items: [
-      { title: "6 private rooms", desc: "Lockable, fully furnished. Up to two guests per room on the semi-double bed." },
-      { title: "Residents-only floor", desc: "The Pier occupies the second floor of SERENDIP HOTEL GOTO, with its own dedicated entrances." },
-      { title: "English support", desc: "Everything from application to move-in works in English. The community runs on WhatsApp." },
-    ],
-  },
-  space: {
-    kicker: "04 — The Space",
-    heading: "Everything you need. Nothing you don't.",
-    items: [
-      { title: "Coworking & meeting room", desc: "Fast, stable Wi-Fi, comfortable workspaces, and a meeting room for your video calls." },
-      { title: "Shared kitchen & living", desc: "Cook, eat, and unwind together — or find a quiet corner of your own." },
-      { title: "Utilities included", desc: "Water, electricity, gas, Wi-Fi, and regular cleaning of common areas. No hidden fees." },
-      { title: "Shower & laundry", desc: "Shower rooms and washing machines on the floor, shared by residents." },
-      { title: "Walkable neighborhood", desc: "Supermarkets, cafés, restaurants, and drugstores within walking distance. Fukue Port is a 10-minute walk." },
-      { title: "Island life at the door", desc: "Cycling, hiking, beaches, historic churches and lighthouses — and the calm to actually enjoy them." },
+    kicker: "Rooms & Space",
+    heading: "Move in tomorrow. Bring nothing.",
+    lead: "A small furnished sharehouse of just six rooms — bed, desk, Wi-Fi, utilities, all ready from day one. Pick up the key, and island life begins.",
+    photo: "/photos/thepier/g02.jpg",
+    cards: [
+      { img: "/photos/thepier/g02.jpg", title: "Rooms", desc: "Six private lockable rooms with a semi-double bed, desk, and storage. Up to two guests per room." },
+      { img: "/photos/thepier/g04.jpg", title: "Coworking", desc: "Fast, stable Wi-Fi, comfortable workspaces, and a meeting room for video calls." },
+      { img: "/photos/thepier/g08.jpg", title: "Kitchen", desc: "A shared kitchen and living room, stocked with cookware and tableware." },
+      { img: "/photos/thepier/g11.jpg", title: "Shower & Laundry", desc: "Shower rooms and washing machines on the residents-only floor." },
+      { img: "/photos/thepier/g01.jpg", title: "Utilities", desc: "Water, electricity, gas, Wi-Fi, and cleaning of common areas — all included. No hidden fees." },
+      { img: "/photos/thepier/g05.jpg", title: "Neighborhood", desc: "Supermarkets, cafés, and local eateries within walking distance. Ten minutes on foot from Fukue Port." },
     ],
   },
   pricing: {
-    kicker: "05 — Rates",
-    heading: "Stay a month. Or a night.",
-    lead: "Monthly residents are the heart of The Pier. Short stays are welcome when rooms are open.",
-    monthly: [
-      { label: "Monthly stay", value: "US$500 / month", note: "Community fee — utilities, Wi-Fi, and common service fee included" },
-      { label: "High season (Jul–Sep)", value: "+ US$100 / month", note: "Tax included" },
-      { label: "Deposit", value: "US$200", note: "Refunded in JPY (¥30,000) at move-out if no problems" },
-      { label: "Second guest", value: "+50%", note: "The 2nd person stays at half price — 1.5× the standard rate in total" },
+    kicker: "Rates",
+    heading: "Ready when you are. Just get in touch.",
+    lead: "One simple monthly rate. Everything included.",
+    monthlyLabel: "Monthly stay",
+    monthlyValue: "US$520",
+    monthlyUnit: "/ month",
+    included: [
+      "Private furnished room",
+      "Utilities, Wi-Fi & common fees",
+      "Coworking & meeting room",
+      "Kitchen, shower & laundry",
     ],
-    short: [
-      { label: "Short stay", value: "From ¥4,400 / night", note: "Tax included" },
-      { label: "High season (Jul–Oct)", value: "+ ¥1,100 / night", note: "Tax included" },
+    extras: [
+      { label: "Summer (Jul–Sep)", value: "+ US$80 / month", note: "Air-conditioning season surcharge" },
+      { label: "Deposit", value: "US$200", note: "Paid in advance, refunded at move-out if no problems" },
+      { label: "Second guest", value: "+50%", note: "The 2nd person stays at half price — 1.5× in total" },
     ],
-    note: "Rates as of July 2026 and subject to change. Pro-rated stays of one month or more are possible. Payment works online — Wise, PayPal, Stripe, or bank transfer.",
+    note: "Rates as of July 2026. Longer stays are negotiable — ask us. Payment works online: Wise, PayPal, Stripe, or bank transfer.",
   },
   flow: {
-    kicker: "06 — How to join",
+    kicker: "How to join",
     heading: "Four steps to the island.",
     steps: [
-      { title: "Apply", desc: "Send the application below. We reply within 3 business days (check your spam folder if you don't hear from us)." },
-      { title: "Meet us online", desc: "A short interview or viewing call, if needed — so both sides know it's a fit." },
-      { title: "Contract & first payment", desc: "Sign the agreement and transfer the first month at least one month before move-in. Online payment supported." },
-      { title: "Move in", desc: "We guide your check-in, hand over your room, and welcome you to the residents' WhatsApp group." },
+      { title: "Apply", desc: "Send the application below. We reply within 3 business days." },
+      { title: "Meet us online", desc: "A short interview or viewing call, if needed." },
+      { title: "Contract & payment", desc: "Sign the agreement and transfer the first month. Online payment supported." },
+      { title: "Move in", desc: "We guide your check-in and welcome you to the residents' group." },
     ],
     note: "Terms and conditions for the move-in application are available on request.",
   },
   access: {
-    kicker: "07 — Access",
+    kicker: "Access",
     heading: "Closer than you think.",
     address: "2F SERENDIP HOTEL GOTO, 1-7-12 Bukeyashiki, Goto, Nagasaki 853-0017, Japan",
     addressUrl: "https://maps.google.com/?q=SERENDIP+HOTEL+GOTO+1-7-12+Bukeyashiki+Goto+Nagasaki",
     body: "Fly from Fukuoka or Nagasaki to Fukue Airport, or take the ferry or jetfoil to Fukue Port. The Pier is a 10-minute walk from the port — no car needed. We will guide you on the best route from wherever you are.",
   },
   faq: {
-    kicker: "08 — FAQ",
+    kicker: "FAQ",
     items: [
       { q: "What is included in the fee?", a: "A private lockable room, high-speed Wi-Fi, shared kitchen, living, and coworking spaces, utilities (water, electricity, gas), and regular cleaning of common areas. No hidden fees." },
       { q: "Is there privacy in a coliving space?", a: "Yes. Every resident has a private, lockable room, and the shared spaces are designed for both connection and quiet time." },
@@ -196,16 +201,16 @@ const en: PierContent = {
     ],
   },
   apply: {
-    kicker: "09 — Apply",
+    kicker: "Apply",
     heading: "The island is waiting.",
     sub: "Tell us when you are coming and for how long — we reply within 3 business days.",
     name: "Name *",
     namePh: "Your name",
     email: "Email *",
     emailPh: "you@example.com",
-    moveIn: "Preferred move-in date",
+    moveIn: "Preferred check-in date",
     length: "Length of stay",
-    lengthOptions: ["Short stay (nights)", "1 month", "2–3 months", "3+ months", "Undecided"],
+    lengthOptions: ["1 month", "2 months", "3 months", "4–6 months", "6+ months", "Short stay / undecided"],
     guests: "Guests",
     guestsOptions: ["1 person", "2 people (same room)"],
     message: "Anything you'd like to tell us",
@@ -216,6 +221,16 @@ const en: PierContent = {
     errFill: "Please fill in your name and email.",
     errSend: "Sorry, something went wrong. Please email coliving@yugyo.work directly.",
     hp: "Leave empty",
+    est: {
+      title: "Estimated total",
+      monthsLabel: (n) => `${n} month${n === "1" ? "" : "s"}`,
+      summerNote: "incl. summer surcharge",
+      guestsNote: "2 guests (2nd person half price)",
+      depositNote: "+ US$200 deposit (refundable)",
+      longStay: "Long-stay discounts are negotiable for 3+ months.",
+      shortStay: "For short stays, rates are individual — just ask us.",
+      disclaimer: "Rough estimate. Final quote comes with our reply.",
+    },
   },
   links: {
     kicker: "Find us on",
@@ -230,9 +245,9 @@ const en: PierContent = {
 };
 
 const ja: PierContent = {
-  metaTitle: "The Pier | Goto Nagasaki — 五島列島のコリビング",
+  metaTitle: "The Pier | Goto Nagasaki — 五島列島のコリビング・シェアハウス",
   metaDescription:
-    "The Pier は長崎・五島列島のコリビング施設。鍵付き個室6室とコワーキング、島の暮らし。月額55,000円から、1泊からの短期滞在も。株式会社 遊行が運営しています。",
+    "The Pier は長崎・五島列島の家具付きシェアハウス（コリビング）。鍵付き個室6室とコワーキング、島の暮らし。1ヶ月から月額52,000円で。株式会社 遊行が運営しています。",
   nav: {
     story: "ストーリー",
     rooms: "部屋",
@@ -244,78 +259,73 @@ const ja: PierContent = {
   },
   hero: {
     eyebrow: "Coliving space in Goto Islands, Nagasaki | 五島列島のコリビング",
-    title: "To Live. To Belong.",
-    sub: "日本の西の果てで、ゆっくり暮らす。リモートワークと島の暮らしが、ここで出会う。",
+    title: "The Pier | Goto Nagasaki",
+    sub: "To Live. To Belong. — 日本の西の果てで、ゆっくり暮らす。リモートワークと島の暮らしが、ここで出会う。",
     cta: "入居を申し込む",
   },
   story: {
-    kicker: "01 — ストーリー",
-    heading: "風と土が混じり合う場所。",
+    kicker: "ストーリー",
+    heading: "1ヶ月から住める、五島列島の家具付きシェアハウス。",
     body: [
       "日本の西の果て、五島列島。青い海と白い空、歴史ある教会群、そして本土が忘れてしまった暮らしの速度がここにあります。The Pier は2018年にこの島で生まれ、現在は、世界の移動と日本の地域をつなぐ株式会社 遊行が運営しています。",
-      "桟橋（Pier)という名前のとおり、ここは「たどり着く場所」です。住人（風の人）と島の人（土の人）が混じり合い、新しい風土が生まれる。自分たちだけがいい暮らしの場ではなく、地域に開かれ、地域と共に暮らす家でありたいと願っています。",
+      "桟橋（Pier）という名前のとおり、ここは「たどり着く場所」です。住人（風の人）と島の人（土の人）が混じり合い、新しい風土が生まれる。自分たちだけがいい暮らしの場ではなく、地域に開かれ、地域と共に暮らす家でありたいと願っています。",
     ],
     note: "内装は五島の桟橋をモチーフに、五島の海の青と空の白でデザインされています。",
   },
-  gallery: { kicker: "02 — 場所" },
   rooms: {
-    kicker: "03 — 部屋",
-    heading: "セミダブル、全6室。",
-    lead: "すべて鍵付きの個室。セミダブルベッド・机・椅子・収納を備え、ひとりでゆったり、ふたりでの同室滞在も可能です。",
-    items: [
-      { title: "個室6室", desc: "鍵付き・家具付き。セミダブルベッドで1室2名まで滞在できます。" },
-      { title: "住人専用フロア", desc: "SERENDIP HOTEL GOTO の2階全体が The Pier。専用の出入口があります。" },
-      { title: "英語サポート", desc: "申込から入居まで英語で完結。コミュニティは WhatsApp でつながっています。" },
-    ],
-  },
-  space: {
-    kicker: "04 — 空間",
-    heading: "必要なものは、すべて。余計なものは、なにも。",
-    items: [
-      { title: "コワーキング＆ミーティングルーム", desc: "高速で安定したWi-Fiと快適なワークスペース。Web会議用の個室もあります。" },
-      { title: "共用キッチン＆リビング", desc: "つくって、食べて、くつろぐ。静かに過ごせる場所もあります。" },
-      { title: "光熱費込み", desc: "水道・電気・ガス・Wi-Fi、共用部の定期清掃まで含まれています。追加料金はありません。" },
-      { title: "シャワー＆ランドリー", desc: "シャワールームと洗濯機をフロア内に完備。住人で共用します。" },
-      { title: "徒歩圏の暮らし", desc: "スーパー、カフェ、飲食店、ドラッグストアが徒歩圏内。福江港から徒歩10分。" },
-      { title: "島の暮らしが、すぐそこに", desc: "サイクリング、ハイキング、ビーチ、教会と灯台。それを楽しむ時間の余白も。" },
+    kicker: "部屋と空間",
+    heading: "明日から、住める。準備は、いらない。",
+    lead: "家具もWi-Fiも光熱費も、ぜんぶ揃った全6室の小さなシェアハウス。鍵を受け取ったその日から、島の暮らしが始まります。",
+    photo: "/photos/thepier/g02.jpg",
+    cards: [
+      { img: "/photos/thepier/g02.jpg", title: "Rooms", desc: "鍵付き個室・全6室。セミダブルベッド・机・収納つき。1室2名まで滞在できます。" },
+      { img: "/photos/thepier/g04.jpg", title: "Coworking", desc: "高速で安定したWi-Fiと快適なワークスペース。Web会議用のミーティングルームも。" },
+      { img: "/photos/thepier/g08.jpg", title: "Kitchen", desc: "調理器具と食器が揃った共用キッチン＆リビング。つくって、食べて、くつろぐ。" },
+      { img: "/photos/thepier/g11.jpg", title: "Shower & Laundry", desc: "シャワールームと洗濯機を住人専用フロア内に完備。" },
+      { img: "/photos/thepier/g01.jpg", title: "Utilities", desc: "水道・電気・ガス・Wi-Fi・共用部の清掃まで込み。追加料金はありません。" },
+      { img: "/photos/thepier/g05.jpg", title: "Neighborhood", desc: "スーパーも食堂もカフェも徒歩圏内。福江港から徒歩10分。" },
     ],
   },
   pricing: {
-    kicker: "05 — 料金",
-    heading: "ひと月でも、ひと晩でも。",
-    lead: "The Pier の中心は月額滞在の住人たち。空室があるときは、短期滞在も歓迎しています。",
-    monthly: [
-      { label: "月額滞在（Community Fee）", value: "月額 ¥55,000（税別）", note: "別途 光熱費 ¥5,000・共益費 ¥10,000／月。海外からの滞在は US$500（光熱費・共益費込み）" },
-      { label: "ハイシーズン（7〜9月）", value: "＋¥14,000/月（税込）", note: "" },
-      { label: "デポジット", value: "¥30,000", note: "退去時に問題がなければ翌月末に返金します" },
-      { label: "2名でのご利用", value: "＋50%", note: "セミダブルベッドのため1室2名まで。2人目は半額（合計1.5倍）" },
+    kicker: "料金",
+    heading: "明日からでも滞在OK。まずはご連絡を。",
+    lead: "月額ひとつの、シンプルな料金です。",
+    monthlyLabel: "月額滞在",
+    monthlyValue: "¥52,000",
+    monthlyUnit: "/ 月",
+    included: [
+      "家具付き個室",
+      "光熱費・Wi-Fi・共益費込み",
+      "コワーキング＆ミーティングルーム",
+      "キッチン・シャワー・ランドリー",
     ],
-    short: [
-      { label: "短期滞在", value: "1泊 ¥4,400〜（税込）", note: "" },
-      { label: "ハイシーズン（7〜10月）", value: "＋¥1,100/泊（税込）", note: "" },
+    extras: [
+      { label: "夏季（7〜9月）", value: "＋¥10,000/月", note: "冷房調整費として" },
+      { label: "デポジット", value: "¥30,000", note: "事前払い・退去時に問題がなければ返金" },
+      { label: "2名でのご利用", value: "＋50%", note: "2人目は半額（合計1.5倍）" },
     ],
-    note: "料金は2026年7月時点のものです。1ヶ月以上の滞在は日割のご相談も承ります。お支払いは銀行振込のほか、Wise・PayPal・Stripe に対応しています。",
+    note: "料金は2026年7月時点のものです。長期滞在はご相談ください。お支払いは銀行振込のほか、Wise・PayPal・Stripe に対応しています。",
   },
   flow: {
-    kicker: "06 — 入居までの流れ",
+    kicker: "入居までの流れ",
     heading: "島まで、4ステップ。",
     steps: [
-      { title: "申し込む", desc: "下のフォームから送信してください。3営業日以内にメールでご連絡します（届かない場合は迷惑メールフォルダをご確認ください）。" },
-      { title: "オンラインでお話", desc: "必要に応じて、面談や内見のオンラインコールを行います。お互いを知る時間です。" },
-      { title: "契約・初月のお支払い", desc: "規約をご確認のうえ契約を締結し、入居予定日の1ヶ月前までに初月分をお振込みください。" },
-      { title: "入居", desc: "チェックインをご案内し、お部屋をお渡しします。住人専用グループにようこそ。" },
+      { title: "申し込む", desc: "下のフォームから送信。3営業日以内にご連絡します。" },
+      { title: "オンラインでお話", desc: "必要に応じて、面談や内見のオンラインコールを。" },
+      { title: "契約・お支払い", desc: "規約確認のうえ契約し、初月分をお振込み。オンライン決済対応。" },
+      { title: "入居", desc: "チェックインをご案内。住人グループへようこそ。" },
     ],
     note: "入居申込に関する規約等は、お申込み時にご案内します。",
   },
   access: {
-    kicker: "07 — アクセス",
-    heading: "思っているより、近い。",
+    kicker: "アクセス",
+    heading: "意外と近い、五島列島。",
     address: "〒853-0017 長崎県五島市武家屋敷1-7-12 SERENDIP HOTEL GOTO 2階",
     addressUrl: "https://maps.google.com/?q=SERENDIP+HOTEL+GOTO+%E9%95%B7%E5%B4%8E%E7%9C%8C%E4%BA%94%E5%B3%B6%E5%B8%82%E6%AD%A6%E5%AE%B6%E5%B1%8B%E6%95%B71-7-12",
-    body: "福岡・長崎から飛行機で福江空港へ、またはフェリー・ジェットフォイルで福江港へ。港から徒歩10分、車がなくても大丈夫です。最適なルートは事前にご案内します。",
+    body: "福岡・長崎から飛行機で福江空港へ約40分、またはフェリー・ジェットフォイルで福江港へ。港から徒歩10分、車がなくても大丈夫です。最適なルートは事前にご案内します。",
   },
   faq: {
-    kicker: "08 — よくあるご質問",
+    kicker: "よくあるご質問",
     items: [
       { q: "料金には何が含まれていますか？", a: "鍵付き個室、高速Wi-Fi、共用スペース（キッチン・リビング・コワーキング）の利用、水道・電気・ガスなどの光熱費、共用部の定期清掃が含まれます。" },
       { q: "プライバシーは確保できますか？", a: "はい。各入居者に鍵付きの個室をご用意しています。共用スペースにも静かに過ごせる場所があり、自分のペースで暮らせます。" },
@@ -326,16 +336,16 @@ const ja: PierContent = {
     ],
   },
   apply: {
-    kicker: "09 — 入居申込",
+    kicker: "入居申込",
     heading: "島は、待っています。",
-    sub: "いつ、どのくらい滞在したいか、お聞かせください。3営業日以内にご返信します。",
+    sub: "チェックインの時期と滞在期間を選ぶと、概算費用が表示されます。3営業日以内にご返信します。",
     name: "お名前 *",
     namePh: "お名前",
     email: "メール *",
     emailPh: "you@example.com",
-    moveIn: "入居希望日",
+    moveIn: "チェックイン希望日",
     length: "滞在期間",
-    lengthOptions: ["短期（数泊）", "1ヶ月", "2〜3ヶ月", "3ヶ月以上", "未定"],
+    lengthOptions: ["1ヶ月", "2ヶ月", "3ヶ月", "4〜6ヶ月", "6ヶ月以上", "短期・未定"],
     guests: "人数",
     guestsOptions: ["1名", "2名（同室）"],
     message: "メッセージ",
@@ -346,6 +356,16 @@ const ja: PierContent = {
     errFill: "お名前とメールをご入力ください。",
     errSend: "送信に失敗しました。お手数ですが coliving@yugyo.work へ直接ご連絡ください。",
     hp: "空欄のまま",
+    est: {
+      title: "概算費用",
+      monthsLabel: (n) => `${n}ヶ月`,
+      summerNote: "夏季料金を含む",
+      guestsNote: "2名（2人目は半額）",
+      depositNote: "＋デポジット ¥30,000（返金制）",
+      longStay: "3ヶ月以上は長期割のご相談が可能です。",
+      shortStay: "短期滞在の料金は個別にご案内します。まずはご相談ください。",
+      disclaimer: "あくまで概算です。正式なお見積りは返信時にご案内します。",
+    },
   },
   links: {
     kicker: "掲載メディア・リンク",
@@ -365,16 +385,25 @@ export function getThePier(lang: Lang): PierContent {
   return THEPIER[lang];
 }
 
-/** ギャラリー写真（public/photos/thepier/ 配下）。差し替えはここを編集 */
+/** ヒーロー・スライドショー（h1がメイン＝1枚目） */
+export const PIER_HERO_SLIDES = [
+  "/photos/thepier/h1.jpg", // リビングで笑う住人たち（DAY1_42）
+  "/photos/thepier/h2.jpg", // 浜辺
+  "/photos/thepier/h3.jpg", // 丘を走る
+  "/photos/thepier/h4.jpg", // 海と人
+  "/photos/thepier/h5.jpg", // デッキのヨガ
+];
+
+/** ギャラリー写真（自動スライド帯） */
 export const PIER_GALLERY = [
-  "/photos/thepier/g01.jpg", // 共用リビング・コワーキング
-  "/photos/thepier/g02.jpg", // 個室
-  "/photos/thepier/g03.jpg", // 五島の海
-  "/photos/thepier/g04.jpg", // コワーキングスペース
-  "/photos/thepier/g05.jpg", // 島の食
-  "/photos/thepier/g06.jpg", // リモートワーク
-  "/photos/thepier/g07.jpg", // 鬼岳の丘
-  "/photos/thepier/g08.jpg", // 共用キッチン
-  "/photos/thepier/g09.jpg", // デッキのヨガ
-  "/photos/thepier/g10.jpg", // 部屋で読書
+  "/photos/thepier/g01.jpg",
+  "/photos/thepier/g02.jpg",
+  "/photos/thepier/g03.jpg",
+  "/photos/thepier/g04.jpg",
+  "/photos/thepier/g05.jpg",
+  "/photos/thepier/g06.jpg",
+  "/photos/thepier/g07.jpg",
+  "/photos/thepier/g08.jpg",
+  "/photos/thepier/g09.jpg",
+  "/photos/thepier/g10.jpg",
 ];
