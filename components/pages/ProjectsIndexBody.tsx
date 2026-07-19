@@ -18,7 +18,7 @@ export function ProjectsIndexBody({ lang }: { lang: Lang }) {
 
   return (
     <>
-      <PageHero title={p.title} subtitle={p.subtitle} photo="/photos/colive.jpg" />
+      <PageHero title={p.title} subtitle={p.subtitle} photo="/photos/wework45.jpg" />
       <div className="wrap pagebody">
         <p className="projects__lead">{c.projects.lead}</p>
         <div className="pcards">

@@ -228,9 +228,9 @@ const ja: typeof en = {
   },
 
   projects: {
-    kicker: "事業",
+    kicker: "事業内容",
     seq: "急",
-    lead: "3つの事業で、世界の移動と日本の地域をつなぎ直す。",
+    lead: "世界の移動と日本の地域をつなぎ直す、遊行の実践。",
     cta: "事業を見る →",
   },
 
@@ -283,7 +283,7 @@ const ja: typeof en = {
       subtitle: "パートナーシップ、取材、登壇、越境・地域でのご一緒。お気軽にどうぞ。",
     },
     news: { title: "最新情報", subtitle: "株式会社 遊行 からの公式お知らせ" },
-    projects: { title: "事業", subtitle: "3つの事業、ひとつの方向 — 在るべき場所へ。" },
+    projects: { title: "事業内容", subtitle: "世界と地域、教育とビジネス、あらゆる関係デザインに取り組んでいます。" },
   },
 
   about_page: {

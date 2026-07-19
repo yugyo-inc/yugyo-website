@@ -32,6 +32,10 @@ const SERVICES_JA: { title: string; desc: string; contact?: boolean }[] = [
     desc: "登壇、執筆、講義（最新情報から事例をご参照ください）",
     contact: true,
   },
+  {
+    title: "Coliving",
+    desc: "場所にとらわれない方々向けの共同の住居運営と、Coliving 事業の開発・コンサルティング。長崎・五島列島でコリビング施設『The Pier | Goto Nagasaki』を運営しています。",
+  },
 ];
 
 export function HomeBody({ lang }: { lang: Lang }) {
