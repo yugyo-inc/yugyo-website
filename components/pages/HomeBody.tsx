@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getCopy } from "@/content/copy";
+import { getProjects } from "@/content/projects";
 import { NewsletterForm } from "@/components/newsletter/NewsletterForm";
 import { HomeNews } from "@/components/home/HomeNews";
 import { Motion } from "@/components/effects/Motion";
@@ -17,52 +18,41 @@ function html(s: string) {
   return { __html: s };
 }
 
-// 日本語版トップの事業内容（3本／タイトルは英語表記）。
-const SERVICES_JA: { title: string; desc: string; contact?: boolean }[] = [
-  {
-    title: "Local | Global",
-    desc: "ボーダレスに世界を渡り歩く起業家、スタートアップ、メディア、投資家らに対して、遊行ならではの領域展開を通じて、地域や事業者との接点を増やし、事業の新たな機会創出やビジネスマッチングを提供していきます。デジタルノマドに関わらず、インバウンドマーケティング、並びに新規事業の海外進出支援を行っています。",
-  },
-  {
-    title: "Branding | Marketing",
-    desc: "企業や自治体のブランドコンセプトの新設や改善に向けて、調査、提案、実施、検証まで、チームの一員としてゴールまでご一緒させていただきます。事業提案から、ロゴやキャッチコピー、ウェブサイトの開発、ソーシャルメディアの運用まで広くご相談ください。",
-  },
-  {
-    title: "Publicity",
-    desc: "登壇、執筆、講義（最新情報から事例をご参照ください）",
-    contact: true,
-  },
-  {
-    title: "Coliving",
-    desc: "場所にとらわれない方々向けの共同の住居運営と、Coliving 事業の開発・コンサルティング。長崎・五島列島でコリビング施設『The Pier | Goto Nagasaki』を運営しています。",
-  },
-];
-
 export function HomeBody({ lang }: { lang: Lang }) {
   return lang === "en" ? <HomeEn /> : <HomeJa />;
 }
 
-/* 4事業の行（クリックで詳細へ）。日英共通。 */
-function ProjectRows({ lang }: { lang: Lang }) {
-  const { work } = getCopy(lang);
+/* 事業内容の写真カード（/projects 一覧と同じ pcard ブロック型・タグライン1行）。
+ * トップページでは長文説明を出さず、詳細は各事業ページへ誘導する（2026-07-20 Ryo指示）。 */
+function ServiceCards({ lang }: { lang: Lang }) {
+  const projects = getProjects(lang);
   const L = (href: string) => localizeHref(lang, href);
   return (
-    <div className="index">
-      {work.items.map((it) => (
-        <Link className="row row--link" key={it.n} href={L(`/projects/${it.slug}`)}>
-          <div className="row__n">{it.n}</div>
-          <div className="row__t">
-            <span className="bar" style={{ background: ELEMENT_VAR[it.color] }} />
-            {it.title}
-          </div>
-          <div className="row__d">
-            {it.desc}
-            <span className={`el el-${it.color}`}>{it.el}</span>
-            <span className="row__cta">{it.cta}</span>
-          </div>
-        </Link>
-      ))}
-    </div>
+    <>
+      <div className="pcards pcards--photo">
+        {projects.map((proj) => (
+          <Link key={proj.slug} className="pcard pcard--photo" href={L(`/projects/${proj.slug}`)}>
+            <div
+              className="pcard__img"
+              style={{ backgroundImage: `url('${proj.photo}')` }}
+              role="img"
+              aria-label={proj.content.title}
+            />
+            <div className="pcard__body">
+              <span className="pcard__n">{proj.n}</span>
+              <span className="pcard__bar" style={{ background: ELEMENT_VAR[proj.color] }} aria-hidden="true" />
+              <h3 className="pcard__title">{proj.content.title}</h3>
+              <p className="pcard__desc">{proj.content.tagline}</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+      <p className="whatwedo__more">
+        <a className="inlinelink" href={L("/projects")}>
+          {lang === "ja" ? "事業内容をみる →" : "View our projects →"}
+        </a>
+      </p>
+    </>
   );
 }
 
@@ -126,22 +116,7 @@ function HomeJa() {
         <div className="wrap whatwedo__inner">
           <h2 className="sectitle">{whatwedo.kicker}</h2>
           <p className="whatwedo__lead">{whatwedo.lead}</p>
-          <div className="index">
-            {SERVICES_JA.map((s, i) => (
-              <div className="row" key={s.title}>
-                <div className="row__n">{String(i + 1).padStart(2, "0")}</div>
-                <div className="row__t">{s.title}</div>
-                <div className="row__d">
-                  {s.desc}
-                  {s.contact && (
-                    <a className="inlinelink inlinelink--block" href={L("/contact")}>
-                      ご依頼はこちらから →
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
+          <ServiceCards lang={lang} />
         </div>
       </section>
 
@@ -240,7 +215,7 @@ function HomeEn() {
             <h2 className="whatwedo__theme" dangerouslySetInnerHTML={html(whatwedo.theme)} />
             <p className="whatwedo__lead">{whatwedo.lead}</p>
           </div>
-          <ProjectRows lang={lang} />
+          <ServiceCards lang={lang} />
         </div>
       </section>
 
