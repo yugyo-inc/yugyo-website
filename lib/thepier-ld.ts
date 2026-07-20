@@ -22,7 +22,7 @@ export function pierLodgingLd(lang: Lang) {
     url,
     image: `${BASE}/photos/thepier/hero.jpg`,
     email: "coliving@yugyo.work",
-    priceRange: lang === "ja" ? "¥70,000〜/月（家賃＋光熱費・共益費）" : "From US$520/month",
+    priceRange: lang === "ja" ? "¥70,000〜/月（税別・家賃＋光熱費・共益費）" : "From US$520/month (excl. tax)",
     address: {
       "@type": "PostalAddress",
       streetAddress: "1-7-12 Bukeyashiki, 2F SERENDIP HOTEL GOTO",

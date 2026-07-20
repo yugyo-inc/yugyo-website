@@ -178,7 +178,7 @@ const en: PierContent = {
     lead: "One simple monthly rate. Everything included.",
     monthlyLabel: "Monthly stay",
     monthlyValue: "US$520",
-    monthlyUnit: "/ month",
+    monthlyUnit: "/ month (excl. tax)",
     included: [
       "Private furnished room",
       "Utilities, Wi-Fi & common fees",
@@ -189,11 +189,11 @@ const en: PierContent = {
       { label: "Long stay: 2+ months", value: "15% off", note: "Off the total stay" },
       { label: "Long stay: 3+ months", value: "20% off", note: "Off the total stay" },
       { label: "Long stay: 6+ months", value: "30% off", note: "Off the total stay" },
-      { label: "Summer (Jul–Sep)", value: "+ US$80 / month", note: "Air-conditioning season surcharge" },
+      { label: "Summer (Jul–Sep)", value: "+ US$80 / month", note: "Air-conditioning season surcharge (tax included)" },
       { label: "Deposit", value: "US$200", note: "Paid in advance, refunded at move-out if no problems" },
       { label: "Second guest", value: "+50%", note: "The 2nd person stays at half price — 1.5× in total" },
     ],
-    note: "Rates as of July 2026. Longer stays are negotiable — ask us. Payment works online: Wise, PayPal, Stripe, or bank transfer.",
+    note: "Rates exclude Japan's 10% consumption tax (the summer surcharge is tax-inclusive). Rates as of July 2026. Longer stays are negotiable — ask us. Payment works online: Wise, PayPal, Stripe, or bank transfer.",
   },
   flow: {
     kicker: "How to join",
@@ -216,7 +216,7 @@ const en: PierContent = {
   faq: {
     kicker: "FAQ",
     items: [
-      { q: "What is included in the fee?", a: "A private lockable room, high-speed Wi-Fi, shared kitchen, living, and coworking spaces, utilities (water, electricity, gas), and regular cleaning of common areas. No hidden fees." },
+      { q: "What is included in the fee?", a: "A private lockable room, high-speed Wi-Fi, shared kitchen, living, and coworking spaces, utilities (water, electricity, gas), and regular cleaning of common areas. No hidden fees. Prices exclude Japan's 10% consumption tax." },
       { q: "Is there privacy in a coliving space?", a: "Yes. Every resident has a private, lockable room, and the shared spaces are designed for both connection and quiet time." },
       { q: "Who stays at The Pier?", a: "Digital nomads, remote workers, and travelers from Japan and around the world — people who enjoy meeting others while keeping the calm of island life." },
       { q: "Is it suitable for remote work?", a: "Absolutely. Fast, stable Wi-Fi, comfortable workspaces, quiet surroundings, and a meeting room for online meetings." },
@@ -255,14 +255,14 @@ const en: PierContent = {
     errSend: "Sorry, something went wrong. Please email coliving@yugyo.work directly.",
     hp: "Leave empty",
     est: {
-      title: "Estimated total",
+      title: "Estimated total (excl. tax)",
       monthsLabel: (n) => `${n} month${n === "1" ? "" : "s"}`,
       summerNote: "incl. summer surcharge",
       guestsNote: "2 guests (2nd person half price)",
       depositNote: "+ US$200 deposit (refundable)",
       longStay: "Long-stay discount applied",
       shortStay: "For short stays, rates are individual — just ask us.",
-      disclaimer: "Rough estimate. Final quote comes with our reply.",
+      disclaimer: "Rough estimate, excluding Japan's 10% consumption tax. Final quote comes with our reply.",
     },
   },
   links: {
@@ -325,7 +325,7 @@ const ja: PierContent = {
     lead: "家賃と光熱費・共益費を分けた、わかりやすい料金です。",
     monthlyLabel: "家賃",
     monthlyValue: "¥55,000",
-    monthlyUnit: "/ 月",
+    monthlyUnit: "/ 月（税別）",
     included: [
       "家具付き個室（鍵付き）",
       "コワーキング＆ミーティングルーム",
@@ -333,14 +333,14 @@ const ja: PierContent = {
       "敷金・礼金・仲介手数料なし",
     ],
     extras: [
-      { label: "光熱費・共益費", value: "¥15,000/月", note: "電気・ガス・水道・Wi-Fi・共用部清掃" },
-      { label: "月額合計", value: "¥70,000/月", note: "家賃＋光熱費・共益費" },
-      { label: "夏季（7〜9月）", value: "＋¥14,000/月", note: "冷房調整費として" },
+      { label: "光熱費・共益費", value: "¥15,000/月", note: "電気・ガス・水道・Wi-Fi・共用部清掃（税別）" },
+      { label: "月額合計", value: "¥70,000/月", note: "家賃＋光熱費・共益費（税別）" },
+      { label: "夏季（7〜9月）", value: "＋¥14,000/月", note: "冷房調整費として（税込）" },
       { label: "長期割: 2ヶ月以上", value: "総額 15% OFF", note: "3ヶ月以上 20% / 6ヶ月以上 30%" },
       { label: "デポジット", value: "¥30,000", note: "事前払い・退去時に問題がなければ返金" },
       { label: "2名でのご利用", value: "＋50%", note: "2人目は半額（合計1.5倍）" },
     ],
-    note: "料金は2026年7月時点のものです。長期滞在はご相談ください。お支払いは銀行振込のほか、Wise・PayPal・Stripe に対応しています。",
+    note: "表示価格は税別（消費税10%別・夏季冷房調整費のみ税込）です。料金は2026年7月時点のものです。長期滞在はご相談ください。お支払いは銀行振込のほか、Wise・PayPal・Stripe に対応しています。",
   },
   flow: {
     kicker: "入居までの流れ",
@@ -363,7 +363,7 @@ const ja: PierContent = {
   faq: {
     kicker: "よくあるご質問",
     items: [
-      { q: "料金には何が含まれていますか？", a: "家賃55,000円で鍵付き個室と共用スペース（キッチン・リビング・コワーキング）をご利用いただけます。水道・電気・ガス・高速Wi-Fi・共用部の定期清掃は光熱費・共益費15,000円に含まれ、月額合計は70,000円です。敷金・礼金・仲介手数料はありません。" },
+      { q: "料金には何が含まれていますか？", a: "家賃55,000円で鍵付き個室と共用スペース（キッチン・リビング・コワーキング）をご利用いただけます。水道・電気・ガス・高速Wi-Fi・共用部の定期清掃は光熱費・共益費15,000円に含まれ、月額合計は70,000円（税別）です。敷金・礼金・仲介手数料はありません。" },
       { q: "プライバシーは確保できますか？", a: "はい。各入居者に鍵付きの個室をご用意しています。共用スペースにも静かに過ごせる場所があり、自分のペースで暮らせます。" },
       { q: "どんな人が滞在していますか？", a: "国内外のリモートワーカー、フリーランス、旅人など。島の落ち着いた暮らしの中で、自然と人とのつながりが生まれます。" },
       { q: "リモートワークに向いていますか？", a: "高速で安定したWi-Fi、集中しやすい静かな環境、快適なワークスペースを整えています。Web会議用のミーティングルームもあります。" },
@@ -402,14 +402,14 @@ const ja: PierContent = {
     errSend: "送信に失敗しました。お手数ですが coliving@yugyo.work へ直接ご連絡ください。",
     hp: "空欄のまま",
     est: {
-      title: "概算費用（家賃＋光熱費・共益費込み）",
+      title: "概算費用（家賃＋光熱費・共益費込み・税別）",
       monthsLabel: (n) => `${n}ヶ月`,
       summerNote: "夏季料金を含む",
       guestsNote: "2名（2人目は半額）",
       depositNote: "＋デポジット ¥30,000（返金制）",
       longStay: "長期割を適用",
       shortStay: "短期滞在の料金は個別にご案内します。まずはご相談ください。",
-      disclaimer: "あくまで概算です。正式なお見積りは返信時にご案内します。",
+      disclaimer: "あくまで税別の概算です。正式なお見積り（税込額）は返信時にご案内します。",
     },
   },
   links: {
