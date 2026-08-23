@@ -55,6 +55,29 @@ const VALID_CATEGORIES: NewsCategory[] = [
   "media",
 ];
 
+// microCMS(imgix) が返す HEIC/HEIF は必ず JPEG に変換して配信する。
+// iPhone の標準保存形式である HEIC をそのまま入稿されると、microCMS は
+// Content-Type: image/heic で返し、Chrome / Firefox はこれを描画できない。
+// カード画像は background-image で表示するため、読み込み失敗が壊れた画像
+// アイコンにもならず「ただの空白」になり、事故に気づけない（2026-08-22 発生）。
+// 変換対象を HEIC/HEIF に限定しているのは、透過 PNG まで JPEG 化すると
+// アルファが黒/白に潰れて別の事故になるため。
+// webp ではなく jpg を選ぶ理由：この URL は OG 画像にも使われ、SNS の
+// クローラは webp 対応が不揃いなため、互換性の高い jpg に倒す。
+function normalizeCmsImage(url?: string): string | undefined {
+  if (!url) return undefined;
+  if (!url.includes("images.microcms-assets.io")) return url;
+  try {
+    const u = new URL(url);
+    if (!/\.hei[cf]$/i.test(u.pathname)) return url;
+    if (!u.searchParams.has("fm")) u.searchParams.set("fm", "jpg");
+    if (!u.searchParams.has("q")) u.searchParams.set("q", "82");
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
 // microCMS レコード → アプリ内 News 型へ正規化。
 function toNews(c: MicroCmsNews): News {
   const rawCategory = Array.isArray(c.category) ? c.category[0] : c.category;
@@ -73,7 +96,7 @@ function toNews(c: MicroCmsNews): News {
     excerpt_en: c.excerpt_en || undefined,
     body_jp: c.content ?? "",
     body_en: c.content_en || undefined,
-    hero_image: c.thumbnail?.url,
+    hero_image: normalizeCmsImage(c.thumbnail?.url),
     hero_image_width: c.thumbnail?.width,
     hero_image_height: c.thumbnail?.height,
     external_url: c.externalUrl || undefined,
