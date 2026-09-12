@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AboutBody } from "@/components/pages/AboutBody";
 import { altLinks, OG_LOCALE, OG_ALT_LOCALE } from "@/lib/i18n";
+import { breadcrumbLd, jsonLdScript } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "About",
@@ -26,5 +27,15 @@ export const metadata: Metadata = {
 };
 
 export default function AboutEn() {
-  return <AboutBody lang="en" />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(
+          breadcrumbLd("en", [{ name: "About", path: "/en/about" }])
+        )}
+      />
+      <AboutBody lang="en" />
+    </>
+  );
 }

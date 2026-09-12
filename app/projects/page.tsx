@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ProjectsIndexBody } from "@/components/pages/ProjectsIndexBody";
 import { altLinks, OG_LOCALE, OG_ALT_LOCALE } from "@/lib/i18n";
+import { breadcrumbLd, jsonLdScript } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "事業",
@@ -27,5 +28,15 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsIndexJa() {
-  return <ProjectsIndexBody lang="ja" />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(
+          breadcrumbLd("ja", [{ name: "事業", path: "/projects" }])
+        )}
+      />
+      <ProjectsIndexBody lang="ja" />
+    </>
+  );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ContactBody } from "@/components/pages/ContactBody";
 import { altLinks, OG_LOCALE, OG_ALT_LOCALE } from "@/lib/i18n";
+import { breadcrumbLd, jsonLdScript } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -26,5 +27,15 @@ export const metadata: Metadata = {
 };
 
 export default function ContactEn() {
-  return <ContactBody lang="en" />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(
+          breadcrumbLd("en", [{ name: "Contact", path: "/en/contact" }])
+        )}
+      />
+      <ContactBody lang="en" />
+    </>
+  );
 }

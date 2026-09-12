@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AboutBody } from "@/components/pages/AboutBody";
 import { altLinks, OG_LOCALE, OG_ALT_LOCALE } from "@/lib/i18n";
+import { breadcrumbLd, jsonLdScript } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "会社概要｜「遊行」とは",
@@ -27,5 +28,15 @@ export const metadata: Metadata = {
 };
 
 export default function AboutJa() {
-  return <AboutBody lang="ja" />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(
+          breadcrumbLd("ja", [{ name: "会社概要", path: "/about" }])
+        )}
+      />
+      <AboutBody lang="ja" />
+    </>
+  );
 }

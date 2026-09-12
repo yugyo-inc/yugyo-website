@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ProjectDetailBody } from "@/components/pages/ProjectDetailBody";
 import { PROJECTS, getProject } from "@/content/projects";
 import { altLinks, OG_LOCALE, OG_ALT_LOCALE } from "@/lib/i18n";
+import { breadcrumbLd, jsonLdScript } from "@/lib/structured-data";
 
 export function generateStaticParams() {
   return PROJECTS.ja.map((p) => ({ slug: p.slug }));
@@ -29,5 +30,18 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 export default function ProjectDetailJa({ params }: { params: { slug: string } }) {
   const project = getProject("ja", params.slug);
   if (!project) notFound();
-  return <ProjectDetailBody project={project} lang="ja" />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(
+          breadcrumbLd("ja", [
+            { name: "事業", path: "/projects" },
+            { name: project.content.title, path: `/projects/${project.slug}` },
+          ])
+        )}
+      />
+      <ProjectDetailBody project={project} lang="ja" />
+    </>
+  );
 }

@@ -1,6 +1,9 @@
 // lib/structured-data.ts — JSON-LD（schema.org）ペイロード生成。
 // 目的: Google が yugyo inc. を Organization として認識し、Knowledge Panel /
 // リッチスニペットに表示できるようにする。layout.tsx と news/[slug] で利用。
+import type { Lang } from "@/lib/i18n";
+
+const BASE = "https://yugyo.work";
 
 export const organizationLd = {
   "@context": "https://schema.org",
@@ -61,5 +64,31 @@ export const websiteLd = {
 export function jsonLdScript<T>(data: T) {
   return {
     __html: JSON.stringify(data),
+  };
+}
+
+// パンくずリスト（BreadcrumbList）を生成する汎用ヘルパー。
+// 各ページの body で個別に出力する（layout の Organization / WebSite スキーマとは
+// 別物・重複させない）。trail はホーム以降の階層のみを渡す（ホームは lang に応じて
+// 自動で先頭に付与）。item はカノニカルに揃えて常に本番 URL（BASE）で出力する。
+export function breadcrumbLd(
+  lang: Lang,
+  trail: { name: string; path: string }[]
+) {
+  const home =
+    lang === "ja"
+      ? { name: "ホーム", path: "/" }
+      : { name: "Home", path: "/en" };
+  const items = [home, ...trail];
+  const toUrl = (p: string) => (p === "/" ? BASE : `${BASE}${p}`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((it, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: it.name,
+      item: toUrl(it.path),
+    })),
   };
 }
