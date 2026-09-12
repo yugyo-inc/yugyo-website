@@ -3,6 +3,7 @@
 // 施設情報（所在地・価格帯・設備）を機械可読で取得できるようにする。
 // FAQPage: FAQ リッチリザルト＋AI 回答エンジンへの一次情報提供。
 import { getThePier } from "@/content/thepier";
+import { PIER_RATING, PIER_REVIEWS } from "@/content/thepier-reviews";
 import type { Lang } from "@/lib/i18n";
 
 const BASE = "https://yugyo.work";
@@ -43,6 +44,27 @@ export function pierLodgingLd(lang: Lang) {
     ],
     numberOfRooms: 6,
     petsAllowed: false,
+    // 口コミ評価（Google ビジネスプロフィール由来・全12件★5.0）。
+    // aggregateRating と、ページ本文に実際に表示している review 全件を機械可読化する。
+    // reviewBody は表示中の言語に合わせる（Google: マークアップはページ表示内容と一致必須）。
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: PIER_RATING.score,
+      reviewCount: PIER_RATING.count,
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: PIER_REVIEWS.map((r) => ({
+      "@type": "Review",
+      author: { "@type": "Person", name: r.author },
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: r.stars,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      reviewBody: lang === "ja" ? r.text_ja : r.text_en,
+    })),
     sameAs: [
       "https://www.instagram.com/thepiergoto/",
       "https://coliving.com/spaces/kqmdc4ca",
