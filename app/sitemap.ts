@@ -26,12 +26,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     routes.push({ url: `${base}${path}`, lastModified: now });
   }
 
-  const { items } = await getNews({ limit: 200 });
-  for (const n of items) {
-    if (n.external_url) continue;
-    const lm = n.updated ? new Date(n.updated) : now;
-    routes.push({ url: `${base}/news/${n.slug}`, lastModified: lm });
-    routes.push({ url: `${base}/en/news/${n.slug}`, lastModified: lm });
+  // 個別ニュース記事（日英ミラー）。
+  // /news/[slug] は external_url の有無に関わらず常に内部ページを描画するため、
+  // external_url を持つ記事も sitemap から除外しない（GA4 で実流入のある実在ページ）。
+  // getNews は 100 件超でも内部で分割取得するので limit は余裕をもって指定する。
+  try {
+    const { items, configured } = await getNews({ limit: 1000 });
+    if (configured && items.length === 0) {
+      // CMS 設定済みなのに 0 件 = fetch 失敗の疑い。サイレントな空 sitemap を検知できるよう記録。
+      console.warn(
+        "[sitemap] getNews returned 0 items while microCMS is configured; news article URLs will be missing"
+      );
+    }
+    for (const n of items) {
+      const lm = n.updated ? new Date(n.updated) : now;
+      routes.push({ url: `${base}/news/${n.slug}`, lastModified: lm });
+      routes.push({ url: `${base}/en/news/${n.slug}`, lastModified: lm });
+    }
+  } catch (e) {
+    // ニュース取得で例外が出ても、静的ルートだけの sitemap は返す（全滅を防ぐ）。
+    console.error("[sitemap] failed to append news article routes:", e);
   }
 
   return routes;

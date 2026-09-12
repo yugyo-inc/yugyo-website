@@ -129,7 +129,15 @@ export interface NewsListResult {
   configured: boolean;
 }
 
+// microCMS の list API は 1 リクエストあたり limit 上限 100。これを超える件数が
+// 必要な呼び出し（例: sitemap の全記事列挙）で limit=200 等をそのまま渡すと
+// microCMS が 400（Invalid 'limit' value）を返し、cmsFetch が null → 記事ゼロで
+// 静かに失敗する（sitemap から個別記事 URL が全て消える不具合の原因）。
+// そのため 100 件を超える要求は offset で分割取得する。
+const CMS_PAGE_MAX = 100;
+
 // 一覧取得。公開日時の降順。category 指定で絞り込み可能。
+// limit が 100 を超える場合は内部で分割取得（ページング）して結合する。
 export async function getNews(opts?: {
   limit?: number;
   category?: string;
@@ -142,21 +150,39 @@ export async function getNews(opts?: {
   };
   if (!isConfigured()) return empty;
 
-  const params = new URLSearchParams();
-  params.set("limit", String(opts?.limit ?? 20));
-  params.set("orders", "-publishedAt");
-  if (opts?.category) {
-    // セレクト（配列）フィールドの絞り込みは contains を使う
-    params.set("filters", `category[contains]${opts.category}`);
+  const wanted = Math.max(1, opts?.limit ?? 20);
+  const collected: MicroCmsNews[] = [];
+  let totalCount = 0;
+  let offset = 0;
+
+  while (collected.length < wanted) {
+    const params = new URLSearchParams();
+    params.set("limit", String(Math.min(CMS_PAGE_MAX, wanted - collected.length)));
+    params.set("offset", String(offset));
+    params.set("orders", "-publishedAt");
+    if (opts?.category) {
+      // セレクト（配列）フィールドの絞り込みは contains を使う
+      params.set("filters", `category[contains]${opts.category}`);
+    }
+
+    const data = await cmsFetch<MicroCmsListResponse<MicroCmsNews>>(
+      `/news?${params.toString()}`
+    );
+    // 1 ページ目で取得失敗（null）＝ CMS 不達。従来どおり graceful に空で返す。
+    if (!data || !Array.isArray(data.contents)) {
+      if (collected.length === 0) return empty;
+      break;
+    }
+    totalCount = data.totalCount;
+    collected.push(...data.contents);
+    offset += data.contents.length;
+    // 全件取得済み、または空ページに到達したら終了。
+    if (data.contents.length === 0 || offset >= totalCount) break;
   }
 
-  const data = await cmsFetch<MicroCmsListResponse<MicroCmsNews>>(
-    `/news?${params.toString()}`
-  );
-  if (!data || !Array.isArray(data.contents)) return empty;
   return {
-    items: data.contents.map(toNews),
-    totalItems: data.totalCount,
+    items: collected.map(toNews),
+    totalItems: totalCount,
     page: 1,
     configured: true,
   };
